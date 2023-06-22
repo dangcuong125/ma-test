@@ -1,0 +1,48 @@
+{
+  "name": "ecom-loyalty",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/node": "18.16.0",
+    "@types/react": "18.0.38",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.39.0",
+    "eslint-config-next": "13.3.1",
+    "next": "13.3.1",
+    "next-translate": "2.0.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4",
+    "react-redux": "8.0.5",
+    "@reduxjs/toolkit": "1.9.5",
+    "react-query": "3.39.3",
+    "axios": "1.4.0",
+    "@emotion/cache": "11.10.7",
+    "@emotion/react": "11.10.6",
+    "@emotion/server": "11.10.0",
+    "@emotion/styled": "11.10.6",
+    "@fontsource/roboto": "4.5.8",
+    "@iconify/react": "4.1.0",
+    "@mui/icons-material": "5.11.16",
+    "@mui/material": "5.12.0",
+    "highlight.js": "11.7.0",
+    "numeral": "2.0.6",
+    "react-dropzone": "14.2.3",
+    "react-hook-form": "7.43.9",
+    "react-lazy-load-image-component": "1.5.6",
+    "react-quill": "2.0.0",
+    "tss-react": "4.8.2",
+    "framer-motion": "7.5.3"
+  },
+  "devDependencies": {
+    "next-translate-plugin": "2.0.5",
+    "@types/numeral": "2.0.2",
+    "@types/react-lazy-load-image-component": "1.5.2"
+  }
+}
