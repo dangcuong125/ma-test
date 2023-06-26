@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import useTranslation from "next-translate/useTranslation";
-import { LangSwitcher } from "@/components/LangSwitcher";
-import { TLink } from "@/components/TLink";
+import { LangSwitcher } from "@/common/components/LangSwitcher";
+import { TLink } from "@/common/components/TLink";
 
 const META_OBJECT = {
   title: {
