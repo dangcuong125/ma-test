@@ -1,11 +1,10 @@
-import { LangSwitcher } from "@/common/components/LangSwitcher";
-import { TLink } from "@/common/components/TLink";
-import Text from "./Text";
+import { LangSwitcher } from "@/components/LangSwitcher";
+import { TLink } from "@/components/TLink";
 
 const SecondPage = () => {
   return (
     <main>
-      <Text />
+      {/* <Text /> */}
 
       <LangSwitcher />
       <TLink style={{ marginTop: "20px", display: "block" }} href="/">
