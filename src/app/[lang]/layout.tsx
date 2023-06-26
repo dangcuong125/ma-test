@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <body>
-        <NextAppDirEmotionCacheProvider options={{ key: "css", prepend: true }}>
+        <NextAppDirEmotionCacheProvider options={{ key: "mui", prepend: true }}>
           <AppThemeProvider>
             <ReduxProviders>
               <Providers>{children}</Providers>
