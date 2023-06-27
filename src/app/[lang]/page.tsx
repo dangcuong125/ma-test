@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { LangSwitcher } from "@/common/components/LangSwitcher";
 import { TLink } from "@/common/components/TLink";
+import HomeApp from "@/components/home";
 
 const META_OBJECT = {
   title: {
@@ -28,14 +29,15 @@ export const generateMetadata = ({
 export default function Home() {
   const { t } = useTranslation();
   return (
-    <main>
-      <h2 style={{ textAlign: "center", padding: "20px 0px" }}>
-        {t("common:hello")}
-      </h2>
-      <LangSwitcher />
-      <TLink style={{ marginTop: "20px", display: "block" }} href="/second">
-        Go to second page
-      </TLink>
-    </main>
+    // <main>
+    //   <h2 style={{ textAlign: "center", padding: "20px 0px" }}>
+    //     {t("common:hello")}
+    //   </h2>
+    //   <LangSwitcher />
+    //   <TLink style={{ marginTop: "20px", display: "block" }} href="/second">
+    //     Go to second page
+    //   </TLink>
+    // </main>
+    <HomeApp/>
   );
 }
