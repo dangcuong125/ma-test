@@ -2,7 +2,7 @@ import { pxToRem, responsiveFontSizes } from "../utils/getFontValue";
 
 // ----------------------------------------------------------------------
 
-const FONT_PRIMARY = "Roboto Condensed, sans-serif"; // Google Font
+const FONT_PRIMARY = "Plus Jakarta Sans, sans-serif"; // Google Font
 // const FONT_SECONDARY = 'CircularStd, sans-serif'; // Local Font
 
 const typography = {
@@ -81,6 +81,7 @@ const typography = {
     fontSize: pxToRem(14),
     textTransform: "capitalize",
   },
+
 } as const;
 
 export default typography;
