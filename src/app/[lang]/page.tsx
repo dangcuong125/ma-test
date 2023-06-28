@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { LangSwitcher } from "@/common/components/LangSwitcher";
 import { TLink } from "@/common/components/TLink";
-import HomeApp from "@/components/home";
+import HomeApp from "./home";
 
 const META_OBJECT = {
   title: {
