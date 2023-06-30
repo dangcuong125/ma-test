@@ -1,4 +1,4 @@
-import { Stack, Box, Typography, IconButton } from "@mui/material";
+import { Stack, Box, Typography, IconButton, Chip } from "@mui/material";
 import Image from "../Image";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
 
@@ -22,6 +22,9 @@ export const ComboItemDefault = (props: Props) => {
         border: "1px solid #E1E2E6",
         backgroundColor: "white",
         boxShadow: "0px 14px 21px rgba(218, 218, 218, 0.15)",
+        ':hover':{
+          backgroundColor: "#D8C4B6",
+        }
       }}
     >
       <Box
@@ -36,8 +39,20 @@ export const ComboItemDefault = (props: Props) => {
           backgroundPosition: "center",
           backgroundImage: `url(${srcImg})`,
           backgroundColor: "white",
+          justifyContent: "flex-end",
+          p: '20px',
         }}
-      />
+      >
+        <Chip
+          label={ "-" + ((price as number -( flashPrice as number))/(price as number)* 100)?.toFixed(0) + "%"}
+          sx={{
+            borderRadius: '4px',
+            backgroundColor: "#2DB703",
+            padding: '17px 20px',
+            color: 'white',
+          }}
+        />
+      </Box>
       <Stack
         sx={{
           paddingBottom: "27px",
@@ -90,7 +105,7 @@ export const ComboItemDefault = (props: Props) => {
                 maxWidth: "100%",
               }}
             >
-              {formatNumberToCurrency(price)}
+              {formatNumberToCurrency(flashPrice)}
             </Typography>
             <Typography
               fontSize={24}
@@ -104,7 +119,7 @@ export const ComboItemDefault = (props: Props) => {
                 textDecoration: 'line-through',
               }}
             >
-              {formatNumberToCurrency(flashPrice)}
+              {formatNumberToCurrency(price)}
 
             </Typography>
           </Stack>

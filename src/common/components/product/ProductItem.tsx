@@ -20,6 +20,9 @@ export const ProductItemDefault = (props: Props) => {
         borderRadius: "24px",
         border: "1px solid #E1E2E6",
         boxShadow: "0px 14px 21px rgba(218, 218, 218, 0.15)",
+        ':hover':{
+          backgroundColor: "#D8C4B6",
+        }
       }}
     >
       <Box
