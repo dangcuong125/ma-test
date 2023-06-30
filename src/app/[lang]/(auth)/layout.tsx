@@ -2,7 +2,7 @@
 import { Box, Grid, Stack } from "@mui/material";
 import { ReactNode } from "react";
 import { HeaderBar } from "./components/Header";
-import { FooterBar } from "../layoutApp/components/footer/Footer";
+import { FooterBar } from "../(web)/layoutApp/components/footer/Footer";
 import Slogan from "./components/Slogan";
 import useResponsive from "@/common/hooks/useResponsive";
 

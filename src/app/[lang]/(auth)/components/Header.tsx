@@ -1,4 +1,6 @@
+'use client'
 import { Stack, Box } from "@mui/material";
+import React from "react";
 
 export const HeaderBar = () => {
   return (
