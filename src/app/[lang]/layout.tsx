@@ -6,7 +6,6 @@ import "src/common/styles/css/global.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/bundle";
-import LayoutApp from "./layoutApp";
 
 export default function RootLayout({
   children,
@@ -22,7 +21,7 @@ export default function RootLayout({
           <AppThemeProvider>
             <ReduxProviders>
               <Providers>
-                <LayoutApp>{children}</LayoutApp>
+                {children}
               </Providers>
             </ReduxProviders>
           </AppThemeProvider>

@@ -78,7 +78,7 @@ export const ComboItemDefault = (props: Props) => {
           justifyContent={"space-between"}
           width={'100%'}
         >
-          <Stack width={'100%'}>
+          <Stack width={'70%'}>
             <Typography
               fontSize={24}
               color={"#1F8A70"}
@@ -87,7 +87,7 @@ export const ComboItemDefault = (props: Props) => {
                 textOverflow: "ellipsis",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                maxWidth: "70%",
+                maxWidth: "100%",
               }}
             >
               {formatNumberToCurrency(price)}
@@ -100,7 +100,7 @@ export const ComboItemDefault = (props: Props) => {
                 textOverflow: "ellipsis",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                maxWidth: "70%",
+                maxWidth: "100%",
                 textDecoration: 'line-through',
               }}
             >
