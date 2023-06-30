@@ -1,4 +1,3 @@
-'use client'
 import { Box } from "@mui/material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';

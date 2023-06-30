@@ -25,12 +25,12 @@ export const FooterBar = () => {
         direction={"row"}
         sx={{
           pt: "80px",
-          pl: "135px",
+          pl: {lg: '135px', md: '100px', sm: '65px', xs: '25px'},
           pr: "58px",
           color: "white",
           justifyContent: "space-between",
         }}
-        spacing={"87px"}
+        spacing={{ xs: '25px', md: "85px"}}
         container
       >
         <Grid item alignItems={"flex-start"}>

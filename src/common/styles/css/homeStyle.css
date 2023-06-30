@@ -20,3 +20,7 @@
   height: 200;
   padding-right: 70%!important;
 }
+
+.box-menu-item:hover p {
+  color: white;
+}
