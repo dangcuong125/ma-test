@@ -78,7 +78,7 @@ export const ComboItemDefault = (props: Props) => {
           justifyContent={"space-between"}
           width={'100%'}
         >
-          <Stack width={'70%'}>
+          <Stack width={'80%'}>
             <Typography
               fontSize={24}
               color={"#1F8A70"}

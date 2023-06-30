@@ -67,7 +67,7 @@ export const PopularProduct = () => {
           width={'100%'}
         >
           {MOCK_DATA_PRODUCT?.map((item, index) => (
-            <Grid item key={index} width={'100%'} md={4}> 
+            <Grid item key={index} width={'100%'} md={6.5} sm={10} lg={5} xl={4}> 
               <ProductItemDefault
                 title={item?.title}
                 srcImg={item?.srcImg}

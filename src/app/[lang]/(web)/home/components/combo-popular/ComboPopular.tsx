@@ -70,7 +70,7 @@ export const ComboPopular = () => {
           columns={17}
         >
           {MOCK_COMBO_DATA_PRODUCT?.map((item, index) => (
-            <Grid item key={index} width={"100%"} md={4}>
+            <Grid item key={index} width={"100%"} md={6.5} sm={8} lg={5.5} xl={4}>
               <ComboItemDefault
                 title={item?.title}
                 srcImg={item?.srcImg}
