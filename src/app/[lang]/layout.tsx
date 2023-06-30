@@ -2,8 +2,10 @@ import { ReduxProviders } from "@/common/redux/provider";
 import AppThemeProvider from "@/common/styles/app-theme-provider";
 import Providers from "@/common/utils/provider";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next";
-import 'src/common/styles/global.css'
-import LayoutApp from "@/components/layout";
+import "src/common/styles/css/global.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
 
 export default function RootLayout({
   children,
@@ -19,7 +21,7 @@ export default function RootLayout({
           <AppThemeProvider>
             <ReduxProviders>
               <Providers>
-                <LayoutApp>{children}</LayoutApp>
+                {children}
               </Providers>
             </ReduxProviders>
           </AppThemeProvider>

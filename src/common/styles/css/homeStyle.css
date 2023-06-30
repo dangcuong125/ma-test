@@ -1,0 +1,26 @@
+.swiperBanner .swiper-pagination-bullet-active {
+  box-sizing: border-box;
+  width: 24px !important;
+  background: white !important;
+  border-radius: 6.38672px !important;
+}
+
+.swiperBanner .swiper-pagination-bullet {
+  background-color:white !important;
+  opacity: 1 !important;
+  height: 10px !important;
+  width: 10px;
+
+}
+.swiperBanner .swiper-pagination {
+  align-items: start!important;
+  justify-content: flex-start!important;
+  justify-items: flex-start!important;
+  /* margin: 0!important; */
+  height: 200;
+  padding-right: 70%!important;
+}
+
+.box-menu-item:hover p {
+  color: white;
+}

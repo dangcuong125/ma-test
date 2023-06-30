@@ -6,6 +6,7 @@ import {
   TextField,
   InputAdornment,
   IconButton,
+  Typography,
 } from "@mui/material";
 
 export const HeaderBar = () => {
@@ -15,7 +16,7 @@ export const HeaderBar = () => {
       // spacing={"110px"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      px={"100px"}
+      px={{xs: 0 , sm: "25px", md: '75px', lg: '100px'}}
       boxShadow={3}
       width={"100%"}
       maxHeight={"140px"}
@@ -28,21 +29,27 @@ export const HeaderBar = () => {
     >
       <Box
         sx={{
-          height: "123px",
-          width: "190px",
+          height: { md: "123px", sm: "90px", xs: "50px" },
+          width: { md: "190px", sm: "150x", xs: "100px" },
           backgroundImage: "url('/assets/Logo.svg')",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          objectFit: "cover",
+          padding: "10px",
         }}
       />
       <Box
         sx={{
           height: "48px",
           width: "33%",
+          display: {xs: "none", sm: 'flex'},
           // backgroundColor: "#F3F9FB",
           // borderRadius: "10px",
         }}
       >
         <TextField
-          fullWidth
+          fullWidth      
           placeholder="Tìm kiếm"
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -63,9 +70,6 @@ export const HeaderBar = () => {
             },
           }}
           InputProps={{
-            sx: {
-              zIndex: 2,
-            },
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton sx={{ p: 0 }}>
@@ -79,7 +83,7 @@ export const HeaderBar = () => {
                 </IconButton>
               </InputAdornment>
             ),
-            startAdornment:(
+            startAdornment: (
               <InputAdornment position="start">
                 <IconButton sx={{ p: 0 }}>
                   <Box
@@ -91,7 +95,7 @@ export const HeaderBar = () => {
                   />
                 </IconButton>
               </InputAdornment>
-            )
+            ),
           }}
         />
       </Box>
@@ -100,6 +104,7 @@ export const HeaderBar = () => {
           sx={{
             color: "#666666",
           }}
+          children={<Typography display={{ xs: 'none', md: 'flex'}}>Đăng ký/Đăng nhập</Typography>}
           startIcon={
             <Box
               sx={{
@@ -109,14 +114,13 @@ export const HeaderBar = () => {
               }}
             />
           }
-        >
-          Đăng ký/Đăng nhập
-        </Button>
+        />
         <Divider orientation="vertical" flexItem />
         <Button
           sx={{
             color: "#666666",
           }}
+          children={<Typography display={{ xs: 'none', md: 'flex'}}>Giỏ hàng</Typography>}
           startIcon={
             <Box
               sx={{
@@ -126,9 +130,7 @@ export const HeaderBar = () => {
               }}
             />
           }
-        >
-          Giỏ hàng
-        </Button>
+        />
       </Stack>
     </Stack>
   );
