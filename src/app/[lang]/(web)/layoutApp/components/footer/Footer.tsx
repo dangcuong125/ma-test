@@ -19,14 +19,14 @@ export const FooterBar = () => {
     <Stack
       width={"100%"}
       sx={{ backgroundColor: "black", pb: "24px" }}
-      spacing={"104px"}
+      spacing={"10vw"}
     >
       <Grid
         direction={"row"}
         sx={{
           pt: "80px",
-          pl: {lg: '135px', md: '100px', sm: '65px', xs: '25px'},
-          pr: "58px",
+          pl: "8vw",
+          pr: "4vw",
           color: "white",
           justifyContent: "space-between",
         }}

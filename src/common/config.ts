@@ -29,3 +29,6 @@ export const allLangs = [
 ];
 
 export const defaultLang = allLangs[1]; // English
+
+export const MERCHANT_ID = 1;
+

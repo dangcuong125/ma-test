@@ -14,6 +14,7 @@
     "@emotion/server": "11.10.0",
     "@emotion/styled": "11.10.6",
     "@fontsource/roboto": "4.5.8",
+    "@hookform/resolvers": "2.9.11",
     "@iconify/react": "4.1.0",
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.12.0",
@@ -27,7 +28,7 @@
     "eslint-config-next": "13.3.1",
     "framer-motion": "7.5.3",
     "highlight.js": "11.7.0",
-    "next": "13.3.1",
+    "next": "13.4.7",
     "next-translate": "2.0.5",
     "numeral": "2.0.6",
     "react": "18.2.0",
@@ -40,7 +41,8 @@
     "react-redux": "8.0.5",
     "swiper": "9.4.1",
     "tss-react": "4.8.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "yup": "1.0.0"
   },
   "devDependencies": {
     "@types/numeral": "2.0.2",
