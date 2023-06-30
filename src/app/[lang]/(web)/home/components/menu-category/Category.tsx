@@ -10,7 +10,7 @@ import { MOCK_DATA_PRODUCT } from "../../constants";
 import { useCallback, useRef } from "react";
 
 export const MenuCategory = () => {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<any>(null);
 
   const handleClickPrev = useCallback(() => {
     if (!sliderRef.current) return;
