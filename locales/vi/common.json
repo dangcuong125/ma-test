@@ -1,4 +1,9 @@
 {
   "hello": "Xin chào",
-  "welcome": "Chào mừng"
+  "welcome": "Chào mừng",
+  "noti": {
+    "noti_list": {
+      "heading": "Thông báo của tôi"
+    }
+  }
 }

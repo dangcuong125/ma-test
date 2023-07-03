@@ -1,4 +1,9 @@
 {
-    "hello": "Hello",
-    "welcome": "Welcome"
+  "hello": "Hello",
+  "welcome": "Welcome",
+  "noti": {
+    "noti_list": {
+      "heading": "Notifications"
+    }
+  }
 }
