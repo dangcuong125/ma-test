@@ -1,10 +1,9 @@
 {
   "hello": "Hello",
   "welcome": "Welcome",
-  "hello": "Hello",
-  "welcome": "Welcome",
   "and": "and",
   "continue": "Continue",
+  "cancel": "Cancel",
   "auth": {
     "username": "Username",
     "password": "Password",
@@ -19,11 +18,39 @@
     "end_register_term": ".",
     "phoneNumber": "Phone number",
     "forgot_password": "Forgot password?",
-    "already_have_account": "Already have an account?"
+    "already_have_account": "Already have an account?",
+    "resend_otp": "Resend OTP",
+    "full_name": "Full Name",
+    "confirm_password": "Confirm Password",
+    "referral_code": "Referral Code",
+    "create_account": "Create Account",
+    "rule_password": "Password must be at least",
+    "1_number_character": "1 number character",
+    "10_letter_characters": "10 letter characters"
+  },
+  "category": {
+    "filter": "Filter",
+    "categorySub": "Category",
+    "addMore": "Load more",
+    "location": "Location",
+    "shipping": "Shipping",
+    "rangPrice": "Range price",
+    "apply": "Apply",
+    "status": "Status",
+    "deleteAll": "Delete All",
+    "home": "Home"
+  },
+  "product": {
+    "color": "Color",
+    "weight": "Weight",
+    "tableWeight": "Weight",
+    "addToCart": "Add to cart",
+    "productRecommend": "Similar Product"
   },
   "form": {
     "field_required": "This field is required",
-    "phoneNumber_not_valid": "Phone number is not valid"
+    "phoneNumber_not_valid": "Phone number is not valid",
+    "password_not_match": "Password does not match"
   },
   "noti": {
     "noti_list": {

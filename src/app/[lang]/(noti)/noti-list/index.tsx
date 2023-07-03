@@ -19,7 +19,9 @@ const NotiList = () => {
         const newListNoti: INotiItem[] = dataNoti.items || [];
         setListNoti(newListNoti);
         setIsNotFound(newListNoti.length === 0);
-      } catch (error) {}
+      } catch (error) {
+        setIsNotFound(true);
+      }
     };
 
     fetchData();

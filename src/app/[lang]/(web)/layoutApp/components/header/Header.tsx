@@ -101,37 +101,29 @@ export const HeaderBar = () => {
         />
       </Box>
       <Stack direction={"row"} spacing={"20px"}>
-        <Link href={"/login"}>
-          <Button
-            sx={{
-              color: "#666666",
-            }}
-            children={
-              <Typography display={{ xs: "none", md: "flex" }}>
-                Đăng ký/Đăng nhập
-              </Typography>
-            }
-            startIcon={
-              <Box
-                sx={{
-                  backgroundImage: "url(/assets/icons/core/user.svg)",
-                  width: "24px",
-                  height: "24px",
-                }}
-              />
-            }
-          />
-        </Link>
+        <Button
+          sx={{
+            color: "#666666",
+          }}
+          startIcon={
+            <Box
+              sx={{
+                backgroundImage: "url(/assets/icons/core/user.svg)",
+                width: "24px",
+                height: "24px",
+              }}
+            />
+          }
+        >
+          <Typography display={{ xs: "none", md: "flex" }}>
+            Đăng ký/Đăng nhập
+          </Typography>
+        </Button>
         <Divider orientation="vertical" flexItem />
         <Button
           sx={{
             color: "#666666",
           }}
-          children={
-            <Typography display={{ xs: "none", md: "flex" }}>
-              Giỏ hàng
-            </Typography>
-          }
           startIcon={
             <Box
               sx={{
@@ -141,7 +133,9 @@ export const HeaderBar = () => {
               }}
             />
           }
-        />
+        >
+          <Typography display={{ xs: "none", md: "flex" }}>Giỏ hàng</Typography>
+        </Button>
       </Stack>
     </Stack>
   );
