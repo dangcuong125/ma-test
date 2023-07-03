@@ -1,33 +1,41 @@
 {
-  "hello": "Hello",
-  "welcome": "Welcome",
-  "hello": "Hello",
-  "welcome": "Welcome",
-  "and": "and",
-  "continue": "Continue",
-  "auth": {
-    "username": "Username",
-    "password": "Password",
-    "login": "Login",
-    "or": "OR",
-    "dont_have_account": "Don't have account?",
-    "register": "Register",
-    "get_started": "Get started",
-    "terms_of_service": "Terms of Service",
-    "privacy_policy": "Privacy policy",
-    "register_term": "By clicking sign up, I agree to ShopGrocery",
-    "end_register_term": ".",
-    "phoneNumber": "Phone number",
-    "forgot_password": "Forgot password?",
-    "already_have_account": "Already have an account?"
-  },
-  "form": {
-    "field_required": "This field is required",
-    "phoneNumber_not_valid": "Phone number is not valid"
-  },
-  "noti": {
-    "noti_list": {
-      "heading": "Notifications"
+    "hello": "Hello",
+    "welcome": "Welcome",
+    "and": "and",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "auth": {
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "or": "OR",
+        "dont_have_account": "Don't have account?",
+        "register": "Register",
+        "get_started": "Get started",
+        "terms_of_service": "Terms of Service",
+        "privacy_policy": "Privacy policy",
+        "register_term": "By clicking sign up, I agree to ShopGrocery",
+        "end_register_term": ".",
+        "phoneNumber": "Phone number",
+        "forgot_password": "Forgot password?",
+        "already_have_account": "Already have an account?",
+        "resend_otp": "Resend OTP",
+        "full_name": "Full Name",
+        "confirm_password": "Confirm Password",
+        "referral_code": "Referral Code",
+        "create_account": "Create Account",
+        "rule_password": "Password must be at least",
+        "1_number_character": "1 number character",
+        "10_letter_characters": "10 letter characters"
+    },
+    "form": {
+        "field_required": "This field is required",
+        "phoneNumber_not_valid": "Phone number is not valid",
+        "password_not_match": "Password does not match"
+    },
+    "noti": {
+      "noti_list": {
+        "heading": "Notifications"
     }
-  }
+}
 }
