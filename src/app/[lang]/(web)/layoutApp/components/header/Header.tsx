@@ -16,7 +16,7 @@ export const HeaderBar = () => {
       // spacing={"110px"}
       alignItems={"center"}
       justifyContent={"space-between"}
-      px={{xs: 0 , sm: "25px", md: '75px', lg: '100px'}}
+      px={{ xs: 0, sm: "25px", md: "75px", lg: "100px" }}
       boxShadow={3}
       width={"100%"}
       maxHeight={"140px"}
@@ -43,13 +43,13 @@ export const HeaderBar = () => {
         sx={{
           height: "48px",
           width: "33%",
-          display: {xs: "none", sm: 'flex'},
+          display: { xs: "none", sm: "flex" },
           // backgroundColor: "#F3F9FB",
           // borderRadius: "10px",
         }}
       >
         <TextField
-          fullWidth      
+          fullWidth
           placeholder="Tìm kiếm"
           sx={{
             "& .MuiOutlinedInput-root": {
@@ -104,7 +104,6 @@ export const HeaderBar = () => {
           sx={{
             color: "#666666",
           }}
-          children={<Typography display={{ xs: 'none', md: 'flex'}}>Đăng ký/Đăng nhập</Typography>}
           startIcon={
             <Box
               sx={{
@@ -114,13 +113,16 @@ export const HeaderBar = () => {
               }}
             />
           }
-        />
+        >
+          <Typography display={{ xs: "none", md: "flex" }}>
+            Đăng ký/Đăng nhập
+          </Typography>
+        </Button>
         <Divider orientation="vertical" flexItem />
         <Button
           sx={{
             color: "#666666",
           }}
-          children={<Typography display={{ xs: 'none', md: 'flex'}}>Giỏ hàng</Typography>}
           startIcon={
             <Box
               sx={{
@@ -130,7 +132,9 @@ export const HeaderBar = () => {
               }}
             />
           }
-        />
+        >
+          <Typography display={{ xs: "none", md: "flex" }}>Giỏ hàng</Typography>
+        </Button>
       </Stack>
     </Stack>
   );

@@ -1,18 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '@/common/redux/store';
 type AuthLoginProps = {
   isLoggedIn: boolean;
   accessToken: string;
   refreshToken: string;
-  customerCode: string;
   isExpiredToken: boolean;
+  isOpenOtpModal: boolean;
 };
 const initialState: AuthLoginProps = {
   isLoggedIn: false,
   accessToken: '',
   refreshToken: '',
-  customerCode: '',
   isExpiredToken: false,
+  isOpenOtpModal: false,
 };
 export const authLoginSlice = createSlice({
   name: 'authLogin',
@@ -35,8 +34,8 @@ export const authLoginSlice = createSlice({
       state.refreshToken = initialState.refreshToken;
       state.isLoggedIn = initialState.isLoggedIn;
     },
-    setCustomerCode: (state, action: PayloadAction<string>) => {
-      state.customerCode = action.payload;
+    setOpenOtpModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenOtpModal = action.payload;
     },
     setIsExpiredToken: (state, action: PayloadAction<boolean>) => {
       state.isExpiredToken = action.payload;
@@ -50,7 +49,7 @@ export const {
   setAccessToken,
   setRefreshToken,
   resetToken,
-  setCustomerCode,
+  setOpenOtpModal,
   setIsExpiredToken,
 } = authLoginSlice.actions;
 

@@ -22,6 +22,7 @@ import { useCheckPhoneExisted } from "../hooks/useCheckPhoneExisted";
 // import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
+import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 
 const RegisterForm = () => {
   const registerSchema = RegisterSchema();
@@ -45,7 +46,7 @@ const RegisterForm = () => {
 
   const onSubmit = (data: IFormRegister) => {
     dispatch(setPhoneNumber(data?.phoneNumber))
-    router.push(PATH_AUTH.otp);
+    dispatch(setOpenOtpModal(true));
     // mutate(data, {
     //   onError: (error: any) => {
     //     // showErrorSnackbar(error?.message);

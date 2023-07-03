@@ -3,6 +3,7 @@
   "welcome": "Chào mừng",
   "and": "và",
   "continue": "Tiếp tục",
+  "cancel": "Hủy",
   "auth": {
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
@@ -17,7 +18,15 @@
     "end_register_term": "của ShopGrocery.",
     "phoneNumber": "Số điện thoại",
     "forgot_password": "Quên mật khẩu?",
-    "already_have_account": "Bạn đã có tài khoản?"
+    "already_have_account": "Bạn đã có tài khoản?",
+    "resend_otp": "Gửi lại OTP",
+    "full_name": "Họ và tên",
+    "confirm_password": "Nhập lại mật khẩu",
+    "referral_code": "Mã giới thiệu",
+    "create_account": "Tạo tài khoản",
+    "rule_password": "Mật khẩu phải có ít nhất",
+    "1_number_character": "1 ký tự số",
+    "10_letter_characters": "10 ký tự chữ"
   },
   "category": {
     "filter": "Bộ lọc tìm kiếm",
@@ -36,10 +45,15 @@
     "weight": "Chọn khối lượng",
     "tableWeight": "Bảng khối lượng",
     "addToCart": "Thêm vào giỏ hàng",
-    "productRecommend": "Sản phẩm tương tự"
-  },
+    "productRecommend": "Sản phẩm tương tự"},
   "form": {
     "field_required": "Trường này không được để trống",
-    "phoneNumber_not_valid": "Số điện thoại không hợp lệ"
+    "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
+    "password_not_match": "Mật khẩu không trùng khớp"
+  },
+  "noti": {
+    "noti_list": {
+      "heading": "Thông báo của tôi"
+    }
   }
 }
