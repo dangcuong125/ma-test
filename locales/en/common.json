@@ -29,5 +29,17 @@
     "noti_list": {
       "heading": "Notifications"
     }
+  },
+  "sidebar": {
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "address": "Address",
+    "eVoucher": "My E-Voucher",
+    "orderHistory": "Order History",
+    "policy": "Policy",
+    "term": "Term",
+    "help": "Help",
+    "home": "Home",
+    "product": "Product"
   }
 }
