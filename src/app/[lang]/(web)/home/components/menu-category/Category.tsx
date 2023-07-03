@@ -9,7 +9,13 @@ import { SliderMenuItem } from "./SlideMenuItem";
 import { MOCK_DATA_PRODUCT } from "../../constants";
 import { useCallback, useRef } from "react";
 
-export const MenuCategory = () => {
+type Props ={
+  dataMenu: any,
+}
+
+export const MenuCategory = (props: Props) => {
+
+  const { dataMenu} = props; 
   const sliderRef = useRef<any>(null);
 
   const handleClickPrev = useCallback(() => {
@@ -55,9 +61,10 @@ export const MenuCategory = () => {
               fontSize: "32px",
               lineHeight: "36px",
               fontWeight: 700,
+              textTransform: "capitalize",
             }}
           >
-            Danh mục
+            {dataMenu?.title}
           </Typography>
         </Stack>
         <Stack direction={"row"} spacing={"9px"} className="swiper-nav-btns">
@@ -129,11 +136,19 @@ export const MenuCategory = () => {
             },
           }}
         >
-          {MOCK_DATA_PRODUCT?.map((item, index) => (
+          {/* {MOCK_DATA_PRODUCT?.map((item, index) => (
             <SwiperSlide key={index}>
               <SliderMenuItem
                 srcImg={item?.srcImg}
                 title="welcome to valhalla saaaaaaaaaasss"
+              />
+            </SwiperSlide>
+          ))} */}
+          {dataMenu?.data?.map((item: any, index: number) => (
+            <SwiperSlide key={index}>
+              <SliderMenuItem
+                srcImg={item?.image}
+                title={item?.name}
               />
             </SwiperSlide>
           ))}

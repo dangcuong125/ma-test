@@ -1,6 +1,30 @@
 {
   "hello": "Hello",
   "welcome": "Welcome",
+  "hello": "Hello",
+  "welcome": "Welcome",
+  "and": "and",
+  "continue": "Continue",
+  "auth": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "or": "OR",
+    "dont_have_account": "Don't have account?",
+    "register": "Register",
+    "get_started": "Get started",
+    "terms_of_service": "Terms of Service",
+    "privacy_policy": "Privacy policy",
+    "register_term": "By clicking sign up, I agree to ShopGrocery",
+    "end_register_term": ".",
+    "phoneNumber": "Phone number",
+    "forgot_password": "Forgot password?",
+    "already_have_account": "Already have an account?"
+  },
+  "form": {
+    "field_required": "This field is required",
+    "phoneNumber_not_valid": "Phone number is not valid"
+  },
   "noti": {
     "noti_list": {
       "heading": "Notifications"

@@ -14,7 +14,12 @@ import "swiper/css/pagination";
 import { MOCK_COMBO_DATA_PRODUCT, MOCK_DATA_PRODUCT } from "../../constants";
 import { ComboItemDefault } from "@/common/components/product/ComboItem";
 
-export const ComboPopular = () => {
+type Props = {
+  dataMenu: any;
+};
+
+export const ComboPopular = (props: Props) => {
+  const {dataMenu} = props;
   return (
     <Stack
       sx={{
@@ -52,7 +57,7 @@ export const ComboPopular = () => {
               fontWeight: 700,
             }}
           >
-            Combo phổ biến
+            {dataMenu?.title}
           </Typography>
         </Stack>
       </Stack>
@@ -60,16 +65,16 @@ export const ComboPopular = () => {
         <Grid
           container
           rowGap={4}
-          columnGap={1}
+          columnGap={2}
         //   spacing={1}
           p={0}
           m={0}
           alignItems={"center"}
           width={"100%"}
-          justifyContent={"space-between"}
+          justifyContent={"flex-start"}
           columns={17}
         >
-          {MOCK_COMBO_DATA_PRODUCT?.map((item, index) => (
+          {/* {MOCK_COMBO_DATA_PRODUCT?.map((item, index) => (
             <Grid item key={index} width={"100%"} md={6.5} sm={8} lg={5.5} xl={4}>
               <ComboItemDefault
                 title={item?.title}
@@ -77,6 +82,17 @@ export const ComboPopular = () => {
                 property={item?.property}
                 price={item?.price}
                 flashPrice={item?.flashPrice}
+              />
+            </Grid>
+          ))} */}
+          {dataMenu?.data?.products?.map((item: any, index: any) => (
+            <Grid item key={index} width={"100%"} md={6.5} sm={8} lg={5.5} xl={4}>
+              <ComboItemDefault
+                title={item?.productDetails[0]?.name}
+                srcImg={item?.thumbnail?.url}
+                property={item?.productDetails[0]?.shortDescription}
+                price={item?.price?.normalPrice}
+                flashPrice={item?.price?.salePrice}
               />
             </Grid>
           ))}
