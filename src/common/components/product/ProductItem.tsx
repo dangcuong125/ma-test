@@ -1,6 +1,7 @@
 import { Stack, Box, Typography, IconButton } from "@mui/material";
 import Image from "../Image";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
+import { useRouter } from 'next/navigation';
 
 type Props = {
   title?: string;
@@ -11,25 +12,33 @@ type Props = {
 
 export const ProductItemDefault = (props: Props) => {
   const { title, property, srcImg, price } = props;
+  const router = useRouter()
   return (
     <Stack
       sx={{
-        height: "423px",
+        overflow:"hidden",
+        height: "450px",
         width: "100%",
         justifyContent: "space-between",
         borderRadius: "24px",
         border: "1px solid #E1E2E6",
         boxShadow: "0px 14px 21px rgba(218, 218, 218, 0.15)",
+        
+        zIndex:9999,
+        
         ':hover':{
-          backgroundColor: "#D8C4B6",
+         cursor:"pointer",
+         opacity:0.7
         }
       }}
+     
+onClick={()=>{router.push('/productDetail')}}
     >
       <Box
         sx={{
           display: "flex",
-          borderRadius: "24px",
-          height: "57%",
+          // borderRadius: "24px",
+          height: "70%",
           width: "100%",
           objectFit: "cover",
           backgroundRepeat: "no-repeat",
@@ -37,20 +46,22 @@ export const ProductItemDefault = (props: Props) => {
           backgroundPosition: "center",
           backgroundImage: `url(${srcImg})`,
           backgroundColor: "white",
+        
         }}
       />
       <Stack
         sx={{
           paddingBottom: "27px",
+          pt:"2px",
           px: "24px",
         }}
-        width={"100%"}
+        // width={"100%"}
       >
-        <Stack>
+        <Stack py={"10px"}>
           <Typography
             fontSize={24}
             fontWeight={700}
-            lineHeight={"24px"}
+            // lineHeight={"24px"}
             sx={{
               textOverflow: "ellipsis",
               overflow: "hidden",
@@ -74,7 +85,7 @@ export const ProductItemDefault = (props: Props) => {
           </Typography>
         </Stack>
         <Stack
-          alignItems={"center"}
+          alignItems={"baseline"}
           direction={"row"}
           justifyContent={"space-between"}
         >

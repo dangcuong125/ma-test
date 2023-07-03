@@ -28,6 +28,25 @@
         "1_number_character": "1 number character",
         "10_letter_characters": "10 letter characters"
     },
+    "category": {
+        "filter": "Filter",
+        "categorySub": "Category",
+        "addMore": "Load more",
+        "location": "Location",
+        "shipping": "Shipping",
+        "rangPrice": "Range price",
+        "apply": "Apply",
+        "status": "Status",
+        "deleteAll": "Delete All",
+        "home": "Home"
+    },
+    "product": {
+        "color": "Color",
+        "weight": "Weight",
+        "tableWeight": "Weight",
+        "addToCart": "Add to cart",
+        "productRecommend": "Similar Product"
+    },
     "form": {
         "field_required": "This field is required",
         "phoneNumber_not_valid": "Phone number is not valid",

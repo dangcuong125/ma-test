@@ -28,6 +28,24 @@
     "1_number_character": "1 ký tự số",
     "10_letter_characters": "10 ký tự chữ"
   },
+  "category": {
+    "filter": "Bộ lọc tìm kiếm",
+    "categorySub": "Theo danh mục",
+    "addMore": "Xem thêm",
+    "location": "Địa điểm",
+    "shipping": "Đơn vị vận chuyển",
+    "rangPrice": "Khoảng giá",
+    "apply": "Áp dụng",
+    "status": "Tình trạng",
+    "deleteAll": "Xóa tất cả",
+    "home": "Trang chủ"
+  },
+  "product": {
+    "color": "Chọn màu sắc",
+    "weight": "Chọn khối lượng",
+    "tableWeight": "Bảng khối lượng",
+    "addToCart": "Thêm vào giỏ hàng",
+    "productRecommend": "Sản phẩm tương tự"},
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
