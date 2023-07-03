@@ -18,9 +18,14 @@
     "phoneNumber": "Số điện thoại",
     "forgot_password": "Quên mật khẩu?",
     "already_have_account": "Bạn đã có tài khoản?"
-},
+  },
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ"
+  },
+  "noti": {
+    "noti_list": {
+      "heading": "Thông báo của tôi"
+    }
   }
 }
