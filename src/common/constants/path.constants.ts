@@ -3,5 +3,6 @@ export const PATH_AUTH = {
     register: '/register',
     forgot_password: '/forgot-password',
     otp: '/otp',
-    reset_password: '/reset-password'
+    reset_password: '/reset-password',
+    create_information: '/create-information'
 }
