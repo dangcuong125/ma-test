@@ -15,9 +15,6 @@ export const getNotiList = async (
       }),
     { headers }
   );
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
   return response.json();
 };
 
@@ -30,8 +27,5 @@ export const getCountUnread = async (): Promise<number> => {
     "https://api-dev-loyalty-2.bilisoftware.com/api/customer/user-noti/count-unread",
     { headers }
   );
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
   return response.json();
 };

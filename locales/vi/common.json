@@ -27,5 +27,10 @@
     "noti_list": {
       "heading": "Thông báo của tôi"
     }
+  },
+  "address": {
+    "heading": "Địa chỉ của tôi",
+    "add_btn": "Thêm địa chỉ mới",
+    "empty_text": "Bạn chưa có địa chỉ nào"
   }
 }

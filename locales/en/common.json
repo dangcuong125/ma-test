@@ -29,5 +29,10 @@
     "noti_list": {
       "heading": "Notifications"
     }
+  },
+  "address": {
+    "heading": "Address",
+    "add_btn": "Add new Address",
+    "empty_text": "You don't have any address"
   }
 }
