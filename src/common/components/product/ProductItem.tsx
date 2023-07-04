@@ -111,6 +111,7 @@ onClick={()=>{router.push('/productDetail')}}
             }}
           >
             <Image
+              alt=""
               sx={{ width: "32px", height: "32px" }}
               src={"/assets/icons/core/add-to-cart.svg"}
             />
