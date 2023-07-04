@@ -1,11 +1,9 @@
+'use client'
 import NotiList from ".";
-import LayoutAppWithUserTab from "../../(web)/LayoutWithUserTab";
 
 const NotiListPage = () => {
   return (
-    <LayoutAppWithUserTab>
       <NotiList />
-    </LayoutAppWithUserTab>
   );
 };
 
