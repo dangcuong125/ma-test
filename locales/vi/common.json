@@ -55,5 +55,17 @@
     "noti_list": {
       "heading": "Thông báo của tôi"
     }
+  },
+  "sidebar": {
+    "profile": "Tài khoản của tôi",
+    "notifications": "Thông báo",
+    "address": "Sổ địa chỉ",
+    "eVoucher": "Đơn quà của tối",
+    "orderHistory": "Lịch sử giao dịch",
+    "policy": "Chính sách",
+    "term": "Điều khoản",
+    "help": "Trợ giúp",
+    "home": "Trang chủ",
+    "product": "Sản phẩm"
   }
 }

@@ -8,6 +8,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import Link from "next/link";
 
 export const HeaderBar = () => {
   return (
