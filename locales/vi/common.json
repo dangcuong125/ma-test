@@ -60,7 +60,21 @@
   "address": {
     "heading": "Địa chỉ của tôi",
     "add_btn": "Thêm địa chỉ mới",
-    "empty_text": "Bạn chưa có địa chỉ nào"
+    "empty_text": "Bạn chưa có địa chỉ nào",
+    "form": {
+      "updateHeading": "Cập nhật địa chỉ",
+      "recipientName": "Tên người nhận",
+      "phoneNumber": "Số điện thoại",
+      "city": "Thành phố/Tỉnh",
+      "district": "Quận/Huyện",
+      "ward": "Phường/Xã",
+      "detailAddress": "Số nhà/tên đường",
+      "isDefault": "Đặt làm địa chỉ mặc định",
+      "back": "Trở lại",
+      "update": "Cập nhật",
+      "fieldRequired": "Trường này không được để trống",
+      "phoneNumberNotValid": "Số điện thoại không đúng định dạng"
+    }
   },
   "sidebar": {
     "profile": "Tài khoản của tôi",

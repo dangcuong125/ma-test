@@ -31,10 +31,11 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
         <Grid
           item
           xs={0}
-          md={4}
+          md={3}
           minHeight={"492px"}
-          justifyContent={"center"}
+          justifyContent={"flex-start"}
           alignItems={"center"}
+          alignSelf={"flex-start"}
           display={{ xs: "none", md: "flex" }}
         >
           <SideBarUser />
@@ -42,10 +43,12 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
         <Grid
           item
           xs={12}
-          md={8}
+          md={9}
           justifyContent={"center"}
           alignItems={"center"}
           display={"flex"}
+          mt={"80px"}
+          alignSelf={"flex-start"}
         >
           {children}
         </Grid>

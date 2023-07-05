@@ -1,10 +1,13 @@
 import NotiList from ".";
 import LayoutAppWithUserTab from "../../(web)/LayoutWithUserTab";
+import { getNotiList } from "../noti-common/service";
 
-const NotiListPage = () => {
+const NotiListPage = async () => {
+  const dataNoti = await getNotiList({ page: 1, limit: 10 });
+  const Notifications = dataNoti.items || [];
   return (
     <LayoutAppWithUserTab>
-      <NotiList />
+      <NotiList listNoti={Notifications} />
     </LayoutAppWithUserTab>
   );
 };

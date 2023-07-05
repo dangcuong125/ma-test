@@ -8,33 +8,21 @@ import NoDataNoti from "./components/NoDataNoti";
 import { getNotiList } from "../noti-common/service";
 import { INotiItem } from "../noti-common/interface";
 
-const NotiList = () => {
-  const [listNoti, setListNoti] = useState<INotiItem[]>([]);
-  const [isNotFound, setIsNotFound] = useState(false);
+type Props = {
+  listNoti: INotiItem[];
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dataNoti = await getNotiList({ page: 1, limit: 10 });
-        const newListNoti: INotiItem[] = dataNoti.items || [];
-        setListNoti(newListNoti);
-        setIsNotFound(newListNoti.length === 0);
-      } catch (error) {
-        setIsNotFound(true);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+const NotiList = ({ listNoti }: Props) => {
+  const isNotFound = !listNoti.length;
   return (
     <Paper
       sx={{
         bgcolor: "#FFF",
-        maxWidth: "945px",
         padding: "36px",
         width: "100%",
         borderRadius: "24px",
+        maxHeight: "934px",
+        overflowY: "auto",
       }}
     >
       <NotiHeader />

@@ -60,7 +60,21 @@
   "address": {
     "heading": "Address",
     "add_btn": "Add new Address",
-    "empty_text": "You don't have any address"
+    "empty_text": "You don't have any address",
+    "form": {
+      "updateHeading": "Updateting address",
+      "recipientName": "Recipient's name",
+      "phoneNumber": "Phone number",
+      "city": "City",
+      "district": "District",
+      "ward": "Ward",
+      "detailAddress": "House/street address",
+      "isDefault": "Set as default address",
+      "back": "Back",
+      "update": "update",
+      "fieldRequired": "This field is required",
+      "phoneNumberNotValid": "Phone number is not valid"
+    }
   },
   "sidebar": {
     "profile": "Profile",

@@ -1,8 +1,16 @@
 "use client";
 
+import { useDispatch } from "@/common/redux/store";
 import { Paper, Stack, Box, Button } from "@mui/material";
+import { setIsOpenEditForm } from "../../address-common/slice";
 
 export default function AddressItem() {
+  const dispatch = useDispatch();
+
+  const handleOpenEditForm = () => {
+    dispatch(setIsOpenEditForm(true));
+  };
+
   return (
     <Paper
       sx={{
@@ -67,7 +75,7 @@ export default function AddressItem() {
             1190 Chùa Láng, Láng Thượng, Đống Đa, Hà Nội
           </Box>
         </Stack>
-        <Button variant="text">
+        <Button variant="text" onClick={handleOpenEditForm}>
           <Box
             sx={{
               backgroundImage: "url(/assets/icons/core/edit-btn.svg)",

@@ -1,13 +1,10 @@
-import AddressHeader from "./address-list/components/AddressHeader";
-import AddressList from "./address-list/components/AddressList";
-import NoDataAddress from "./address-list/components/NoDataAddress";
+import LayoutAppWithUserTab from "../(web)/LayoutWithUserTab";
+import AddressList from "./address-list";
 
 export default function AddressPage() {
   return (
-    <main>
-      <AddressHeader />
-      <NoDataAddress isOpen={false} />
+    <LayoutAppWithUserTab>
       <AddressList />
-    </main>
+    </LayoutAppWithUserTab>
   );
 }
