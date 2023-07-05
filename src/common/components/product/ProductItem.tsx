@@ -8,13 +8,15 @@ type Props = {
   property?: string;
   srcImg?: string;
   price?: number;
+  onClick?: VoidFunction;
 };
 
 export const ProductItemDefault = (props: Props) => {
-  const { title, property, srcImg, price } = props;
+  const { title, property, srcImg, price, onClick } = props;
   const router = useRouter()
   return (
     <Stack
+      onClick={onClick}
       sx={{
         overflow:"hidden",
         height: "450px",
@@ -31,8 +33,6 @@ export const ProductItemDefault = (props: Props) => {
          opacity:0.7
         }
       }}
-     
-onClick={()=>{router.push('/productDetail')}}
     >
       <Box
         sx={{

@@ -30,7 +30,7 @@ export const FooterBar = () => {
           color: "white",
           justifyContent: "space-between",
         }}
-        spacing={{ xs: '25px', md: "85px"}}
+        gap={{ xs: '25px', md: "85px"}}
         container
       >
         <Grid item alignItems={"flex-start"}>

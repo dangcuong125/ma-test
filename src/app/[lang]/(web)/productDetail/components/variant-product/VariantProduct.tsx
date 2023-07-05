@@ -17,14 +17,15 @@ import Slider from "react-slick";
 import "src/common/styles/css/homeStyle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import { FILTER_COLOR_OPTIONS, THUMB_SIZE, images } from "../constants";
+import { FILTER_COLOR_OPTIONS, THUMB_SIZE, images } from "../../constants";
 import { useRef, useState, useEffect } from "react";
 import Image from "@/common/components/Image";
 import ColorSinglePicker from "@/common/components/hook-form/ColorSinglePicker";
 import { Controller, useForm } from "react-hook-form";
 import { FormProvider, RHFSelect } from "@/common/components/hook-form";
 import Iconify from "@/common/components/Iconify";
-import { STATUS } from "../../category/constants";
+import { STATUS } from "../../../category/constants";
+import { ItemDelivery } from "./components/ItemDelivery";
 
 const RootStyle = styled("div")(({ theme }) => ({
   "& .slick-slide": {
@@ -106,8 +107,14 @@ export const VariantProduct = () => {
   const onSubmit = async (data: any) => {};
 
   return (
-    <Grid container height={"100%"}>
-      <Grid item md={7}>
+    <Grid
+      container
+      height={"100%"}
+      sx={{
+        gap: { md: "50px", xs: 0 },
+      }}
+    >
+      <Grid item xs={12} md={5.5} lg={5}>
         <RootStyle>
           <Box sx={{ p: 1 }}>
             <Box
@@ -190,9 +197,9 @@ export const VariantProduct = () => {
           </Box>
         </RootStyle>
       </Grid>
-      <Grid item md={5}>
+      <Grid item xs={12} md={5} lg={6}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={4} ml="50px">
+          <Stack spacing={4}>
             <Typography
               sx={{
                 width: "81px",
@@ -315,37 +322,17 @@ export const VariantProduct = () => {
               p={3}
               borderRadius={1}
             >
-              <Stack display={"flex"} direction={"row"} spacing={2}>
-                <Image
-                  sx={{ pt: "9px", minWidth: "24px", height: "27px" }}
-                  alt=""
-                  src={"/Frame.svg"}
-                />
-                <Stack>
-                  <Typography fontSize={24} fontWeight={600}>
-                    Giao hàng miễn phí
-                  </Typography>
-                  <Typography color={"#726C6C"} fontSize={18}>
-                    Enter your Postal code for Delivery Availability
-                  </Typography>
-                </Stack>
-              </Stack>
+              <ItemDelivery
+                title="Giao hàng miễn phí"
+                description="Enter your Postal code for Delivery Availability"
+                srcImg="/Frame.svg"
+              />
               <Divider />
-              <Stack display={"flex"} direction={"row"} spacing={2}>
-                <Image
-                  sx={{ pt: "9px", minWidth: "24px", height: "27px" }}
-                  src={"/Frame.svg"}
-                  alt=""
-                />
-                <Stack>
-                  <Typography fontSize={24} fontWeight={600}>
-                    Giao hàng miễn phí
-                  </Typography>
-                  <Typography color={"#726C6C"} fontSize={18}>
-                    Enter your Postal code for Delivery Availability
-                  </Typography>
-                </Stack>
-              </Stack>
+              <ItemDelivery
+                title="Giao hàng miễn phí"
+                description="Enter your Postal code for Delivery Availability"
+                srcImg="/Frame.svg"
+              />
             </Stack>
           </Stack>
         </FormProvider>
