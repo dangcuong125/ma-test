@@ -1,10 +1,9 @@
-"use client";
-import { Box, Grid, Stack } from "@mui/material";
+'use client'
+import { Grid, Stack } from "@mui/material";
 import React from "react";
-import { HeaderBar } from "./layoutApp/components/header/Header";
-import { FooterBar } from "./layoutApp/components/footer/Footer";
-import SideBarUser from "./layoutApp/components/side-bar";
-import BottomNavBar from "./layoutApp/components/bottom-nav-bar";
+import BottomNavBar from "../../layoutApp/components/bottom-nav-bar";
+import { FooterBar } from "../../layoutApp/components/footer/Footer";
+import SideBarUser from "../../layoutApp/components/side-bar";
 
 const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -17,7 +16,7 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
       }}
       alignItems={"center"}
     >
-      <HeaderBar />
+      {/* <HeaderBar /> */}
       <Grid
         container
         spacing={2}

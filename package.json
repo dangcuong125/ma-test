@@ -17,12 +17,9 @@
     "@hookform/resolvers": "2.9.11",
     "@iconify/react": "4.1.0",
     "@mui/icons-material": "5.11.16",
-    "@mui/lab": "5.0.0-alpha.134",
+    "@mui/lab": "^5.0.0-alpha.134",
     "@mui/material": "5.12.0",
     "@reduxjs/toolkit": "1.9.5",
-    "@types/node": "18.16.0",
-    "@types/react": "18.0.38",
-    "@types/react-dom": "18.0.11",
     "axios": "1.4.0",
     "dayjs": "1.11.8",
     "eslint": "8.39.0",
@@ -35,8 +32,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dropzone": "14.2.3",
-    "react-intersection-observer": "9.5.2",
     "react-hook-form": "7.45.1",
+    "react-intersection-observer": "9.5.2",
     "react-lazy-load-image-component": "1.5.6",
     "react-markdown": "8.0.7",
     "react-query": "3.39.3",
@@ -50,8 +47,12 @@
     "yup": "1.0.0"
   },
   "devDependencies": {
+    "@types/react-slick": "0.23.10",
     "@types/numeral": "2.0.2",
     "@types/react-lazy-load-image-component": "1.5.2",
-    "next-translate-plugin": "2.0.5"
+    "next-translate-plugin": "2.0.5",
+    "@types/node": "18.16.0",
+    "@types/react": "18.0.38",
+    "@types/react-dom": "18.0.11"
   }
 }

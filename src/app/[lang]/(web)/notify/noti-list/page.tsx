@@ -1,6 +1,7 @@
+"use client";
 import NotiList from ".";
-import LayoutAppWithUserTab from "../../(web)/LayoutWithUserTab";
 import { getNotiList } from "../noti-common/service";
+import LayoutAppWithUserTab from "./layout";
 
 const NotiListPage = async () => {
   const dataNoti = await getNotiList({ page: 1, limit: 10 });

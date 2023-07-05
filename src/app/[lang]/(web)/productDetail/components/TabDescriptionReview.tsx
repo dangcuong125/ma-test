@@ -1,10 +1,9 @@
-import { Stack, Box, Breadcrumbs, Typography, Link, Grid, alpha, IconButton, useTheme, Divider, Button, Card, Tab } from "@mui/material";
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Box, Card, Divider, Tab } from "@mui/material";
+import { useState } from "react";
 import "src/common/styles/css/homeStyle.css";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useState } from "react";
 
 
 type Props = {
@@ -18,7 +17,7 @@ export const TabDescriptionReview = () => {
     <Card>
     <TabContext value={value}>
       <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
-        <TabList onChange={(e, value) => setValues(value)}>
+        <TabList onChange={(e :any, value: any) => setValues(value)}>
           <Tab disableRipple value="1" label="Description" />
           <Tab
             disableRipple

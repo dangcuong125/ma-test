@@ -61,7 +61,7 @@ const MarkdownStyle = styled('div')(({ theme }) => {
       padding: theme.spacing(2),
       color: theme.palette.common.white,
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: isLight ? theme.palette.grey[900] : theme.palette.grey[500_16],
+      backgroundColor: isLight ? theme.palette.grey[900] : theme.palette.grey[500],
     },
     '& code': {
       fontSize: 14,
