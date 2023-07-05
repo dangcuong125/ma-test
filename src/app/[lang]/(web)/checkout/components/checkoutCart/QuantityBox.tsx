@@ -1,5 +1,5 @@
 import { Box, IconButton, Typography, styled } from "@mui/material";
-import Iconify from "../../../../../common/components/Iconify";
+import Iconify from "@/common/components/Iconify";
 
 type Props = {
   available: number;

@@ -2,7 +2,7 @@ import { Table, TableBody, TableContainer } from "@mui/material";
 import { TABLE_CART_PRODUCT_HEAD } from "../../constant";
 import CheckoutProductListRow from "./CheckoutProductListRow";
 import { ICartItem } from "../../interface";
-import TableHeadCustom from "../../../../../common/components/table/TableHeadCustom";
+import TableHeadCustom from "@/common/components/table/TableHeadCustom";
 
 type Props = {
   products: ICartItem[];

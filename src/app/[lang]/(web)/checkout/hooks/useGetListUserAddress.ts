@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { QUERY_KEYS } from "../../../../common/constants/queryKeys.constant";
+import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 import { getListUserAddress } from "../services";
 import { paramsDefault } from "../constant";
 

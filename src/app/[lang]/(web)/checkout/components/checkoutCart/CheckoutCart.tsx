@@ -21,7 +21,7 @@ import {
 import CheckoutSummary from "../CheckoutSummary";
 import { ICartItem } from "../../interface";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "../../../../../common/redux/store";
+import { useDispatch, useSelector } from "@/common/redux/store";
 import { useDeleteCartItem } from "../../hooks/useDeleteCart";
 import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
 

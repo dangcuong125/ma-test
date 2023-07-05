@@ -11,9 +11,9 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import Iconify from "../../../common/components/Iconify";
+import Iconify from "@/common/components/Iconify";
 import { useEffect } from "react";
-import { dispatch, useSelector } from "../../../common/redux/store";
+import { dispatch, useSelector } from "@/common/redux/store";
 import { setCart } from "./order.slice";
 import { STEPS } from "./constant";
 import { useGetCheckoutCart } from "./hooks/useGetcheckoutCart";

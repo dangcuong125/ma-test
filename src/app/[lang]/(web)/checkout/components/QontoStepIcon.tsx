@@ -1,6 +1,6 @@
 "use client";
 import { Box } from "@mui/material";
-import Iconify from "../../../../common/components/Iconify";
+import Iconify from "@/common/components/Iconify";
 
 export default function QontoStepIcon({
   active,

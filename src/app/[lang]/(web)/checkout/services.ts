@@ -8,12 +8,12 @@ import {
   IProvinceResponses,
   IResCheckoutCart,
 } from "./interface";
-import axiosClient from "../../../common/utils/axios";
+import axiosClient from "@/common/utils/axios";
 import {
   API_CHECKOUT_CART,
   API_ORDER_SHIPPING,
   API_PROVINCE_CUSTOMER,
-} from "../../../common/constants/api.constants";
+} from "@/common/constants/api.constants";
 
 export const getProductCart = () => {
   return axiosClient.get<any, IResCheckoutCart>(API_CHECKOUT_CART);

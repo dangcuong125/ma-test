@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
-import { QUERY_KEYS } from "../../../../common/constants/queryKeys.constant";
+import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 import { deleteCartItem } from "../services";
 
 export const useDeleteCartItem = (

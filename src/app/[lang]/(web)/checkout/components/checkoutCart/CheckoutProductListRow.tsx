@@ -9,11 +9,8 @@ import {
 } from "@mui/material";
 import { ICartItem } from "../../interface";
 import Image from "next/image";
-import {
-  fCurrency,
-  fFormatCoin,
-} from "../../../../../common/utils/formatNumber";
-import Iconify from "../../../../../common/components/Iconify";
+import { fCurrency, fFormatCoin } from "@/common/utils/formatNumber";
+import Iconify from "@/common/components/Iconify";
 import { QuantityBox } from "./QuantityBox";
 
 type CheckoutProductListRowProps = {

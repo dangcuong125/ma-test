@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Iconify from "@/common/components/Iconify";
-import { fCurrency, fFormatCoin } from "../../../../common/utils/formatNumber";
+import { fCurrency, fFormatCoin } from "@/common/utils/formatNumber";
 
 type Props = {
   total: number;

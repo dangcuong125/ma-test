@@ -14,7 +14,7 @@ import {
   RHFCheckbox,
   RHFSelect,
   RHFTextField,
-} from "../../../../../common/components/hook-form";
+} from "@/common/components/hook-form";
 import { useForm } from "react-hook-form";
 import { NewAddressSchema } from "../../schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,8 +23,8 @@ import {
   IParamsSearchProvince,
   IProvinceItem,
 } from "../../interface";
-import Iconify from "../../../../../common/components/Iconify";
-import { dispatch, useSelector } from "../../../../../common/redux/store";
+import Iconify from "@/common/components/Iconify";
+import { dispatch, useSelector } from "@/common/redux/store";
 import { setOpenModalAddAddress } from "../../order.slice";
 import { useGetProvinceData } from "../../hooks/useGetProvinceData";
 

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
 import { updateCartItem } from "../services";
-import { QUERY_KEYS } from "../../../../common/constants/queryKeys.constant";
+import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 
 export const useUpdateCartItem = (
   handleSuccess?: () => void,

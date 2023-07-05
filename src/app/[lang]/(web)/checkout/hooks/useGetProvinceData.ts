@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "react-query";
 import { IParamsSearchProvince } from "../interface";
-import { QUERY_KEYS } from "../../../../common/constants/queryKeys.constant";
+import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 import { getDataProvince } from "../services";
 
 export const useGetProvinceData = (params: IParamsSearchProvince) => {
