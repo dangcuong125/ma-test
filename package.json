@@ -20,9 +20,6 @@
     "@mui/lab": "^5.0.0-alpha.134",
     "@mui/material": "5.12.0",
     "@reduxjs/toolkit": "1.9.5",
-    "@types/node": "18.16.0",
-    "@types/react": "18.0.38",
-    "@types/react-dom": "18.0.11",
     "axios": "1.4.0",
     "dayjs": "1.11.8",
     "eslint": "8.39.0",
@@ -42,7 +39,7 @@
     "react-query": "3.39.3",
     "react-quill": "2.0.0",
     "react-redux": "8.0.5",
-    "react-slick": "^0.29.0",
+    "react-slick": "0.29.0",
     "rehype-raw": "6.1.1",
     "swiper": "9.4.1",
     "tss-react": "4.8.2",
@@ -50,8 +47,12 @@
     "yup": "1.0.0"
   },
   "devDependencies": {
+    "@types/react-slick": "0.23.10",
     "@types/numeral": "2.0.2",
     "@types/react-lazy-load-image-component": "1.5.2",
-    "next-translate-plugin": "2.0.5"
+    "next-translate-plugin": "2.0.5",
+    "@types/node": "18.16.0",
+    "@types/react": "18.0.38",
+    "@types/react-dom": "18.0.11"
   }
 }

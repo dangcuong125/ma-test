@@ -1,3 +1,4 @@
+import { TLink } from "@/common/components/TLink";
 import {
   Stack,
   Box,
@@ -9,8 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const HeaderBar = () => {
+  const route = useRouter();
   return (
     <Stack
       direction={"row"}
@@ -38,7 +41,9 @@ export const HeaderBar = () => {
           backgroundSize: "cover",
           objectFit: "cover",
           padding: "10px",
+          cursor: 'pointer',
         }}
+        onClick={() => route.push("/category")}
       />
       <Box
         sx={{
@@ -114,6 +119,7 @@ export const HeaderBar = () => {
               }}
             />
           }
+          onClick={() => route.push('/login')}
         >
           <Typography display={{ xs: "none", md: "flex" }}>
             Đăng ký/Đăng nhập

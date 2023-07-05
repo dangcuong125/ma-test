@@ -133,6 +133,7 @@ export const ComboItemDefault = (props: Props) => {
           >
             <Image
               sx={{ width: "32px", height: "32px" }}
+              alt=""
               src={"/assets/icons/core/add-to-cart.svg"}
             />
           </IconButton>

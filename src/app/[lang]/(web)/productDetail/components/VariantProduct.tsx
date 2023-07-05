@@ -318,6 +318,7 @@ export const VariantProduct = () => {
               <Stack display={"flex"} direction={"row"} spacing={2}>
                 <Image
                   sx={{ pt: "9px", minWidth: "24px", height: "27px" }}
+                  alt=""
                   src={"/Frame.svg"}
                 />
                 <Stack>
@@ -334,6 +335,7 @@ export const VariantProduct = () => {
                 <Image
                   sx={{ pt: "9px", minWidth: "24px", height: "27px" }}
                   src={"/Frame.svg"}
+                  alt=""
                 />
                 <Stack>
                   <Typography fontSize={24} fontWeight={600}>
