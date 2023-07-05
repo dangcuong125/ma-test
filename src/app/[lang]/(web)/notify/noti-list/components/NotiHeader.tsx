@@ -1,4 +1,3 @@
-"use client";
 import { Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
@@ -15,7 +14,7 @@ export default function NotiHeader() {
         mb: "10px",
       }}
     >
-      {t("noti.noti_list.heading")}
+      12324
     </Typography>
   );
 }
