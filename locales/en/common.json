@@ -53,7 +53,8 @@
     "password_not_match": "Password does not match"
   },
   "notify": {
-    "headingList": "Notifications"
+    "headingList": "Notifications",
+    "loadingMore": "Loading more"
   },
   "address": {
     "heading": "Address",

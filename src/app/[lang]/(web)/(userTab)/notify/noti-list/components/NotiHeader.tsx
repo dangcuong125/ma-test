@@ -12,7 +12,7 @@ export default function NotiHeader() {
         fontWeight: "700",
         fontFamily: "Plus Jakarta Sans",
         mb: "10px",
-        px: "32px",
+        px: { xs: "16px", md: "32px" },
       }}
     >
       {t("notify.headingList")}

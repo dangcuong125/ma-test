@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Divider } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import NotiItem from "./NotiItem";
 import { useEffect } from "react";
 import { useGetNotiList } from "../hooks/useGetNotiList";
@@ -40,7 +40,6 @@ export default function NextPageListNoti() {
           disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
         />
       </Box>
-      <Divider />
     </Box>
   );
 }

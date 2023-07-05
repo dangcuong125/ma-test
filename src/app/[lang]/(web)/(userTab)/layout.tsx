@@ -8,7 +8,7 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
   return (
     <Stack
       sx={{
-        minHeight: "100vh",
+        minHeight: { xs: "auto", md: "100vh" },
         minWidth: "100vw",
         justifyContent: "space-between",
         bgcolor: "#F5F5F5",
@@ -24,7 +24,7 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
         width={"100%"}
         px={{ xs: 0, sm: "25px", md: "75px", lg: "100px" }}
         pb={{ xs: "25px", md: "75px", lg: "100px" }}
-        pt={"50px"}
+        pt={{ xs: 0, md: "50px" }}
       >
         <Grid
           item
@@ -45,13 +45,13 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
           justifyContent={"center"}
           alignItems={"center"}
           display={"flex"}
-          mt={"80px"}
+          mt={{ xs: "10px", md: "80px" }}
           alignSelf={"flex-start"}
         >
           {children}
         </Grid>
       </Grid>
-      <BottomNavBar />
+      {/* <BottomNavBar /> */}
       {/* <FooterBar /> */}
     </Stack>
   );

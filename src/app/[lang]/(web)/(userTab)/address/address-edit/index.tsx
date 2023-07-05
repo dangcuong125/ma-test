@@ -57,7 +57,7 @@ export default function AddressEdit() {
       onClose={handleClose}
       PaperProps={{
         sx: {
-          minWidth: "720px",
+          minWidth: { xs: "100vw", md: "720px" },
         },
       }}
     >
@@ -74,8 +74,8 @@ export default function AddressEdit() {
           >
             {t("address.form.updateHeading")}
           </Box>
-          <Stack spacing={3}>
-            <Stack direction={"row"} spacing={2}>
+          <Stack spacing={{ xs: 2, md: 3 }}>
+            <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
               <RHFTextField
                 name="recipientName"
                 label={t("address.form.recipientName")}
