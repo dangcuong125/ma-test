@@ -1,10 +1,10 @@
 "use client";
 import { Breadcrumbs, Link, Stack, Typography } from "@mui/material";
-import { VariantProduct } from "./components/VariantProduct";
+import { VariantProduct } from "./components/variant-product/VariantProduct";
 import { TabDescriptionReview } from "./components/TabDescriptionReview";
 import { SliderProductRecomnend } from "./components/SliderProductRecomnend";
 
-export default function ProductDetail(){
+export default function ProductDetail() {
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Trang chủ
@@ -22,7 +22,12 @@ export default function ProductDetail(){
     </Typography>,
   ];
   return (
-    <Stack minHeight={"1000px"} paddingX={"100px"} pt={"50px"} spacing={4}>
+    <Stack
+      minHeight={"1000px"}
+      sx={{ paddingX: { lg: "100px", md: "75px", sm: "50px", xs: "25px" } }}
+      pt={"50px"}
+      spacing={4}
+    >
       <Breadcrumbs
         separator="·"
         sx={{ fontWeight: "700 !important" }}
@@ -31,8 +36,8 @@ export default function ProductDetail(){
         {breadcrumbs}
       </Breadcrumbs>
       <VariantProduct />
-      {/* <TabDescriptionReview /> */}
-      {/* <SliderProductRecomnend /> */}
+      <TabDescriptionReview />
+      <SliderProductRecomnend />
     </Stack>
   );
-};
+}

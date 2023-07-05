@@ -8,12 +8,14 @@ type Props = {
   srcImg?: string;
   price?: number;
   flashPrice?: number;
+  onClick?: VoidFunction;
 };
 
 export const ComboItemDefault = (props: Props) => {
-  const { title, property, srcImg, price, flashPrice } = props;
+  const { title, property, srcImg, price, flashPrice, onClick} = props;
   return (
     <Stack
+    onClick={onClick}
       sx={{
         height: "394px",
         width: "100%",

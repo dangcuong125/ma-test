@@ -101,14 +101,34 @@ export const SliderProductRecomnend = () => {
       <Swiper
         ref={swiperRef}
         style={{ height: "600px" }}
-        slidesPerView={4}
         spaceBetween={20}
         // pagination={{
         //   clickable: true,
         // }}
         // modules={[Pagination]}
-        className="mySwiper"
+        // className="mySwiper"
         onSlideChange={handleSlideChange}
+        breakpoints={{
+          0: {
+            slidesPerView: 1
+          },
+          400: {
+            slidesPerView: 1,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          800: {
+            slidesPerView: 2,
+            lazyPreloadPrevNext: 1,
+          },
+          1000: {
+            slidesPerView: 3,
+          },
+          1440: {
+            slidesPerView: 4,
+          },
+        }}
       >
         {Array.from(Array(20)).map((itemProd, index) => (
           <SwiperSlide style={{ height: "400px" }} key={index}>
