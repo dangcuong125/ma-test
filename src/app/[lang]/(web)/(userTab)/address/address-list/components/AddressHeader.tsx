@@ -8,7 +8,12 @@ export default function AddressHeader() {
   const { t } = useTranslation("common");
 
   return (
-    <Stack direction={"row"} justifyContent={"space-between"} mb={"10px"}>
+    <Stack
+      direction={"row"}
+      justifyContent={"space-between"}
+      mb={"10px"}
+      px={{ xs: "16px", md: "32px" }}
+    >
       <Typography
         sx={{
           color: "#1A1A1A",
@@ -20,15 +25,18 @@ export default function AddressHeader() {
       >
         {t("address.heading")}
       </Typography>
-      <Button variant="text">
+      <Button
+        variant="text"
+        sx={{ px: { xs: 0, md: "12px" }, justifyContent: { xs: "flex-end" } }}
+      >
         <Box
           sx={{
             backgroundImage: "url(/assets/icons/core/add-plus.svg)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            width: "12px",
-            height: "12px",
-            mr: "10px",
+            width: { xs: "20px", md: "12px" },
+            height: { xs: "20px", md: "12px" },
+            mr: { xs: 0, md: "10px" },
           }}
         />
         <Typography
@@ -37,6 +45,7 @@ export default function AddressHeader() {
             fontWeight: "600",
             fontFamily: "Plus Jakarta Sans",
             color: "#1F8A70",
+            display: { xs: "none", md: "flex" },
           }}
         >
           {t("address.add_btn")}

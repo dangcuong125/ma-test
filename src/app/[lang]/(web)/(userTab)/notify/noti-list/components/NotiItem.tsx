@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { INotiItem } from "../../noti-common/interface";
 import { convertStringToHtml } from "../../noti-common/utils/convertStringToHtml";
 
@@ -18,8 +18,16 @@ export default function NotiItem({ notiItem }: Props) {
         direction={"row"}
         alignItems={"center"}
         position={"relative"}
-        my={"16px"}
+        py={"16px"}
+        px={{ xs: "16px", md: "32px" }}
         gap={"16px"}
+        justifyContent={"space-between"}
+        sx={{
+          ":hover": {
+            cursor: "pointer",
+            backgroundColor: "#eae5e542",
+          },
+        }}
       >
         <Box
           sx={{
@@ -31,7 +39,11 @@ export default function NotiItem({ notiItem }: Props) {
             backgroundPosition: "center",
           }}
         />
-        <Stack spacing={1.5} width={"100%"}>
+        <Stack
+          spacing={1.5}
+          maxWidth={{ xs: "70%", sm: "86%", lg: "90%" }}
+          flex={1}
+        >
           <Stack
             direction={"row"}
             justifyContent={"space-between"}
@@ -45,6 +57,7 @@ export default function NotiItem({ notiItem }: Props) {
                 fontsize: "16px",
                 fontFamily: "Plus Jakarta Sans",
                 color: "#191919",
+                width: "100%",
               }}
             >
               {title}
@@ -60,22 +73,21 @@ export default function NotiItem({ notiItem }: Props) {
               />
             )} */}
           </Stack>
-          <Stack spacing={0.5}>
-            <Box
+          <Stack spacing={0.5} width={"100%"}>
+            <Typography
               sx={{
                 fontSize: "16px",
                 fontWeight: "400",
                 fontFamily: "Plus Jakarta Sans",
                 color: "#1A1F36",
                 display: "inline-block",
-                maxWidth: "100%",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
             >
               {convertStringToHtml(content)}
-            </Box>
+            </Typography>
             <Box
               sx={{
                 fontSize: "14px",

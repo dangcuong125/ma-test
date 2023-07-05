@@ -52,10 +52,9 @@
     "phoneNumber_not_valid": "Phone number is not valid",
     "password_not_match": "Password does not match"
   },
-  "noti": {
-    "noti_list": {
-      "heading": "Notifications"
-    }
+  "notify": {
+    "headingList": "Notifications",
+    "loadingMore": "Loading more"
   },
   "address": {
     "heading": "Address",
