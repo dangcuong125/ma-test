@@ -5,7 +5,7 @@ export const getNotiList = async (
 ): Promise<INotiList> => {
   const headers = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NDU0Mzk3LCJleHAiOjE2ODg0OTAzOTd9.MmVWNUX82LzqYV49F-Dhpia4RFkI4xbADSodSzQ0Ewo",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NTMwNDM2LCJleHAiOjE2ODg1NjY0MzZ9.VjULStOhxErg3vimRedqiHiZNRZkvVUScDHgamNkNVs",
   };
   const response = await fetch(
     "https://api-dev-loyalty-2.bilisoftware.com/api/customer/user-noti?" +
@@ -21,7 +21,7 @@ export const getNotiList = async (
 export const getCountUnread = async (): Promise<number> => {
   const headers = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NDU0Mzk3LCJleHAiOjE2ODg0OTAzOTd9.MmVWNUX82LzqYV49F-Dhpia4RFkI4xbADSodSzQ0Ewo",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NTMwNDM2LCJleHAiOjE2ODg1NjY0MzZ9.VjULStOhxErg3vimRedqiHiZNRZkvVUScDHgamNkNVs",
   };
   const response = await fetch(
     "https://api-dev-loyalty-2.bilisoftware.com/api/customer/user-noti/count-unread",

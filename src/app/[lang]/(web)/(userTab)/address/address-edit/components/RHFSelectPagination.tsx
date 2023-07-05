@@ -9,7 +9,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import ListBox from "../../../../../common/components/ListBoxComponent";
+import ListBox from "../../../../../../../common/components/ListBoxComponent";
 import { useState } from "react";
 
 // ----------------------------------------------------------------------

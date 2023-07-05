@@ -1,9 +1,8 @@
-'use client'
+"use client";
 import { Grid, Stack } from "@mui/material";
 import React from "react";
-import BottomNavBar from "../../layoutApp/components/bottom-nav-bar";
-import { FooterBar } from "../../layoutApp/components/footer/Footer";
-import SideBarUser from "../../layoutApp/components/side-bar";
+import SideBarUser from "../layoutApp/components/side-bar";
+import BottomNavBar from "../layoutApp/components/bottom-nav-bar";
 
 const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -53,7 +52,7 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
         </Grid>
       </Grid>
       <BottomNavBar />
-      <FooterBar />
+      {/* <FooterBar /> */}
     </Stack>
   );
 };
