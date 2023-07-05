@@ -1,6 +1,6 @@
 "use client";
 
-import { Paper, Stack } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 import AddressHeader from "./components/AddressHeader";
 import NoDataAddress from "./components/NoDataAddress";
 import AddressItem from "./components/AddressItem";
@@ -19,15 +19,23 @@ export default function AddressList() {
       }}
     >
       <AddressHeader />
-      <Stack spacing={4}>
-        <AddressItem />
-        <AddressItem />
-        <AddressItem />
-        <AddressItem />
-        <AddressItem />
-        <AddressItem />
-      </Stack>
-      <NoDataAddress isOpen={false} />
+      <Box
+        sx={{
+          overflowY: "auto",
+          maxHeight: "814px",
+        }}
+      >
+        <Stack spacing={4}>
+          <AddressItem />
+          <AddressItem />
+          <AddressItem />
+          <AddressItem />
+          <AddressItem />
+          <AddressItem />
+        </Stack>
+        <NoDataAddress isOpen={false} />
+      </Box>
+
       <AddressEdit />
     </Paper>
   );

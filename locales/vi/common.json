@@ -52,10 +52,8 @@
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
     "password_not_match": "Mật khẩu không trùng khớp"
   },
-  "noti": {
-    "noti_list": {
-      "heading": "Thông báo của tôi"
-    }
+  "notify": {
+    "headingList": "Thông báo của tôi"
   },
   "address": {
     "heading": "Địa chỉ của tôi",

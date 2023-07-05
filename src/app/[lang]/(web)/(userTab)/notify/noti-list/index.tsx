@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import NotiHeader from "./components/NotiHeader";
 import NotiItem from "./components/NotiItem";
 import NextPageListNoti from "./components/NextPageListNoti";
@@ -18,19 +18,25 @@ const NotiList = ({ listNoti }: Props) => {
     <Paper
       sx={{
         bgcolor: "#FFF",
-        padding: "36px",
+        py: "36px",
         width: "100%",
         borderRadius: "24px",
         maxHeight: "934px",
-        overflowY: "auto",
       }}
     >
       <NotiHeader />
-      {listNoti.map((item) => (
-        <NotiItem key={item.id} notiItem={item} />
-      ))}
-      <NextPageListNoti />
-      <NoDataNoti isOpen={isNotFound} />
+      <Box
+        sx={{
+          overflowY: "auto",
+          maxHeight: "814px",
+        }}
+      >
+        {listNoti.map((item) => (
+          <NotiItem key={item.id} notiItem={item} />
+        ))}
+        <NextPageListNoti />
+        <NoDataNoti isOpen={isNotFound} />
+      </Box>
     </Paper>
   );
 };

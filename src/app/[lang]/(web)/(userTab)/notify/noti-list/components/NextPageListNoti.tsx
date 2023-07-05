@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import NotiItem from "./NotiItem";
 import { useEffect } from "react";
 import { useGetNotiList } from "../hooks/useGetNotiList";
@@ -29,7 +29,7 @@ export default function NextPageListNoti() {
       {listNoti.map((item) => (
         <NotiItem key={item.id} notiItem={item} />
       ))}
-      <div>
+      <Box sx={{ height: 0 }}>
         <Button
           sx={{
             backgroundColor: "transparent",
@@ -39,7 +39,8 @@ export default function NextPageListNoti() {
           onClick={() => fetchNextPageNotiList()}
           disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
         />
-      </div>
+      </Box>
+      <Divider />
     </Box>
   );
 }
