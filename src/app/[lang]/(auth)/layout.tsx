@@ -26,8 +26,12 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
       <Box
         sx={{
           width: "100%",
-          height: "90%",
-          py: "2%",
+          maxHeight: "95%",
+          pt: "8%",
+          pb: '4%',
+          backgroundImage: 'url(/assets/auth_background.svg)',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat'
         }}
       >
         <Grid container spacing={2}>
