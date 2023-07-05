@@ -131,6 +131,11 @@ export const VariantProduct = () => {
               </Slider>
             </Box>
           </Box>
+          <Stack display={"flex"} direction={"row"}>
+          <ArrowStyle sx={{position:"relative",
+left:"14%",display:{xs:"none",sm:"block"}}} size="small" onClick={handlePrevious}>
+              {leftIcon(isRTL)}
+            </ArrowStyle>
           <Box
             sx={{
               mx: "auto",
@@ -160,9 +165,7 @@ export const VariantProduct = () => {
               }),
             }}
           >
-            <ArrowStyle size="small" onClick={handlePrevious}>
-              {leftIcon(isRTL)}
-            </ArrowStyle>
+         
             <Slider {...settings2} asNavFor={nav1} ref={slider2}>
               {images.map((img, index) => (
                 <Box key={img} sx={{ px: 0.75 }}>
@@ -184,15 +187,18 @@ export const VariantProduct = () => {
                 </Box>
               ))}
             </Slider>
-            <ArrowStyle size="small" onClick={handleNext}>
+          
+          </Box>
+          <ArrowStyle sx={{position:"relative",
+right:"14%",display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               {rightIcon(isRTL)}
             </ArrowStyle>
-          </Box>
+            </Stack>
         </RootStyle>
       </Grid>
       <Grid item md={5}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={4} ml="50px">
+          <Stack spacing={3} ml="50px">
             <Typography
               sx={{
                 width: "81px",
@@ -312,7 +318,7 @@ export const VariantProduct = () => {
             <Stack
               border={"1px solid #E4E4E4"}
               spacing={1}
-              p={3}
+              p={2}
               borderRadius={1}
             >
               <Stack display={"flex"} direction={"row"} spacing={2}>
@@ -356,10 +362,12 @@ export const VariantProduct = () => {
 
 const leftIcon = (isRTL?: boolean) => (
   <Iconify
-    icon={"eva:arrow-right-fill"}
+    icon={"iconamoon:arrow-right-2"}
     sx={{
-      width: 20,
-      height: 20,
+      width: 30,
+      height: 30,
+      color:"black",
+
       transform: " scaleX(-1)",
       ...(isRTL && { transform: " scaleX(1)" }),
     }}
@@ -368,10 +376,11 @@ const leftIcon = (isRTL?: boolean) => (
 
 const rightIcon = (isRTL?: boolean) => (
   <Iconify
-    icon={"eva:arrow-right-fill"}
+    icon={"iconamoon:arrow-right-2"}
     sx={{
-      width: 20,
-      height: 20,
+      width: 30,
+      height: 30,
+      color:"black",
       ...(isRTL && { transform: " scaleX(-1)" }),
     }}
   />
