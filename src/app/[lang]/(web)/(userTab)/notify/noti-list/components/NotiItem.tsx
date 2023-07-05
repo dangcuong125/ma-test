@@ -39,7 +39,11 @@ export default function NotiItem({ notiItem }: Props) {
             backgroundPosition: "center",
           }}
         />
-        <Stack spacing={1.5} maxWidth={{ xs: "70%", md: "84%" }} flex={1}>
+        <Stack
+          spacing={1.5}
+          maxWidth={{ xs: "70%", sm: "86%", lg: "90%" }}
+          flex={1}
+        >
           <Stack
             direction={"row"}
             justifyContent={"space-between"}
