@@ -67,6 +67,11 @@ export default function NotiItem({ notiItem }: Props) {
                 fontWeight: "400",
                 fontFamily: "Plus Jakarta Sans",
                 color: "#1A1F36",
+                display: "inline-block",
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {convertStringToHtml(content)}

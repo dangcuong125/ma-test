@@ -5,7 +5,7 @@ export const getNotiList = async (
 ): Promise<INotiList> => {
   const headers = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE0MCwiaWF0IjoxNjg4MzU4OTkzLCJleHAiOjE2ODgzOTQ5OTN9.eM6D6zwOYC6ioIdO2425g7dO4AV0jYuEJSagYaWXTLM",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NTMwNDM2LCJleHAiOjE2ODg1NjY0MzZ9.VjULStOhxErg3vimRedqiHiZNRZkvVUScDHgamNkNVs",
   };
   const response = await fetch(
     "https://api-dev-loyalty-2.bilisoftware.com/api/customer/user-noti?" +
@@ -15,23 +15,17 @@ export const getNotiList = async (
       }),
     { headers }
   );
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
   return response.json();
 };
 
 export const getCountUnread = async (): Promise<number> => {
   const headers = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE0MCwiaWF0IjoxNjg4MzU4OTkzLCJleHAiOjE2ODgzOTQ5OTN9.eM6D6zwOYC6ioIdO2425g7dO4AV0jYuEJSagYaWXTLM",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI4MCwiaWF0IjoxNjg4NTMwNDM2LCJleHAiOjE2ODg1NjY0MzZ9.VjULStOhxErg3vimRedqiHiZNRZkvVUScDHgamNkNVs",
   };
   const response = await fetch(
     "https://api-dev-loyalty-2.bilisoftware.com/api/customer/user-noti/count-unread",
     { headers }
   );
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
   return response.json();
 };
