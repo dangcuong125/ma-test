@@ -48,27 +48,30 @@ export default function CheckoutProductListRow({
           <Typography noWrap variant="subtitle2" sx={{ maxWidth: 240 }}>
             {row?.product?.productDetails[0]?.name}
           </Typography>
-          {row?.product?.productVariants[0]?.productAttributeTerms?.map(
-            (item, index) => (
-              <Stack direction="row" alignItems="center" key={index}>
-                <Typography variant="body2">
-                  <Box component="span" sx={{ color: "text.secondary" }}>
-                    size:&nbsp;
-                  </Box>
-                  {item?.productAttribute?.productAttributeDetails[0]?.name}
-                </Typography>
-
-                <Divider orientation="vertical" sx={{ mx: 1, height: 16 }} />
-
-                <Typography variant="body2">
-                  <Box component="span" sx={{ color: "text.secondary" }}>
-                    color:&nbsp;
-                  </Box>
-                  {item?.productAttributeTermDetails[0]?.value}
-                </Typography>
-              </Stack>
-            )
-          )}
+          <Stack direction="row" alignItems="center">
+            {row?.product?.productVariants[0]?.productAttributeTerms?.map(
+              (item, index) => (
+                <>
+                  <Typography variant="body2">
+                    <Box component="span" sx={{ color: "text.secondary" }}>
+                      {item?.productAttribute?.productAttributeDetails[0]?.name}
+                      :&nbsp;
+                    </Box>
+                    {item?.productAttributeTermDetails[0]?.value}
+                  </Typography>
+                  {index !==
+                    row?.product?.productVariants[0]?.productAttributeTerms
+                      ?.length -
+                      1 && (
+                    <Divider
+                      orientation="vertical"
+                      sx={{ mx: 1, height: 16 }}
+                    />
+                  )}
+                </>
+              )
+            )}
+          </Stack>
         </Stack>
       </TableCell>
       <TableCell align="center">{fFormatCoin(point)} xu</TableCell>
