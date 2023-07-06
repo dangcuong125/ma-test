@@ -29,7 +29,7 @@ export default function NextPageListNoti() {
       {listNoti.map((item) => (
         <NotiItem key={item.id} notiItem={item} />
       ))}
-      <div>
+      <Box sx={{ height: 0 }}>
         <Button
           sx={{
             backgroundColor: "transparent",
@@ -39,7 +39,7 @@ export default function NextPageListNoti() {
           onClick={() => fetchNextPageNotiList()}
           disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
         />
-      </div>
+      </Box>
     </Box>
   );
 }

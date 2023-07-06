@@ -4,6 +4,14 @@
   "and": "and",
   "continue": "Continue",
   "cancel": "Cancel",
+  "save": "Save",
+  "allowed": "Allowed",
+  "max_size_of": "Max size of",
+  "personal_info": "Personal Info",
+  "name": "Name",
+  "phone_number": "Phone number",
+  "email": "Email",
+  "birthday": "Birthday",
   "auth": {
     "username": "Username",
     "password": "Password",
@@ -52,10 +60,9 @@
     "phoneNumber_not_valid": "Phone number is not valid",
     "password_not_match": "Password does not match"
   },
-  "noti": {
-    "noti_list": {
-      "heading": "Notifications"
-    }
+  "notify": {
+    "headingList": "Notifications",
+    "loadingMore": "Loading more"
   },
   "address": {
     "heading": "Address",

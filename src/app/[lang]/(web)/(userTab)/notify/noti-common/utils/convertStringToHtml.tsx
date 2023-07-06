@@ -16,6 +16,9 @@ export const convertStringToHtml = (htmlString: string | undefined) => {
           },
           "& p": {
             m: 0,
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           },
         }}
         dangerouslySetInnerHTML={{ __html: htmlString }}

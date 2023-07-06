@@ -19,7 +19,7 @@ export const ProductItemDefault = (props: Props) => {
       onClick={onClick}
       sx={{
         overflow:"hidden",
-        height: "450px",
+        height: {xs:"300px",sm:"450px"},
         width: "100%",
         justifyContent: "space-between",
         borderRadius: "24px",
@@ -51,15 +51,15 @@ export const ProductItemDefault = (props: Props) => {
       />
       <Stack
         sx={{
-          paddingBottom: "27px",
+          paddingBottom: {xs:"20px",sm:"27px"},
           pt:"2px",
-          px: "24px",
+          px: {xs:"16px",sm:"24px"},
         }}
         // width={"100%"}
       >
         <Stack py={"10px"}>
           <Typography
-            fontSize={24}
+            fontSize={{xs:20,sm:24}}
             fontWeight={700}
             // lineHeight={"24px"}
             sx={{
@@ -90,7 +90,7 @@ export const ProductItemDefault = (props: Props) => {
           justifyContent={"space-between"}
         >
           <Typography
-            fontSize={24}
+            fontSize={{xs:14,sm:24}}
             color={"#1F8A70"}
             fontWeight={700}
             sx={{
@@ -112,7 +112,7 @@ export const ProductItemDefault = (props: Props) => {
           >
             <Image
               alt=""
-              sx={{ width: "32px", height: "32px" }}
+              sx={{ width: {xs:"24px",sm:"32px"}, height: {xs:"24px",sm:"32px"} }}
               src={"/assets/icons/core/add-to-cart.svg"}
             />
           </IconButton>

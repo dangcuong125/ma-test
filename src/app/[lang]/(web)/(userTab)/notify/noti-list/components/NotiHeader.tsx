@@ -12,9 +12,10 @@ export default function NotiHeader() {
         fontWeight: "700",
         fontFamily: "Plus Jakarta Sans",
         mb: "10px",
+        px: { xs: "16px", md: "32px" },
       }}
     >
-      12324
+      {t("notify.headingList")}
     </Typography>
   );
 }

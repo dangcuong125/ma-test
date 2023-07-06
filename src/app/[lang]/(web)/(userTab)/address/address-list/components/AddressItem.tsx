@@ -14,7 +14,7 @@ export default function AddressItem() {
   return (
     <Paper
       sx={{
-        padding: "24px",
+        padding: { xs: "10px", md: "24px" },
         borderRadius: "16px",
         width: "100%",
         boxShadow: "0 12px 24px -4px rgba(145, 158, 171, 0.12)",
