@@ -4,13 +4,14 @@ import React from 'react';
 
 const Slogan = () => {
     return ( 
-        <Box width={'50%'} height={'50%'} sx={{
-            m: 'auto'
+        <Box width={'100%'} sx={{
+            ml: '20%',
+            mt: 4
         }}>
-            <Typography variant='h3'>
+            <Typography variant='h2'>
                 Chào mừng đến với ShopGrocery
             </Typography>
-            <Typography color={'#1F8A70'} variant={'h5'}>
+            <Typography color={'#1F8A70'} variant={'h4'}>
                 #Căn bếp xanh của mọi nhà
             </Typography>
         </Box>
