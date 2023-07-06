@@ -29,7 +29,7 @@ export const SIDE_BAR_ITEM = [
     type: SideBarItemType.NOTIFICATION,
     src: "/assets/icons/sidebar/notification.svg",
     name: "sidebar.notifications",
-    path: "/noti-list",
+    path: "/notify",
   },
   {
     type: SideBarItemType.POLICY,
