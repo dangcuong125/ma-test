@@ -205,7 +205,7 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
       </Grid>
       <Grid item xs={12} md={5} lg={6}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3}>
+          <Stack spacing={3}  mt={2}>
             <Typography
               sx={{
                 width: "81px",
@@ -316,7 +316,7 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
                   color: "white",
                   width: "60%",
                   borderRadius: "30px",
-                  fontSize: "18px",
+                  fontSize: {xs:"12px",sm:"18px"},
                 }}
               >
                 Thêm vào giỏ hàng
@@ -417,7 +417,7 @@ function Incrementer({
         component="span"
         sx={{
           fontWeight: 700,
-          fontSize: "24px",
+          fontSize: {xs:"20px",sm:"24px"},
           width: 40,
           textAlign: "center",
         }}

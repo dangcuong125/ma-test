@@ -55,23 +55,23 @@ export const SliderProductRecomnend = () => {
       >
         <Stack display={"flex"} direction={"row"} spacing={3}>
           <Box
-            width={"22px"}
+            width={{xs:"11px",sm:"22px"}}
             borderRadius={0.5}
             sx={{ background: "#1F8A70" }}
           ></Box>
-          <Typography fontWeight={700} lineHeight={"50px"} variant="h4">
+          <Typography fontWeight={700} lineHeight={"50px"} fontSize={{xs:15,sm:26}}>
             Sản phẩm tương tự
           </Typography>
         </Stack>
-        <Stack display={"flex"} direction={"row"} spacing={1}>
+        <Stack display={"flex"} alignItems={"center"} direction={"row"} spacing={1}>
           <Button
             onClick={goPrev}
             sx={{
-              height: 48,
+              height: {xs:38,sm:48},
               background:
                 buttonSlider?.currentIndex === 0 ? "#1F8A70" : "#E1E2E6",
               borderRadius: "100px",
-              minWidth: 48,
+              minWidth: {xs:40,sm:48},
               color: buttonSlider?.currentIndex === 0 ? "white" : "black",
             }}
           >
@@ -81,13 +81,13 @@ export const SliderProductRecomnend = () => {
           <Button
             onClick={goNext}
             sx={{
-              height: 48,
+              height: {xs:38,sm:48},
               background:
                 buttonSlider?.currentIndex === buttonSlider?.totalSlides - 4
                   ? "#1F8A70"
                   : "#E1E2E6",
               borderRadius: "100px",
-              minWidth: 48,
+              minWidth: {xs:40,sm:48},
               color:
                 buttonSlider?.currentIndex === buttonSlider?.totalSlides - 4
                   ? "white"
@@ -101,7 +101,7 @@ export const SliderProductRecomnend = () => {
       <Swiper
         ref={swiperRef}
         style={{ height: "600px" }}
-        spaceBetween={20}
+        spaceBetween={10}
         // pagination={{
         //   clickable: true,
         // }}
@@ -110,7 +110,7 @@ export const SliderProductRecomnend = () => {
         onSlideChange={handleSlideChange}
         breakpoints={{
           0: {
-            slidesPerView: 1
+            slidesPerView: 2
           },
           400: {
             slidesPerView: 1,

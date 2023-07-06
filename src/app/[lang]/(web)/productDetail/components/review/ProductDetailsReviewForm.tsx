@@ -64,7 +64,7 @@ export default function ProductDetailsReviewForm() {
   };
 
   return (
-    <Stack spacing={2} pt="20px" width={"50%"}>
+    <Stack spacing={2} pt="20px" width={{xs:"100%",sm:"50%"}}>
       <Typography variant="h5" gutterBottom>
         Viết đánh giá
       </Typography>
