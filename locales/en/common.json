@@ -61,6 +61,7 @@
     "add_btn": "Add new Address",
     "empty_text": "You don't have any address",
     "form": {
+      "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
       "recipientName": "Recipient's name",
       "phoneNumber": "Phone number",
@@ -70,6 +71,7 @@
       "detailAddress": "House/street address",
       "isDefault": "Set as default address",
       "back": "Back",
+      "save": "Save",
       "update": "update",
       "fieldRequired": "This field is required",
       "phoneNumberNotValid": "Phone number is not valid"

@@ -1,7 +1,7 @@
 import { Button, Dialog, Box, Stack } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { isOpenEditForm, setIsOpenEditForm } from "../address-common/slice";
+import { isOpenCreateForm, setIsOpenCreateForm } from "../address-common/slice";
 import { useDispatch } from "@/common/redux/store";
 import { useForm } from "react-hook-form";
 import useTranslation from "next-translate/useTranslation";
@@ -18,12 +18,12 @@ import {
   district,
   ward,
 } from "../address-common/constant";
-import RHFSelectPagination from "../address-common/components/RHFSelectPagination";
 import { AddressSchema } from "../address-common/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
+import RHFSelectPagination from "../address-common/components/RHFSelectPagination";
 
-export default function AddressEdit() {
+export default function AddressCreate() {
   const methods = useForm<ISubmitData>({
     resolver: yupResolver(AddressSchema()),
     defaultValues: DEFAULT_VALUE_FORM_ADDRESS,
@@ -37,10 +37,10 @@ export default function AddressEdit() {
   } = methods;
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
-  const isOpen = useSelector(isOpenEditForm);
+  const isOpen = useSelector(isOpenCreateForm);
 
   const handleClose = () => {
-    dispatch(setIsOpenEditForm(false));
+    dispatch(setIsOpenCreateForm(false));
   };
 
   const handleScrollCity = () => {};
@@ -72,7 +72,7 @@ export default function AddressEdit() {
               width: "100%",
             }}
           >
-            {t("address.form.updateHeading")}
+            {t("address.form.createHeading")}
           </Box>
           <Stack spacing={{ xs: 2, md: 3 }}>
             <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
@@ -151,7 +151,7 @@ export default function AddressEdit() {
                 backgroundColor: "rgba(31, 138, 112, 1)",
               }}
             >
-              {t("address.form.update")}
+              {t("address.form.save")}
               <Box
                 sx={{
                   backgroundImage: "url(/assets/icons/core/arrow-left.svg)",
