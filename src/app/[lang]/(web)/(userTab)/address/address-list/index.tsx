@@ -6,6 +6,7 @@ import NoDataAddress from "./components/NoDataAddress";
 import AddressItem from "./components/AddressItem";
 import AddressEdit from "../address-edit";
 import { LoadingButton } from "@mui/lab";
+import AddressCreate from "../address-create";
 
 export default function AddressList() {
   const isXs = useMediaQuery("(max-width:600px)");
@@ -76,6 +77,7 @@ export default function AddressList() {
         </Box>
       )}
 
+      <AddressCreate />
       <AddressEdit />
     </Paper>
   );
