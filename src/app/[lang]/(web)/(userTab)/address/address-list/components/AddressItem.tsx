@@ -2,13 +2,22 @@
 
 import { useDispatch } from "@/common/redux/store";
 import { Paper, Stack, Box, Button } from "@mui/material";
-import { setIsOpenEditForm } from "../../address-common/slice";
+import { setIdEdit, setIsOpenEditForm } from "../../address-common/slice";
+import { IAddressItem } from "../../address-common/interface";
+import useTranslation from "next-translate/useTranslation";
 
-export default function AddressItem() {
+type Props = {
+  addressItem: IAddressItem;
+};
+
+export default function AddressItem({ addressItem }: Props) {
+  const { id, address, isDefault, phoneNumber, recipientName } = addressItem;
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const handleOpenEditForm = () => {
+  const handleOpenEditForm = (id: number) => {
     dispatch(setIsOpenEditForm(true));
+    dispatch(setIdEdit(id));
   };
 
   return (
@@ -20,7 +29,11 @@ export default function AddressItem() {
         boxShadow: "0 12px 24px -4px rgba(145, 158, 171, 0.12)",
       }}
     >
-      <Stack direction={"row"} justifyContent={"space-between"}>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
         <Stack spacing={1}>
           <Stack direction={"row"} spacing={0.5}>
             <Box
@@ -31,28 +44,30 @@ export default function AddressItem() {
                 color: "#212B36",
               }}
             >
-              Trang Bùi
+              {recipientName}
             </Box>
-            <Box
-              sx={{
-                width: "86px",
-                height: "26px",
-                backgroundColor: "rgba(24, 144, 255, 0.16)",
-                borderRadius: "6px",
-                p: "1px 8px",
-              }}
-            >
+            {isDefault && (
               <Box
                 sx={{
-                  fontSize: "16px",
-                  fontWeight: "600",
-                  fontFamily: "Plus Jakarta Sans",
-                  color: "rgba(12, 83, 183, 1)",
+                  width: "86px",
+                  height: "26px",
+                  backgroundColor: "rgba(24, 144, 255, 0.16)",
+                  borderRadius: "6px",
+                  p: "1px 8px",
                 }}
               >
-                Mặc định
+                <Box
+                  sx={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    fontFamily: "Plus Jakarta Sans",
+                    color: "rgba(12, 83, 183, 1)",
+                  }}
+                >
+                  {t("address.default")}
+                </Box>
               </Box>
-            </Box>
+            )}
           </Stack>
           <Box
             sx={{
@@ -62,7 +77,7 @@ export default function AddressItem() {
               color: "rgba(99, 115, 129, 1)",
             }}
           >
-            0397122522
+            {phoneNumber}
           </Box>
           <Box
             sx={{
@@ -72,10 +87,14 @@ export default function AddressItem() {
               color: "rgba(33, 43, 54, 1)",
             }}
           >
-            1190 Chùa Láng, Láng Thượng, Đống Đa, Hà Nội
+            {address}
           </Box>
         </Stack>
-        <Button variant="text" onClick={handleOpenEditForm}>
+        <Button
+          variant="text"
+          onClick={() => handleOpenEditForm(id)}
+          sx={{ maxHeight: "30px" }}
+        >
           <Box
             sx={{
               backgroundImage: "url(/assets/icons/core/edit-btn.svg)",

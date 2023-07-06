@@ -5,7 +5,7 @@ export const DEFAULT_VALUE_FORM_ADDRESS = {
   isDefault: false,
 };
 
-export const city = [
+export const province = [
   { id: 1, name: "Hà Nội" },
   { id: 2, name: "Hải Dương" },
   { id: 3, name: "Hà Nam" },
