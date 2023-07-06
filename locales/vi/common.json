@@ -96,5 +96,8 @@
     "help": "Trợ giúp",
     "home": "Trang chủ",
     "product": "Sản phẩm"
+  },
+  "myorder": {
+    "titleHeading": "Đơn hàng của tôi"
   }
 }
