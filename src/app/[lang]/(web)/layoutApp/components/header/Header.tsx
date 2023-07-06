@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import SearchBox from "./components/SearchBox";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export const HeaderBar = () => {
   const route = useRouter();
@@ -43,7 +45,7 @@ export const HeaderBar = () => {
           padding: "10px",
           cursor: 'pointer',
         }}
-        onClick={() => route.push("/category")}
+        onClick={() => route.push(PATH_HOME.root)}
       />
       <Box
         sx={{
@@ -54,56 +56,7 @@ export const HeaderBar = () => {
           // borderRadius: "10px",
         }}
       >
-        <TextField
-          fullWidth
-          placeholder="Tìm kiếm"
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              backgroundColor: "#F3F9FB",
-              color: "black",
-              "& fieldset": {
-                borderColor: "transparent",
-                color: "white",
-                borderRadius: "10px",
-              },
-              "&:hover fieldset": {
-                borderColor: "aquamarine",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "aquamarine",
-                color: "white",
-              },
-            },
-          }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton sx={{ p: 0 }}>
-                  <Box
-                    sx={{
-                      width: "24px",
-                      height: "24px",
-                      backgroundImage: "url(/assets/icons/core/menu.svg)",
-                    }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            ),
-            startAdornment: (
-              <InputAdornment position="start">
-                <IconButton sx={{ p: 0 }}>
-                  <Box
-                    sx={{
-                      width: "18px",
-                      height: "18px",
-                      backgroundImage: "url(/assets/icons/core/search.svg)",
-                    }}
-                  />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+        <SearchBox/>
       </Box>
       <Stack direction={"row"} spacing={"20px"}>
         <Button
