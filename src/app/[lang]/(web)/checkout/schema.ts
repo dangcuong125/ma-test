@@ -9,11 +9,11 @@ export const NewAddressSchema = () => {
         /(03|05|07|08|09|01[2|6|8|9])+([0-9]{7,8})\b/,
         "Số điện thoại không hợp lệ"
       ),
-    PROVINCE: Yup.string().required("Vui lòng chọn tỉnh và thành phố"),
-    DISTRICT: Yup.string().required("Vui lòng chọn quận / huyện"),
-    WARD: Yup.string().required("Vui lòng chọn xã / phường"),
-    street: Yup.string().required(" Nhập số nhà"),
+    province: Yup.string().required("Vui lòng chọn tỉnh và thành phố"),
+    district: Yup.string().required("Vui lòng chọn quận / huyện"),
+    ward: Yup.string().required("Vui lòng chọn xã / phường"),
+    address1: Yup.string().required(" Nhập số nhà"),
     isDefault: Yup.boolean(),
-    idSaveAddress: Yup.boolean(),
+    // idSaveAddress: Yup.boolean(),
   });
 };

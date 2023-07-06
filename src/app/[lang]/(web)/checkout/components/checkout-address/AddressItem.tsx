@@ -7,24 +7,19 @@ import {
   Typography,
 } from "@mui/material";
 import { IOrderShippingItem, OnCreateBilling } from "../../interface";
+import { dispatch } from "@/common/redux/store";
+import { setSelectedAddress } from "../../order.slice";
 
 type AddressItemProps = {
   address: IOrderShippingItem;
-  onCreateBilling: OnCreateBilling;
 };
 
-export default function AddressItem({
-  address,
-  onCreateBilling,
-}: AddressItemProps) {
+export default function AddressItem({ address }: AddressItemProps) {
   const { name, phone, isDefault, district, address1, province, ward } =
     address;
 
-  const fullAddress = address1 + " " + ward + " " + district + " " + province;
-
-  const handleCreateBilling = () => {
-    console.log(address);
-  };
+  const fullAddress =
+    address1 + " " + ward.name + ", " + district.name + ", " + province.name;
 
   return (
     <Card sx={{ p: 3, mb: 3, position: "relative " }} elevation={5}>
@@ -54,12 +49,12 @@ export default function AddressItem({
         )}
       </Box>
 
-      <Typography variant="body2" gutterBottom>
-        {fullAddress}
-      </Typography>
-
       <Typography variant="body2" sx={{ color: "text.secondary" }}>
         {phone}
+      </Typography>
+
+      <Typography variant="body2" gutterBottom>
+        {fullAddress}
       </Typography>
 
       <Box
@@ -68,10 +63,27 @@ export default function AddressItem({
           display: "flex",
           position: { sm: "absolute" },
           right: { sm: 24 },
-          bottom: { sm: 24 },
+          bottom: { sm: 40 },
         }}
       >
-        <FormControlLabel value={address.id} control={<Radio />} label="" />
+        <FormControlLabel
+          value={address.id}
+          control={<Radio />}
+          label=""
+          onClick={() =>
+            dispatch(
+              setSelectedAddress({
+                id: address.id,
+                name: address.name,
+                phone: address.phone,
+                address: address.address1,
+                province: province.name,
+                district: district.name,
+                ward: ward.name,
+              })
+            )
+          }
+        />
       </Box>
     </Card>
   );

@@ -9,14 +9,17 @@ import {
   onBackStep,
   onNextStep,
   setOpenModalAddAddress,
+  setSelectedAddress,
 } from "../../order.slice";
 import CheckoutSummary from "../CheckoutSummary";
 import { useGetListUserAddress } from "../../hooks/useGetListUserAddress";
 import AddNewAddressModal from "./AddNewAddressModal";
 import EmptyCart from "../EmptyCart";
+import { orderShippingMock } from "../../_mock";
+import { useEffect } from "react";
 
 export default function CheckoutAddress() {
-  const { subtotal, total, discount, cart } = useSelector(
+  const { subtotal, total, discount, cart, selectedAddress } = useSelector(
     (state) => state.checkout
   );
 
@@ -25,7 +28,7 @@ export default function CheckoutAddress() {
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
   } = useGetListUserAddress();
-  const userAddress = dataAddress?.data?.items || [];
+  const userAddress = dataAddress?.data?.items || orderShippingMock;
 
   const dispatch = useDispatch();
 
@@ -41,9 +44,19 @@ export default function CheckoutAddress() {
     dispatch(setOpenModalAddAddress(true));
   };
 
-  const handleCreateAddress = (value: BillingAddress) => {
-    console.log(value);
-  };
+  useEffect(() => {
+    dispatch(
+      setSelectedAddress({
+        id: 0,
+        name: "",
+        phone: "",
+        address: "",
+        province: "",
+        district: "",
+        ward: "",
+      })
+    );
+  }, []);
 
   return (
     <>
@@ -56,11 +69,7 @@ export default function CheckoutAddress() {
             }}
           >
             {userAddress.map((address, index) => (
-              <AddressItem
-                key={index}
-                address={address}
-                onCreateBilling={handleCreateAddress}
-              />
+              <AddressItem key={index} address={address} />
             ))}
 
             {userAddress?.length === 0 && (
@@ -100,7 +109,7 @@ export default function CheckoutAddress() {
             size="large"
             type="submit"
             variant="contained"
-            disabled={cart.length === 0}
+            disabled={cart.length === 0 || selectedAddress.id === 0}
             onClick={handleNextStep}
             sx={{ backgroundColor: "rgba(31, 138, 112, 1)", borderRadius: 5 }}
           >

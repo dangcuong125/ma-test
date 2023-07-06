@@ -21,6 +21,7 @@ import QontoStepIcon from "./components/QontoStepIcon";
 import CheckoutCart from "./components/checkoutCart/CheckoutCart";
 import CheckoutAddress from "./components/checkout-address/CheckoutAddress";
 import CheckoutPayment from "./components/checkout-payment/CheckoutPayment";
+import { cartItemMock } from "./_mock";
 
 export default function CheckOut() {
   const { activeStep } = useSelector((state) => state.checkout);
@@ -33,12 +34,14 @@ export default function CheckOut() {
   useEffect(() => {
     if (dataCart?.length > 0) {
       dispatch(setCart(dataCart));
+    } else {
+      dispatch(setCart(cartItemMock));
     }
   }, [dataCart]);
 
   return (
     <>
-      <Container sx={{ marginY: 8 }}>
+      <Container sx={{ marginY: 8 }} maxWidth="xl">
         <Breadcrumbs
           aria-label="breadcrumb"
           sx={{ marginBottom: 5 }}

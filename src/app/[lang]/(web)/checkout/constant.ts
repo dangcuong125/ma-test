@@ -7,6 +7,12 @@ export const TABLE_CART_PRODUCT_HEAD = [
   { id: "totalPrice", label: "Thành tiền", align: "right" },
   { id: "" },
 ];
+export const TABLE_PAYMENT_PRODUCT_HEAD = [
+  { id: "product", label: "Sản phẩm", align: "left" },
+  { id: "price", label: "Giá thành", align: "center" },
+  { id: "quantity", label: "Số lượng", align: "center" },
+  { id: "totalPrice", label: "Thành tiền", align: "right" },
+];
 
 export const _addressBooks = [...Array(5)].map((_, index) => ({
   id: 1,
