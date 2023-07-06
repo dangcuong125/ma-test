@@ -32,7 +32,6 @@ export default function Filter() {
   const marksLabel = [...Array(51)].map((_, index) => {
     const value = index * 10;
     const firstValue = `${value}`;
-    console.log(index);
 
     return {
       value,

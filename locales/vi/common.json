@@ -45,15 +45,34 @@
     "weight": "Chọn khối lượng",
     "tableWeight": "Bảng khối lượng",
     "addToCart": "Thêm vào giỏ hàng",
-    "productRecommend": "Sản phẩm tương tự"},
+    "productRecommend": "Sản phẩm tương tự"
+  },
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
     "password_not_match": "Mật khẩu không trùng khớp"
   },
-  "noti": {
-    "noti_list": {
-      "heading": "Thông báo của tôi"
+  "notify": {
+    "headingList": "Thông báo của tôi",
+    "loadingMore": "Xem thêm"
+  },
+  "address": {
+    "heading": "Địa chỉ của tôi",
+    "add_btn": "Thêm địa chỉ mới",
+    "empty_text": "Bạn chưa có địa chỉ nào",
+    "form": {
+      "updateHeading": "Cập nhật địa chỉ",
+      "recipientName": "Tên người nhận",
+      "phoneNumber": "Số điện thoại",
+      "city": "Thành phố/Tỉnh",
+      "district": "Quận/Huyện",
+      "ward": "Phường/Xã",
+      "detailAddress": "Số nhà/tên đường",
+      "isDefault": "Đặt làm địa chỉ mặc định",
+      "back": "Trở lại",
+      "update": "Cập nhật",
+      "fieldRequired": "Trường này không được để trống",
+      "phoneNumberNotValid": "Số điện thoại không đúng định dạng"
     }
   },
   "sidebar": {

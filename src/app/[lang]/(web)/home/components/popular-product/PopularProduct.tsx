@@ -20,7 +20,7 @@ type Props = {
 
 export const PopularProduct = (props: Props) => {
   const { dataMenu } = props;
-  const router = useRouter();
+  const route = useRouter();
 
   return (
     <Stack
@@ -98,6 +98,7 @@ export const PopularProduct = (props: Props) => {
                 srcImg={item?.thumbnail?.url}
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
+                onClick={() => route.push('/productDetail')}
               />
             </Grid>
           ))}
@@ -112,7 +113,7 @@ export const PopularProduct = (props: Props) => {
             minHeight: "56px",
             textTransform: "none",
           }}
-          onClick={()=>{router.push("/category")}}
+          onClick={()=>{route.push("/category")}}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
         >
           Xem tất cả

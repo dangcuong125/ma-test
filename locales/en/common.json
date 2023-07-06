@@ -52,9 +52,27 @@
     "phoneNumber_not_valid": "Phone number is not valid",
     "password_not_match": "Password does not match"
   },
-  "noti": {
-    "noti_list": {
-      "heading": "Notifications"
+  "notify": {
+    "headingList": "Notifications",
+    "loadingMore": "Loading more"
+  },
+  "address": {
+    "heading": "Address",
+    "add_btn": "Add new Address",
+    "empty_text": "You don't have any address",
+    "form": {
+      "updateHeading": "Updateting address",
+      "recipientName": "Recipient's name",
+      "phoneNumber": "Phone number",
+      "city": "City",
+      "district": "District",
+      "ward": "Ward",
+      "detailAddress": "House/street address",
+      "isDefault": "Set as default address",
+      "back": "Back",
+      "update": "update",
+      "fieldRequired": "This field is required",
+      "phoneNumberNotValid": "Phone number is not valid"
     }
   },
   "sidebar": {
