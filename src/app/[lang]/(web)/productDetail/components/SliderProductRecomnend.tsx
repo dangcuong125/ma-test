@@ -123,7 +123,7 @@ export const SliderProductRecomnend = () => {
             lazyPreloadPrevNext: 1,
           },
           1000: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
           1440: {
             slidesPerView: 4,
