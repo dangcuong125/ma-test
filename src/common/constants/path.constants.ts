@@ -7,3 +7,11 @@ export const PATH_AUTH = {
     reset_password: '/reset-password',
     create_information: '/create-information'
 }
+
+export const PATH_WEB = {
+    root: '/',
+    product:{
+        root: '/category',
+        detail: '/productDetail'
+    }
+}
