@@ -1,7 +1,7 @@
 export const MOCK_DATA_SEARCH = [
 
     {
-        label: "The Shawshank Redemption",
+        label: "The Shawshank Redemptionnnnnnnnnnnnnnnnn hahahahahah",
         price: 1994,
         img: "https://cdn-icons-png.flaticon.com/512/10714/10714248.png",
         color: "blue"

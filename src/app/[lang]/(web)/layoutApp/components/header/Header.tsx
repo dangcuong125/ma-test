@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchBox from "./components/SearchBox";
-import { PATH_WEB } from "@/common/constants/path.constants";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export const HeaderBar = () => {
   const route = useRouter();
@@ -45,7 +45,7 @@ export const HeaderBar = () => {
           padding: "10px",
           cursor: 'pointer',
         }}
-        onClick={() => route.push(PATH_WEB.root)}
+        onClick={() => route.push(PATH_HOME.root)}
       />
       <Box
         sx={{

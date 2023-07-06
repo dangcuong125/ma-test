@@ -69,6 +69,7 @@
     "add_btn": "Thêm địa chỉ mới",
     "empty_text": "Bạn chưa có địa chỉ nào",
     "form": {
+      "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",
       "recipientName": "Tên người nhận",
       "phoneNumber": "Số điện thoại",
@@ -78,6 +79,7 @@
       "detailAddress": "Số nhà/tên đường",
       "isDefault": "Đặt làm địa chỉ mặc định",
       "back": "Trở lại",
+      "save": "Lưu",
       "update": "Cập nhật",
       "fieldRequired": "Trường này không được để trống",
       "phoneNumberNotValid": "Số điện thoại không đúng định dạng"

@@ -15,7 +15,7 @@ import ATypographyEllipsis from "@/common/components/customComponent/ATyporgraph
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
 import Image from "@/common/components/Image";
 import { useRouter } from "next/navigation";
-import { PATH_WEB } from "@/common/constants/path.constants";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export default function SearchBox() {
   const route = useRouter();
@@ -90,14 +90,13 @@ export default function SearchBox() {
       )}
       renderOption={(props, options) => {
         return (
-          <li {...props}>
+          <li {...props} style={{ width: "100%" }}>
             <Stack
-              onClick={() => route.push(PATH_WEB.product.detail)}
+              onClick={() => route.push(PATH_HOME.product.detail)}
               width={"100%"}
               direction="row"
               spacing={"16px"}
               alignItems={"center"}
-              justifyContent={"space-between"}
               // sx={{
               //   "&:hover": {
               //     borderRadius: "8px",
@@ -117,8 +116,10 @@ export default function SearchBox() {
                 justifyContent={"space-between"}
                 alignItems={"center"}
                 width={"100%"}
+                overflow="hidden"
+                // spacing={2}
               >
-                <Stack spacing={1}>
+                <Stack spacing={1} width={{md: '70%', xs: '100%'}}>
                   <ATypographyEllipsis
                     fontWeight={600}
                     fontSize={"18px"}
@@ -153,6 +154,10 @@ export default function SearchBox() {
                 </Stack>
                 <IconButton
                   sx={{
+                    display: {
+                      xs: 'none',
+                      md: 'flex',
+                    },
                     background:
                       "linear-gradient(90deg, #66BA7A , #00A55D, #1F8A70)",
                     // ":hover": {
@@ -163,8 +168,8 @@ export default function SearchBox() {
                   <Image
                     alt=""
                     sx={{
-                      width: '24px',
-                      height: '24px',
+                      width: "24px",
+                      height: "24px",
                     }}
                     src={"/assets/icons/core/add-to-cart.svg"}
                   />
@@ -177,5 +182,3 @@ export default function SearchBox() {
     />
   );
 }
-
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
