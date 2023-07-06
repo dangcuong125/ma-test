@@ -140,7 +140,7 @@ export const VariantProduct = () => {
           </Box>
           <Stack display={"flex"} direction={"row"}>
           <ArrowStyle sx={{position:"relative",
-left:"14%",display:{xs:"none",sm:"block"}}} size="small" onClick={handlePrevious}>
+left:0,display:{xs:"none",sm:"block"}}} size="small" onClick={handlePrevious}>
               {leftIcon(isRTL)}
             </ArrowStyle>
           <Box
@@ -197,7 +197,7 @@ left:"14%",display:{xs:"none",sm:"block"}}} size="small" onClick={handlePrevious
           
           </Box>
           <ArrowStyle sx={{position:"relative",
-right:"14%",display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
+right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               {rightIcon(isRTL)}
             </ArrowStyle>
             </Stack>
@@ -205,7 +205,7 @@ right:"14%",display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
       </Grid>
       <Grid item xs={12} md={5} lg={6}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={4}>
+          <Stack spacing={3}>
             <Typography
               sx={{
                 width: "81px",

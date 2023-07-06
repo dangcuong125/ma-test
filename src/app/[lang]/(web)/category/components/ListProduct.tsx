@@ -7,8 +7,11 @@ import {
     Stack,
     Typography
 } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function ListProduct() {
+  const route = useRouter();
+
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Trang chủ
@@ -43,6 +46,7 @@ export default function ListProduct() {
                 srcImg="/Subtract.png"
                 property="1KG"
                 price={70000}
+                onClick={() => route.push('/productDetail')}
               />
             </Grid>
           ))}
