@@ -113,7 +113,7 @@ export const PopularProduct = (props: Props) => {
             minHeight: "56px",
             textTransform: "none",
           }}
-          onClick={()=>{route.push("/categoryPage")}}
+          onClick={()=>{route.push("/category")}}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
         >
           Xem tất cả
