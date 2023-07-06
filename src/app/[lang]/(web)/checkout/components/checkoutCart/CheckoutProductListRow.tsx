@@ -41,7 +41,7 @@ export default function CheckoutProductListRow({
           src={row?.product?.thumbnail?.url}
           width={64}
           height={64}
-          style={{ borderRadius: 1.5, marginRight: 6 }}
+          style={{ borderRadius: 1.5, marginRight: 12 }}
         />
 
         <Stack spacing={0.5}>

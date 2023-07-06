@@ -18,7 +18,7 @@ import {
   district,
   ward,
 } from "../address-common/constant";
-import RHFSelectPagination from "./components/RHFSelectPagination";
+import RHFSelectPagination from "../address-common/components/RHFSelectPagination";
 import { AddressSchema } from "../address-common/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";

@@ -1,3 +1,10 @@
+import { AxiosResponse } from "axios";
+
+export interface ICallback {
+  onSuccess: ((data: AxiosResponse<any, any>) => unknown) | undefined;
+  onError: () => void;
+}
+
 export interface IOrderState {
   activeStep: number;
   cart: ICartItem[];
@@ -7,7 +14,23 @@ export interface IOrderState {
   shipping: number;
   billing: BillingAddress | null;
   openModalAddAddress: boolean;
+  provinceParams: {
+    type: string;
+    parentId: number;
+    searchText: string;
+  };
+  selectedAddress: ISelectedAddressCart;
 }
+
+export type ISelectedAddressCart = {
+  id: number;
+  name: string;
+  phone: string;
+  address: string;
+  province: string;
+  district: string;
+  ward: string;
+};
 
 export type BillingAddress = {
   receiver: string;
@@ -53,7 +76,7 @@ export type IProductVariantItem = {
   id: number;
   price: number;
   quantity: number;
-  salePrize: number;
+  salePrice: number;
   sku: string;
   name: string;
   productAttributeTerms: {
@@ -100,12 +123,26 @@ export type IOrderShippingResponse = {
 
 export type IOrderShippingItem = {
   id: number;
-  userId: number;
   name: string;
   address1: string;
-  province: string;
-  ward: string;
-  district: string;
+  province: {
+    id: number;
+    name: string;
+    type: string;
+    parentId: number | null;
+  };
+  ward: {
+    id: number;
+    name: string;
+    type: string;
+    parentId: number | null;
+  };
+  district: {
+    id: number;
+    name: string;
+    type: string;
+    parentId: number | null;
+  };
   phone: string;
   isDefault: boolean;
 };
@@ -113,13 +150,10 @@ export type IOrderShippingItem = {
 export type IFormProvince = {
   name: string;
   phone: string;
-  street: string;
-  PROVINCE: string;
-  DISTRICT: string;
-  WARD: string;
-  PROVINCE_Value: string;
-  DISTRICT_Value: string;
-  WARD_Value: string;
+  address1: string;
+  province: number;
+  district: number;
+  ward: number;
   isDefault: boolean;
   isSaveAddress: boolean;
 };
@@ -133,15 +167,13 @@ export interface IParamsSearchProvince {
 }
 
 export interface IProvinceResponses {
-  data: {
-    items: IProvinceItem[];
-    meta: {
-      totalItems: number;
-      itemCount: number;
-      itemsPerPage: number;
-      totalPages: number;
-      currentPage: number;
-    };
+  items: IProvinceItem[];
+  meta: {
+    totalItems: number;
+    itemCount: number;
+    itemsPerPage: number;
+    totalPages: number;
+    currentPage: number;
   };
 }
 
@@ -150,4 +182,27 @@ export interface IProvinceItem {
   name: string;
   type: string;
   parentId: number;
+}
+
+export interface IDataNewAddress {
+  address1: string;
+  address2: string;
+  province: number;
+  ward: number;
+  district: number;
+  phone: string;
+  name: string;
+  isDefault: boolean;
+}
+
+export interface IDataPostOrder {
+  orderShipping?: {
+    address1: string;
+    province: string;
+    ward: string;
+    district: string;
+    phone: string;
+    name: string;
+  };
+  paymentType: string;
 }

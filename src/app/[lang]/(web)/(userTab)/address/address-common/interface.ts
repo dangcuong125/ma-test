@@ -1,5 +1,6 @@
 export interface InitialState {
   isOpenEditForm: boolean;
+  isOpenCreateForm: boolean;
 }
 
 export interface ISubmitData {

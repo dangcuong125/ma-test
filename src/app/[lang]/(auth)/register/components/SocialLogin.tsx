@@ -3,8 +3,11 @@
 import Iconify from "@/common/components/Iconify";
 import { Box, IconButton, Stack } from "@mui/material";
 import React from "react";
+import RegisterWithFacebook from "./RegisterWithFB";
+import RegisterWithGoogle from "./RegisterWithGoogle";
 
 const SocialLogin = () => {
+
   return (
     <Stack
       direction={"row"}
@@ -13,41 +16,8 @@ const SocialLogin = () => {
       width={"70%"}
       mx={"auto"}
     >
-      <IconButton
-        sx={{
-          py: 1,
-          px: 3,
-          border: 1,
-          borderColor: "#dce0e4",
-          borderRadius: "8px",
-        }}
-      >
-        <Iconify
-          icon={"logos:facebook"}
-          sx={{
-            width: "2rem",
-            m: 'auto'
-          }}
-        />
-      </IconButton>
-      <IconButton
-        sx={{
-          py: 1,
-          px: 3,
-          border: 1,
-          borderColor: "#dce0e4",
-          borderRadius: "8px",
-          alignItems: "center",
-        }}
-      >
-        <Iconify
-          icon={"flat-color-icons:google"}
-          sx={{
-            width: "2rem",
-            m: 'auto'
-          }}
-        />
-      </IconButton>
+      <RegisterWithFacebook />
+      <RegisterWithGoogle />
     </Stack>
   );
 };

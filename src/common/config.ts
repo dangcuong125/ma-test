@@ -4,6 +4,15 @@ import { SettingsValueProps } from "./components/settings/type";
 // components
 // routes
 
+export const HOST_API = process.env.NEXT_PUBLIC_APP_BASE_URL;
+export const FIREBASE_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+export const FIREBASE_AUTH_DOMAIN = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN;
+export const FIREBASE_PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+export const FIREBASE_STORAGE_BUCKET = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
+export const FIREBASE_MESSAGE_SENDER_ID = process.env.NEXT_PUBLIC_MESSAGE_SENDER_ID;
+export const FIREBASE_APP_ID = process.env.NEXT_PUBLIC_FIREBASE_APP_ID;
+export const FIREBASE_MEASUREMENT_ID = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+
 export const defaultSettings: SettingsValueProps = {
   themeMode: "light",
   themeDirection: "ltr",

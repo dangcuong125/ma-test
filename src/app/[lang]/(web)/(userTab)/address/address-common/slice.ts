@@ -4,6 +4,7 @@ import { RootState } from "@/common/redux/store";
 
 const initialState: InitialState = {
   isOpenEditForm: false,
+  isOpenCreateForm: false,
 };
 
 const addressSlice = createSlice({
@@ -13,12 +14,17 @@ const addressSlice = createSlice({
     setIsOpenEditForm: (state, action: PayloadAction<boolean>) => {
       state.isOpenEditForm = action.payload;
     },
+    setIsOpenCreateForm: (state, action: PayloadAction<boolean>) => {
+      state.isOpenCreateForm = action.payload;
+    },
   },
 });
 
-export const { setIsOpenEditForm } = addressSlice.actions;
+export const { setIsOpenEditForm, setIsOpenCreateForm } = addressSlice.actions;
 
 export const isOpenEditForm = (state: RootState) =>
   state.address.isOpenEditForm;
+export const isOpenCreateForm = (state: RootState) =>
+  state.address.isOpenCreateForm;
 
 export default addressSlice.reducer;

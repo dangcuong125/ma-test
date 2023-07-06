@@ -4,6 +4,14 @@
   "and": "and",
   "continue": "Continue",
   "cancel": "Cancel",
+  "save": "Save",
+  "allowed": "Allowed",
+  "max_size_of": "Max size of",
+  "personal_info": "Personal Info",
+  "name": "Name",
+  "phone_number": "Phone number",
+  "email": "Email",
+  "birthday": "Birthday",
   "auth": {
     "username": "Username",
     "password": "Password",
@@ -61,6 +69,7 @@
     "add_btn": "Add new Address",
     "empty_text": "You don't have any address",
     "form": {
+      "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
       "recipientName": "Recipient's name",
       "phoneNumber": "Phone number",
@@ -70,6 +79,7 @@
       "detailAddress": "House/street address",
       "isDefault": "Set as default address",
       "back": "Back",
+      "save": "Save",
       "update": "update",
       "fieldRequired": "This field is required",
       "phoneNumberNotValid": "Phone number is not valid"

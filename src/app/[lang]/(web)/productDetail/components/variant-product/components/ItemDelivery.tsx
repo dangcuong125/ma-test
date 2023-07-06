@@ -18,10 +18,10 @@ export const ItemDelivery = (props: Props) => {
         src={srcImg}
       />
       <Stack>
-        <ATypographyEllipsis fontSize={24} fontWeight={600}>
+        <ATypographyEllipsis fontSize={{xs:20,sm:24}} fontWeight={600}>
           {title}
         </ATypographyEllipsis>
-        <ATypographyEllipsis color={"#726C6C"} fontSize={18}>
+        <ATypographyEllipsis color={"#726C6C"} fontSize={{xs:9,sm:18}}>
           {description} 
         </ATypographyEllipsis>
       </Stack>

@@ -19,19 +19,28 @@ import { useForm } from "react-hook-form";
 import { NewAddressSchema } from "../../schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  IDataNewAddress,
   IFormProvince,
   IParamsSearchProvince,
   IProvinceItem,
 } from "../../interface";
 import Iconify from "@/common/components/Iconify";
 import { dispatch, useSelector } from "@/common/redux/store";
-import { setOpenModalAddAddress } from "../../order.slice";
+import {
+  setOpenModalAddAddress,
+  setSearchTextProvince,
+  setTypeProvinceParams,
+} from "../../order.slice";
 import { useGetProvinceData } from "../../hooks/useGetProvinceData";
+import RHFSelectPagination from "./RHFSelectPagination";
+import { useAddAddress } from "../../hooks/useAddAddress";
 
 export default function AddNewAddressModal() {
-  const { openModalAddAddress } = useSelector((state) => state.checkout);
+  const { openModalAddAddress, provinceParams } = useSelector(
+    (state) => state.checkout
+  );
   const methods = useForm<IFormProvince>({
-    resolver: yupResolver(NewAddressSchema),
+    resolver: yupResolver(NewAddressSchema()),
   });
 
   const {
@@ -43,11 +52,11 @@ export default function AddNewAddressModal() {
   } = methods;
 
   const paramsProvince: IParamsSearchProvince = {
-    type: "DISTRICT",
-    parentId: 0,
-    searchText: "",
+    type: provinceParams.type === "" ? "PROVINCE" : provinceParams.type,
+    parentId: provinceParams.parentId,
+    searchText: provinceParams.searchText,
     page: 1,
-    limit: 100,
+    limit: 20,
   };
 
   const {
@@ -58,16 +67,54 @@ export default function AddNewAddressModal() {
     hasNextPage,
     isFetchingNextPage,
   } = useGetProvinceData(paramsProvince);
-  console.log(dataProvince);
 
-  const arrProvince: IProvinceItem[] = dataProvince?.pages[0]?.items || [];
-  console.log(arrProvince);
+  const arrProvince =
+    dataProvince?.pages
+      ?.map((item) =>
+        item?.items?.map((itemProvince: any) => {
+          return {
+            id: itemProvince.id,
+            name: itemProvince.name,
+          };
+        })
+      )
+      .flat() || [];
+
+  const { mutate } = useAddAddress({
+    onSuccess: (data) => {
+      console.log("Thêm địa chỉ thành công");
+      reset();
+    },
+    onError: () => {
+      console.log("Thêm địa chỉ thất bại");
+    },
+  });
+
   const onSubmit = (data: IFormProvince) => {
-    console.log(data);
+    const dataSubmit: IDataNewAddress = {
+      address1: data.address1,
+      address2: data.address1,
+      province: data.province,
+      district: data.district,
+      ward: data.ward,
+      name: data.name,
+      phone: data.phone,
+      isDefault: data.isDefault,
+    };
+    console.log(dataSubmit);
+    mutate(dataSubmit);
   };
 
   const handleClose = () => {
     dispatch(setOpenModalAddAddress(false));
+  };
+
+  const handleScrollAttribute = (event: any) => {
+    const listBoxNode = event?.currentTarget;
+    const position = listBoxNode?.scrollTop + listBoxNode?.clientHeight;
+    if (listBoxNode.scrollHeight - position <= 1) {
+      fetchNextPage();
+    }
   };
 
   return (
@@ -77,7 +124,9 @@ export default function AddNewAddressModal() {
       open={openModalAddAddress}
       onClose={handleClose}
     >
-      <DialogTitle>Thêm địa chỉ mới</DialogTitle>
+      <DialogTitle sx={{ fontSize: "24px!important" }}>
+        Thêm địa chỉ mới
+      </DialogTitle>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
@@ -97,33 +146,89 @@ export default function AddNewAddressModal() {
               <RHFTextField name="phone" label="Số điện thoại" />
             </Box>
 
-            <RHFSelect
+            <RHFSelectPagination
+              onClick={() => {
+                dispatch(setSearchTextProvince(""));
+                dispatch(
+                  setTypeProvinceParams({ type: "PROVINCE", parentId: 0 })
+                );
+              }}
+              onChange={(e) => {
+                dispatch(setSearchTextProvince(e.target.value));
+              }}
               name="province"
+              options={arrProvince}
+              labelProp="name"
               label="Chọn tỉnh thành"
-              onClick={() => console.log("sfsf")}
-            >
-              {arrProvince?.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              ))}
-            </RHFSelect>
+              listBoxScroll={handleScrollAttribute}
+              loadingScroll={isFetchingNextPage}
+              isLoading={isLoading}
+              sx={{
+                "& .MuiInputBase-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    backgroundColor: "rgba(103, 99, 101, 0.1)",
+                  },
+                },
+              }}
+            />
 
-            <RHFSelect name="district" label="Chọn quận/ huyện">
-              {/* {countries.map((option) => (
-              <option key={option.code} value={option.label}>
-                {option.label}
-              </option>
-            ))} */}
-            </RHFSelect>
+            <RHFSelectPagination
+              onClick={() => {
+                dispatch(setSearchTextProvince(""));
+                dispatch(
+                  setTypeProvinceParams({
+                    type: "DISTRICT",
+                    parentId: watch("province"),
+                  })
+                );
+              }}
+              onChange={(e) => {
+                dispatch(setSearchTextProvince(e.target.value));
+              }}
+              name="district"
+              options={arrProvince}
+              labelProp="name"
+              label="Chọn quận/ huyện"
+              listBoxScroll={handleScrollAttribute}
+              loadingScroll={isFetchingNextPage}
+              isLoading={isLoading}
+              sx={{
+                "& .MuiInputBase-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    backgroundColor: "rgba(103, 99, 101, 0.1)",
+                  },
+                },
+              }}
+            />
 
-            <RHFSelect name="ward" label="Chọn xã/ phường">
-              {/* {countries.map((option) => (
-              <option key={option.code} value={option.label}>
-                {option.label}
-              </option>
-            ))} */}
-            </RHFSelect>
+            <RHFSelectPagination
+              onClick={() => {
+                dispatch(setSearchTextProvince(""));
+                dispatch(
+                  setTypeProvinceParams({
+                    type: "WARD",
+                    parentId: watch("district"),
+                  })
+                );
+              }}
+              onChange={(e) => {
+                dispatch(setSearchTextProvince(e.target.value));
+              }}
+              name="ward"
+              options={arrProvince}
+              labelProp="name"
+              label="Chọn xã/ phường"
+              listBoxScroll={handleScrollAttribute}
+              loadingScroll={isFetchingNextPage}
+              isLoading={isLoading}
+              sx={{
+                "& .MuiInputBase-root.Mui-disabled": {
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    backgroundColor: "rgba(103, 99, 101, 0.1)",
+                  },
+                },
+              }}
+            />
 
             <RHFTextField name="address1" label="Số nhà, tên đường" />
 
@@ -132,25 +237,34 @@ export default function AddNewAddressModal() {
               label="Đặt làm địa chỉ mặc định."
               sx={{ mt: 3 }}
             />
-            <RHFCheckbox
+            {/* <RHFCheckbox
               name="isSaveAddress"
               label="Lưu địa chỉ."
               sx={{ mt: 3 }}
-            />
+            /> */}
           </Stack>
         </DialogContent>
 
         <Divider />
 
         <DialogActions sx={{ p: 3 }}>
-          <Button color="inherit" variant="text" onClick={handleClose}>
+          <Button
+            color="inherit"
+            variant="text"
+            onClick={handleClose}
+            sx={{ fontSize: "16px" }}
+          >
             Hủy
           </Button>
           <Button
             size="large"
             type="submit"
             variant="contained"
-            sx={{ backgroundColor: "rgba(31, 138, 112, 1)", borderRadius: 5 }}
+            sx={{
+              backgroundColor: "rgba(31, 138, 112, 1)",
+              borderRadius: 5,
+              fontSize: "18px",
+            }}
           >
             Cập nhật <Iconify icon={"grommet-icons:link-next"} sx={{ ml: 1 }} />
           </Button>

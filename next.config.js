@@ -10,6 +10,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ['s3.ap-southeast-1.amazonaws.com']
+  }
 };
 
 const nextTranslate = require("next-translate-plugin");

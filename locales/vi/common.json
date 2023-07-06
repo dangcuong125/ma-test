@@ -4,6 +4,14 @@
   "and": "và",
   "continue": "Tiếp tục",
   "cancel": "Hủy",
+  "save": "Lưu",
+  "allowed": "Cho phép",
+  "max_size_of": "Kích thước tối đa",
+  "personal_info": "Thông tin cá nhân",
+  "name": "Tên",
+  "phone_number": "Số điện thoại",
+  "email": "Email",
+  "birthday": "Ngày sinh",
   "auth": {
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
@@ -61,6 +69,7 @@
     "add_btn": "Thêm địa chỉ mới",
     "empty_text": "Bạn chưa có địa chỉ nào",
     "form": {
+      "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",
       "recipientName": "Tên người nhận",
       "phoneNumber": "Số điện thoại",
@@ -70,6 +79,7 @@
       "detailAddress": "Số nhà/tên đường",
       "isDefault": "Đặt làm địa chỉ mặc định",
       "back": "Trở lại",
+      "save": "Lưu",
       "update": "Cập nhật",
       "fieldRequired": "Trường này không được để trống",
       "phoneNumberNotValid": "Số điện thoại không đúng định dạng"
