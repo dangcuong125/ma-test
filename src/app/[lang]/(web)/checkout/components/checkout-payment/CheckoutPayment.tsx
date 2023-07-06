@@ -10,16 +10,74 @@ import {
   Typography,
 } from "@mui/material";
 import CheckoutSummary from "../CheckoutSummary";
-import { useSelector } from "@/common/redux/store";
+import { dispatch, useSelector } from "@/common/redux/store";
 import Iconify from "@/common/components/Iconify";
 import { TLink } from "@/common/components/TLink";
+import TableProductList from "./TableProductList";
+import { onBackStep, onGotoStep } from "../../order.slice";
+import { useAddOrder } from "../../hooks/useAddOrder";
 
 export default function CheckoutPayment() {
-  const { cart, subtotal, discount, shipping, total } = useSelector(
-    (state) => state.checkout
-  );
+  const { cart, subtotal, discount, shipping, total, selectedAddress } =
+    useSelector((state) => state.checkout);
 
-  const handleOrder = () => {};
+  const { mutate: addOrder, error: orderError } = useAddOrder();
+
+  const handleBackStep = () => {
+    dispatch(onBackStep());
+  };
+
+  const handleOrder = () => {
+    const isAllProductVirtual =
+      cart.filter((item) => item.product.type !== "VIRTUAL").length === 0;
+
+    if (isAllProductVirtual) {
+      addOrder(
+        {
+          paymentType: "POINT",
+        },
+        {
+          onSuccess: () => {
+            console.log("success");
+          },
+          onError: () => {
+            console.log("error");
+          },
+        }
+      );
+    } else {
+      addOrder(
+        {
+          orderShipping: {
+            address1: selectedAddress?.address || "",
+            province: selectedAddress?.province || "",
+            ward: selectedAddress?.ward || "",
+            district: selectedAddress?.district || "",
+            phone: selectedAddress?.phone || "",
+            name: selectedAddress?.name || "",
+          },
+          paymentType: "POINT",
+        },
+        {
+          onSuccess: () => {
+            console.log("success");
+          },
+          onError: () => {
+            console.log("error");
+          },
+        }
+      );
+    }
+  };
+
+  const fullAddress =
+    selectedAddress.address +
+    " " +
+    selectedAddress.ward +
+    ", " +
+    selectedAddress.district +
+    ", " +
+    selectedAddress.province;
 
   return (
     <Grid container spacing={3}>
@@ -59,7 +117,10 @@ export default function CheckoutPayment() {
                   alignItems={"center"}
                 >
                   <Typography variant="h6">Địa chỉ</Typography>
-                  <Button variant="text">
+                  <Button
+                    variant="text"
+                    onClick={() => dispatch(onGotoStep(1))}
+                  >
                     <Iconify
                       icon={"eva:edit-fill"}
                       sx={{ mr: 1, width: 20, height: 20 }}
@@ -80,17 +141,17 @@ export default function CheckoutPayment() {
               }}
             >
               <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-                Nguyen Van A
+                {selectedAddress.name}
               </Typography>
               <Typography
                 sx={{ fontWeight: 400, fontSize: "13px", color: "#637381" }}
               >
-                0974562587
+                {selectedAddress.name}
               </Typography>
               <Typography
                 sx={{ fontWeight: 400, fontSize: "15px", color: "#212B36" }}
               >
-                Ha Noi
+                {fullAddress}
               </Typography>
             </Stack>
           </CardContent>
@@ -106,7 +167,10 @@ export default function CheckoutPayment() {
                   alignItems={"center"}
                 >
                   <Typography variant="h6">Sản phẩm</Typography>
-                  <Button variant="text">
+                  <Button
+                    variant="text"
+                    onClick={() => dispatch(onGotoStep(0))}
+                  >
                     <Iconify
                       icon={"eva:edit-fill"}
                       sx={{ mr: 1, width: 20, height: 20 }}
@@ -117,12 +181,14 @@ export default function CheckoutPayment() {
               </>
             }
           />
+
+          <TableProductList products={cart} />
         </Card>
 
         <Button
+          size="small"
           color="inherit"
-          component={TLink}
-          href={"/"}
+          onClick={handleBackStep}
           startIcon={<Iconify icon={"eva:arrow-ios-back-fill"} />}
         >
           Quay lại

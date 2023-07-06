@@ -2,6 +2,8 @@ import { BASE_URL_API } from "@/common/constants/config.constant";
 
 import {
   ICartItem,
+  IDataNewAddress,
+  IDataPostOrder,
   IOrderShippingResponse,
   IParamsSearchProvince,
   IParamsUpdateCartItem,
@@ -11,6 +13,7 @@ import {
 import axiosClient from "@/common/utils/axios";
 import {
   API_CHECKOUT_CART,
+  API_CUSTOMER_ORDER,
   API_ORDER_SHIPPING,
   API_PROVINCE_CUSTOMER,
 } from "@/common/constants/api.constants";
@@ -56,4 +59,12 @@ export const getDataProvince = async (
   return axiosClient.get<any, IProvinceResponses>(API_PROVINCE_CUSTOMER, {
     params,
   });
+};
+
+export const addNewAddress = (data: IDataNewAddress) => {
+  return axiosClient.post(API_ORDER_SHIPPING, data);
+};
+
+export const addNewOrder = async (data: IDataPostOrder) => {
+  return axiosClient.post(API_CUSTOMER_ORDER, data);
 };

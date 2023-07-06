@@ -9,10 +9,9 @@ export const useGetProvinceData = (params: IParamsSearchProvince) => {
     ({ pageParam = 1 }) => getDataProvince(pageParam, params),
     {
       getNextPageParam: (lastPage, allPages) => {
-        return lastPage?.data?.meta?.currentPage ===
-          lastPage?.data?.meta?.totalPages
+        return lastPage?.meta?.currentPage === lastPage?.meta?.totalPages
           ? undefined
-          : lastPage?.data?.meta?.currentPage + 1;
+          : lastPage?.meta?.currentPage + 1;
       },
     }
   );

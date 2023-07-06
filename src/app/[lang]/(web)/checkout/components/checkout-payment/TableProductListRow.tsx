@@ -1,7 +1,6 @@
 import {
   Box,
   Divider,
-  IconButton,
   Stack,
   TableCell,
   TableRow,
@@ -9,23 +8,13 @@ import {
 } from "@mui/material";
 import { ICartItem } from "../../interface";
 import Image from "next/image";
-import { fCurrency, fFormatCoin } from "@/common/utils/formatNumber";
-import Iconify from "@/common/components/Iconify";
-import { QuantityBox } from "./QuantityBox";
+import { fFormatCoin } from "@/common/utils/formatNumber";
 
-type CheckoutProductListRowProps = {
+type Props = {
   row: ICartItem;
-  onDelete: VoidFunction;
-  onDecrease: VoidFunction;
-  onIncrease: VoidFunction;
 };
 
-export default function CheckoutProductListRow({
-  row,
-  onDelete,
-  onDecrease,
-  onIncrease,
-}: CheckoutProductListRowProps) {
+export default function TableProductListRow({ row }: Props) {
   const { product, quantity, productToVariantIds } = row;
 
   const pointVariant = row?.product?.productVariants[0]?.productVariantPoint;
@@ -41,7 +30,7 @@ export default function CheckoutProductListRow({
           src={row?.product?.thumbnail?.url}
           width={64}
           height={64}
-          style={{ borderRadius: 1.5, marginRight: 12 }}
+          style={{ borderRadius: 1.5, marginRight: 6 }}
         />
 
         <Stack spacing={0.5}>
@@ -72,22 +61,8 @@ export default function CheckoutProductListRow({
         </Stack>
       </TableCell>
       <TableCell align="center">{fFormatCoin(point)} xu</TableCell>
-      <TableCell>
-        <QuantityBox
-          quantity={quantity}
-          available={row?.product?.productVariants[0]?.quantity}
-          onDecrease={onDecrease}
-          onIncrease={onIncrease}
-        />
-      </TableCell>
-
+      <TableCell>{quantity}</TableCell>
       <TableCell align="center">{fFormatCoin(point * quantity)} xu</TableCell>
-
-      <TableCell align="left">
-        <IconButton onClick={onDelete}>
-          <Iconify icon={"eva:trash-2-outline"} width={20} height={20} />
-        </IconButton>
-      </TableCell>
     </TableRow>
   );
 }
