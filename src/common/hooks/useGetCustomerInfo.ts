@@ -1,8 +1,10 @@
 import { useQuery } from "react-query";
 import { QUERY_KEYS } from "../constants/queryKeys.constant";
 import { API_CUSTOMER_PROFILE } from "../constants/api.constants";
+import { ICustomerProfileResponse } from "../@types/profile";
+import axiosClient from "../utils/axios";
 
-export function useGetCustomerInfo(isLoggedIn: boolean) {
+export function useGetCustomerInfo(isLoggedIn?: boolean) {
   return {
     ...useQuery([QUERY_KEYS.CUSTOMER_PROFILE], getCustomerInfo, {
       enabled: isLoggedIn,
@@ -12,16 +14,6 @@ export function useGetCustomerInfo(isLoggedIn: boolean) {
   };
 }
 
-export const getCustomerInfo = (): Promise<any> => {
-  return fetch(API_CUSTOMER_PROFILE)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to get customer info");
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      console.error(error);
-      throw error;
-    });
+export const getCustomerInfo = (): Promise<ICustomerProfileResponse> => {
+  return axiosClient.get(API_CUSTOMER_PROFILE);
 };
