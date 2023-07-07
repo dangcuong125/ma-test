@@ -4,4 +4,12 @@ export interface ICustomerProfileResponse {
   email: string;
   name: string;
   birthDate: string;
+  avatar: ICustomerAvatar;
+}
+
+export interface ICustomerAvatar {
+  id: number;
+  key: string;
+  type: string;
+  url: string;
 }
