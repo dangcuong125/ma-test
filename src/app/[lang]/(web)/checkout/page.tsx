@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import {
   Box,
   Breadcrumbs,
@@ -22,8 +24,6 @@ import QontoStepIcon from "./components/QontoStepIcon";
 import CheckoutCart from "./components/checkoutCart/CheckoutCart";
 import CheckoutAddress from "./components/checkout-address/CheckoutAddress";
 import CheckoutPayment from "./components/checkout-payment/CheckoutPayment";
-import { cartItemMock } from "./_mock";
-import { MenuCategory } from "../home/components/menu-category/Category";
 import { SliderProductRecomnend } from "../productDetail/components/SliderProductRecomnend";
 
 export default function CheckOut() {
@@ -32,13 +32,10 @@ export default function CheckOut() {
   const isComplete = activeStep === STEPS.length;
 
   const { dataCart, isLoading } = useGetCheckoutCart();
-  console.log(dataCart);
 
   useEffect(() => {
     if (dataCart?.length > 0) {
       dispatch(setCart(dataCart));
-    } else {
-      dispatch(setCart(cartItemMock));
     }
   }, [dataCart]);
 
