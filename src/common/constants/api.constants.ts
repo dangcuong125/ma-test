@@ -1,3 +1,4 @@
+export const API_PRESIGN_URL = "/file/presigned-url";
 export const API_CUSTOMER_LOGIN = "/customer/auth/login";
 export const API_REFRESH_TOKEN = "/customer/auth/refresh-token";
 export const API_CHECKOUT_CART = "/customer/cart";

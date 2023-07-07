@@ -8,5 +8,5 @@ export const defaultValues = {
   createdAt: "",
   status: "",
   rank: "",
-  birthday: "",
+  birthDate: "",
 };

@@ -1,9 +1,16 @@
 "use client";
 import { useCallback, useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { LoadingButton } from "@mui/lab";
-import { Box, Card, Grid, Stack, Typography, Button } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import {
+  Box,
+  Card,
+  Grid,
+  Stack,
+  Typography,
+  Button,
+  TextField,
+} from "@mui/material";
 import { fData } from "@/common/utils/formatNumber";
 import {
   FormProvider,
@@ -29,6 +36,12 @@ import { formatDate } from "@/common/utils/common.utils";
 import { useGetCustomerInfo } from "@/common/hooks/useGetCustomerInfo";
 import AccountHeader from "../../account-common/components/AccountHeader";
 import Iconify from "@/common/components/Iconify";
+import Image from "@/common/components/Image";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { vi } from "date-fns/locale";
+import { usePresignImg } from "@/common/hooks/usePresignImg";
 // ----------------------------------------------------------------------
 
 export default function AccountGeneralForm() {
@@ -42,8 +55,7 @@ export default function AccountGeneralForm() {
       // enqueueSnackbar(t('update_fail'));
     },
   });
-  // const { handleUpload } = usePresignImg();
-  // const { useDeepCompareEffect } = useDeepEffect();
+  const { handleUpload } = usePresignImg();
   const methods = useForm<IFormCustomerProfile>({
     resolver: yupResolver(UpdateCustomerSchema),
     defaultValues,
@@ -54,6 +66,7 @@ export default function AccountGeneralForm() {
   const {
     reset,
     watch,
+    control,
     setValue,
     handleSubmit,
     formState: { isSubmitting },
@@ -65,39 +78,43 @@ export default function AccountGeneralForm() {
         ...customerInfo,
         createdAt: formatDate(customerInfo.createdAt as string),
         photoURL: customerInfo?.avatar?.url,
+        phoneNumber: customerInfo?.phoneNumber
+          ? `0${customerInfo?.phoneNumber?.substring(3)}`
+          : "",
       });
     }
   }, [customerInfo]);
 
-  const { data } = useGetCustomerInfo(isSuccess);
+  const { data } = useGetCustomerInfo();
 
-  // useDeepCompareEffect(() => {
-  //   if (isSuccess && data) {
-  //     dispatch(setCustomerInfo(data));
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (data) {
+      dispatch(setCustomerInfo(data));
+    }
+  }, [data]);
 
-  // const getImageInfo = async (file: File): Promise<ImageInfo> => {
-  //   const imgInfo = await handleUpload(file);
-  //   return imgInfo;
-  // };
+  const getImageInfo = async (file: File): Promise<ImageInfo> => {
+    const imgInfo = await handleUpload(file);
+    return imgInfo;
+  };
   const onSubmit = async (data: IFormCustomerProfile) => {
     if (typeof data.photoURL !== "string") {
-      // const image = await getImageInfo(data?.photoURL as File);
+      const image = await getImageInfo(data?.photoURL as File);
       const dataEdit: IEditCustomerForm = {
         name: data.name,
-        address: data.address,
-        phoneNumber: data.phoneNumber,
-        // avatarId: image?.id,
-        avatarId: 0,
+        birthDate: data.birthDate,
+        phoneNumber: `+84${data.phoneNumber.substring(1)}`,
+        email: data.email,
+        avatarId: image?.id,
       };
       mutate(dataEdit);
       return;
     }
     const dataEdit: IEditCustomerForm = {
       name: data.name,
-      address: data.address,
-      phoneNumber: data.phoneNumber,
+      birthDate: data.birthDate,
+      email: data.email,
+      phoneNumber: `+84${data.phoneNumber.substring(1)}`,
       avatarId: customerInfo.avatar?.id as number,
     };
     mutate(dataEdit);
@@ -106,7 +123,6 @@ export default function AccountGeneralForm() {
   const handleDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
-      console.log(file);
       if (file) {
         setValue(
           "photoURL",
@@ -169,29 +185,57 @@ export default function AccountGeneralForm() {
               height={"100%"}
               justifyContent={"space-evenly"}
               alignItems={"center"}
+              py={1}
             >
               <RHFTextField name="name" label={t("name")} />
               <RHFTextField name="phoneNumber" label={t("phone_number")} />
               <RHFTextField name="email" label="Email" />
-              {/* <Stack direction={"row"} spacing={1.5}>
-                <RHFTextField
-                  disabled
-                  name="id"
-                  label="ID"
-                  InputLabelProps={{ shrink: true }}
+              <LocalizationProvider
+                adapterLocale={vi}
+                dateAdapter={AdapterDateFns}
+              >
+                <Controller
+                  name="birthDate"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <Stack position="relative" width="100%">
+                      <MobileDatePicker
+                        {...field}
+                        inputFormat="dd/MM/yyyy"
+                        dayOfWeekFormatter={(day: any) => day}
+                        renderInput={(params: any) => (
+                          <TextField
+                            {...params}
+                            variant="outlined"
+                            label="Ngày sinh"
+                            error={!!error}
+                            helperText={error?.message}
+                            sx={{
+                              height: "56px",
+                              borderRadius: "8px",
+                            }}
+                            InputProps={{
+                              endAdornment: (
+                                <Image
+                                  style={{
+                                    position: "relative",
+                                    width: "16px",
+                                    height: "18px",
+                                    overflow: "hidden",
+                                    flexShrink: "0",
+                                  }}
+                                  alt=""
+                                  src="/assets/icons/calendar.svg"
+                                />
+                              ),
+                            }}
+                          />
+                        )}
+                      />
+                    </Stack>
+                  )}
                 />
-                <RHFTextField
-                  disabled
-                  name="createdAt"
-                  label={t("registration_date")}
-                />
-              </Stack> */}
-
-              {/* <Stack direction="row" spacing={1.5}>
-                <RHFTextField disabled name="status" label={t("status")} />
-                <RHFTextField disabled name="rank" label={t("rank")} />
-              </Stack> */}
-              <RHFTextField name="birthday" label={t("birthday")} />
+              </LocalizationProvider>
             </Stack>
           </Card>
         </Grid>
