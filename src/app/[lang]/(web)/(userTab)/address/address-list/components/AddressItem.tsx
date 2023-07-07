@@ -11,7 +11,17 @@ type Props = {
 };
 
 export default function AddressItem({ addressItem }: Props) {
-  const { id, address, isDefault, phoneNumber, recipientName } = addressItem;
+  const {
+    id,
+    address1,
+    address2,
+    province,
+    district,
+    ward,
+    isDefault,
+    phone,
+    name,
+  } = addressItem;
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
@@ -44,7 +54,7 @@ export default function AddressItem({ addressItem }: Props) {
                 color: "#212B36",
               }}
             >
-              {recipientName}
+              {name}
             </Box>
             {isDefault && (
               <Box
@@ -77,7 +87,7 @@ export default function AddressItem({ addressItem }: Props) {
               color: "rgba(99, 115, 129, 1)",
             }}
           >
-            {phoneNumber}
+            {phone}
           </Box>
           <Box
             sx={{
@@ -87,7 +97,7 @@ export default function AddressItem({ addressItem }: Props) {
               color: "rgba(33, 43, 54, 1)",
             }}
           >
-            {address}
+            {`${address1} ${address2}, ${ward.name}, ${district.name}, ${province.name}`}
           </Box>
         </Stack>
         <Button

@@ -23,12 +23,7 @@ import {
   ISubmitData,
   IdataCreateAddress,
 } from "../address-common/interface";
-import {
-  DEFAULT_VALUE_FORM_ADDRESS,
-  province,
-  district,
-  ward,
-} from "../address-common/constant";
+import { DEFAULT_VALUE_FORM_ADDRESS } from "../address-common/constant";
 import { AddressSchema } from "../address-common/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoadingButton } from "@mui/lab";
@@ -105,12 +100,13 @@ export default function AddressCreate() {
 
   const onSubmit = (data: ISubmitData) => {
     const dataCreate: IdataCreateAddress = {
-      recipientName: data.recipientName,
-      phoneNumber: data.phoneNumber,
+      name: data.name,
+      phone: data.phone,
       provinceId: data.province.id,
       districtId: data.district.id,
       wardId: data.ward.id,
-      detailAddress: data.detailAddress,
+      address1: data.address,
+      address2: data.address,
       isDefault: data.isDefault,
     };
     mutateNewAddress(dataCreate);
@@ -141,14 +137,8 @@ export default function AddressCreate() {
           </Box>
           <Stack spacing={{ xs: 2, md: 3 }}>
             <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-              <RHFTextField
-                name="recipientName"
-                label={t("address.form.recipientName")}
-              />
-              <RHFTextField
-                name="phoneNumber"
-                label={t("address.form.phoneNumber")}
-              />
+              <RHFTextField name="name" label={t("address.form.name")} />
+              <RHFTextField name="phone" label={t("address.form.phone")} />
             </Stack>
             <RHFSelectPagination
               name="province"
@@ -217,8 +207,9 @@ export default function AddressCreate() {
               }}
             />
             <RHFTextField
-              name="detailAddress"
+              name="address"
               label={t("address.form.detailAddress")}
+              placeholder={t("address.form.addressPlaceholder")}
             />
             <RHFCheckbox name="isDefault" label={t("address.form.isDefault")} />
           </Stack>

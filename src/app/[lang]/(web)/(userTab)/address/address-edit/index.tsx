@@ -24,12 +24,7 @@ import {
   IProvince,
   ISubmitData,
 } from "../address-common/interface";
-import {
-  DEFAULT_VALUE_FORM_ADDRESS,
-  province,
-  district,
-  ward,
-} from "../address-common/constant";
+import { DEFAULT_VALUE_FORM_ADDRESS } from "../address-common/constant";
 import RHFSelectPagination from "../address-common/components/RHFSelectPagination";
 import { AddressSchema } from "../address-common/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -109,12 +104,13 @@ export default function AddressEdit() {
   const onSubmit = (data: ISubmitData) => {
     const dataEdit: IDataEditAddress = {
       id: idEdit,
-      recipientName: data.recipientName,
-      phoneNumber: data.phoneNumber,
+      name: data.name,
+      phone: data.phone,
       provinceId: data.province.id,
       districtId: data.district.id,
       wardId: data.ward.id,
-      addressDetail: data.detailAddress,
+      address1: data.address,
+      address2: data.address,
       isDefault: data.isDefault,
     };
     console.log(data);
@@ -128,21 +124,21 @@ export default function AddressEdit() {
   useEffect(() => {
     if (dataAddressById) {
       reset({
-        recipientName: dataAddressById.recipientName,
-        phoneNumber: dataAddressById.phoneNumber,
+        name: dataAddressById.name,
+        phone: dataAddressById.phone,
         province: {
           id: dataAddressById.province.id,
-          name: dataAddressById.province.provinceDetails[0].name,
+          name: dataAddressById.province.name,
         },
         district: {
           id: dataAddressById.district.id,
-          name: dataAddressById.district.districtDetails[0].name,
+          name: dataAddressById.district.name,
         },
         ward: {
           id: dataAddressById.ward.id,
-          name: dataAddressById.ward.wardDetails[0].name,
+          name: dataAddressById.ward.name,
         },
-        detailAddress: dataAddressById.addressDetail,
+        address: `${dataAddressById.address1} ${dataAddressById.address2}`,
         isDefault: dataAddressById.isDefault,
       });
     }
@@ -173,14 +169,8 @@ export default function AddressEdit() {
           </Box>
           <Stack spacing={{ xs: 2, md: 3 }}>
             <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-              <RHFTextField
-                name="recipientName"
-                label={t("address.form.recipientName")}
-              />
-              <RHFTextField
-                name="phoneNumber"
-                label={t("address.form.phoneNumber")}
-              />
+              <RHFTextField name="name" label={t("address.form.name")} />
+              <RHFTextField name="phone" label={t("address.form.phone")} />
             </Stack>
             <RHFSelectPagination
               name="province"
@@ -249,8 +239,9 @@ export default function AddressEdit() {
               }}
             />
             <RHFTextField
-              name="detailAddress"
+              name="address"
               label={t("address.form.detailAddress")}
+              placeholder={t("address.form.addressPlaceholder")}
             />
             <RHFCheckbox name="isDefault" label={t("address.form.isDefault")} />
           </Stack>

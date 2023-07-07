@@ -11,12 +11,12 @@ export interface InitialState {
 }
 
 export interface ISubmitData {
-  recipientName: string;
-  phoneNumber: string;
+  name: string;
+  phone: string;
   province: { id: number; name: string };
   district: { id: number; name: string };
   ward: { id: number; name: string };
-  detailAddress: string;
+  address: string;
   isDefault: boolean;
 }
 
@@ -25,12 +25,22 @@ export interface IParamsAddressList {
   limit: number;
 }
 
+export interface IProvinceDistrictWard {
+  id: number;
+  name: string;
+  type: string;
+  parentId: number | null;
+}
 export interface IAddressItem {
   id: number;
-  recipientName: string;
-  phoneNumber: string;
-  address: string;
+  name: string;
+  phone: string;
+  address1: string;
+  address2: string;
   isDefault: boolean;
+  province: IProvinceDistrictWard;
+  district: IProvinceDistrictWard;
+  ward: IProvinceDistrictWard;
 }
 export interface IResAddressList {
   items: IAddressItem[];
@@ -44,12 +54,13 @@ export interface IResAddressList {
 }
 
 export interface IdataCreateAddress {
-  recipientName: string;
-  phoneNumber: string;
+  name: string;
+  phone: string;
   provinceId: number;
   districtId: number;
   wardId: number;
-  detailAddress: string;
+  address1: string;
+  address2: string;
   isDefault: boolean;
 }
 
@@ -85,49 +96,24 @@ export interface IResProvinceList {
 
 export interface IResAddressDetail {
   id: number;
-  recipientName: string;
-  phoneNumber: string;
+  name: string;
+  phone: string;
   isDefault: boolean;
-  province: {
-    id: number;
-    provinceDetails: [
-      {
-        id: number;
-        lang: string;
-        name: string;
-      }
-    ];
-  };
-  district: {
-    id: number;
-    districtDetails: [
-      {
-        id: number;
-        lang: string;
-        name: string;
-      }
-    ];
-  };
-  ward: {
-    id: number;
-    wardDetails: [
-      {
-        id: number;
-        lang: string;
-        name: string;
-      }
-    ];
-  };
-  addressDetail: string;
+  province: IProvinceDistrictWard;
+  district: IProvinceDistrictWard;
+  ward: IProvinceDistrictWard;
+  address1: string;
+  address2: string;
 }
 
 export interface IDataEditAddress {
   id: number;
-  recipientName: string;
-  phoneNumber: string;
+  name: string;
+  phone: string;
   provinceId: number;
   districtId: number;
   wardId: number;
-  addressDetail: string;
+  address1: string;
+  address2: string;
   isDefault: boolean;
 }

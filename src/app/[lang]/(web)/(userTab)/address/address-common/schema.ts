@@ -4,8 +4,8 @@ import * as yup from "yup";
 export const AddressSchema = () => {
   const { t } = useTranslation("common");
   const schemaAddress = yup.object().shape({
-    recipientName: yup.string().required(t("address.form.fieldRequired")),
-    phoneNumber: yup
+    name: yup.string().required(t("address.form.fieldRequired")),
+    phone: yup
       .string()
       .required(t("address.form.fieldRequired"))
       .min(10, t("address.form.phoneNumberNotValid"))
@@ -17,7 +17,7 @@ export const AddressSchema = () => {
     province: yup.object().nullable().required(t("address.form.fieldRequired")),
     district: yup.object().nullable().required(t("address.form.fieldRequired")),
     ward: yup.object().nullable().required(t("address.form.fieldRequired")),
-    detailAddress: yup.string().required(t("address.form.fieldRequired")),
+    address: yup.string().required(t("address.form.fieldRequired")),
   });
   return schemaAddress;
 };
