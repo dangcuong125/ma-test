@@ -35,7 +35,9 @@ export const TabDescriptionReview = (data:any) => {
       <TabPanel value="1">
         <Box sx={{ p: 3 }}>
       
-          <Markdown children={data?.data?.productDetails[0]?.description} />
+          <Markdown>
+{data?.data?.productDetails[0]?.description}
+          </Markdown>
         </Box>
       </TabPanel>
       <TabPanel value="2">
