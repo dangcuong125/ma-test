@@ -12,6 +12,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import React from "react";
 import { TitleHeader } from "./components/TitleHeader";
 import useTranslation from "next-translate/useTranslation";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
