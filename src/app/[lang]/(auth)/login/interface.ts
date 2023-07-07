@@ -10,5 +10,10 @@ export interface ILoginCallback {
 export interface IResLogin {
     accessToken: string;
     refreshToken: string;
-  }
+}
+
+export enum OtpModalType {
+  REGISTER = 'REGISTER',
+  FORGOT_PASSWORD = 'FORGOT_PASSWORD'
+}
   

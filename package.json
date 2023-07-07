@@ -43,6 +43,7 @@
     "react-quill": "2.0.0",
     "react-redux": "8.0.5",
     "react-slick": "0.29.0",
+    "redux-persist": "6.0.0",
     "rehype-raw": "6.1.1",
     "swiper": "9.4.1",
     "tss-react": "4.8.2",
@@ -50,12 +51,13 @@
     "yup": "1.0.0"
   },
   "devDependencies": {
-    "@types/react-slick": "0.23.10",
-    "@types/numeral": "2.0.2",
-    "@types/react-lazy-load-image-component": "1.5.2",
-    "next-translate-plugin": "2.0.5",
     "@types/node": "18.16.0",
+    "@types/numeral": "2.0.2",
     "@types/react": "18.0.38",
-    "@types/react-dom": "18.0.11"
+    "@types/react-dom": "18.0.11",
+    "@types/react-lazy-load-image-component": "1.5.2",
+    "@types/react-slick": "0.23.10",
+    "@types/redux-persist": "^4.3.1",
+    "next-translate-plugin": "2.0.5"
   }
 }
