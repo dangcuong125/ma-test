@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import ListBox from "../../../../../../../common/components/ListBoxComponent";
 import { useState } from "react";
+import useTranslation from "next-translate/useTranslation";
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +37,7 @@ export default function RHFSelectPagination({
   disableClear,
   ...other
 }: Props) {
+  const { t } = useTranslation("common");
   const { control } = useFormContext();
 
   return (
@@ -57,6 +59,8 @@ export default function RHFSelectPagination({
             ListboxComponent={ListBox}
             isOptionEqualToValue={(option, value) => option.id === value.id}
             loading={isLoading ? isLoading : loadingScroll}
+            loadingText={t("loading")}
+            noOptionsText={t("noOptions")}
             renderInput={(params) => {
               return (
                 <Stack direction={"column"} spacing={2} height={"100%"}>

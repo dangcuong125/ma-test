@@ -1,15 +1,42 @@
 "use client";
 
-import { Box, Paper, Stack, useMediaQuery } from "@mui/material";
+import { Box, Button, Paper, Stack, useMediaQuery } from "@mui/material";
 import AddressHeader from "./components/AddressHeader";
 import NoDataAddress from "./components/NoDataAddress";
 import AddressItem from "./components/AddressItem";
 import AddressEdit from "../address-edit";
 import { LoadingButton } from "@mui/lab";
 import AddressCreate from "../address-create";
+import { useGetAddressList } from "./hooks/useGetAddressList";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+import useTranslation from "next-translate/useTranslation";
 
 export default function AddressList() {
   const isXs = useMediaQuery("(max-width:600px)");
+  const { t } = useTranslation("common");
+  const { ref, inView } = useInView();
+  const searchParams = {
+    page: 1,
+    limit: 5,
+  };
+  const {
+    dataAddressList,
+    fetchNextPageAddressList,
+    hasNextPageAddressList,
+    isFetchingNextPageAddressList,
+    isLoadingAddressList,
+  } = useGetAddressList(searchParams);
+
+  const listAddress =
+    dataAddressList?.pages?.map((item) => item?.items).flat() || [];
+  const isNotFound = !listAddress.length;
+
+  useEffect(() => {
+    if (inView && !isXs) {
+      fetchNextPageAddressList();
+    }
+  }, [inView]);
 
   return (
     <Paper
@@ -26,30 +53,29 @@ export default function AddressList() {
       {isXs ? (
         <>
           <Stack spacing={4} px={"16px"}>
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
+            {listAddress.map((item) => (
+              <AddressItem key={item.id} addressItem={item} />
+            ))}
           </Stack>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            {/* <LoadingButton
+            <LoadingButton
               variant="text"
               sx={{
                 textDecoration: "underline",
                 color: "rgba(31, 138, 112, 1)",
-                display: !hasNextPageNotiList ? "none" : "block",
+                display: !hasNextPageAddressList ? "none" : "block",
               }}
               ref={ref}
-              loading={isFetchingNextPageNotiList}
-              onClick={() => fetchNextPageNotiList()}
-              disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
+              loading={isFetchingNextPageAddressList}
+              onClick={() => fetchNextPageAddressList()}
+              disabled={
+                !hasNextPageAddressList || isFetchingNextPageAddressList
+              }
             >
-              {t("notify.loadingMore")}
-            </LoadingButton> */}
+              {t("address.loadingMore")}
+            </LoadingButton>
           </Box>
-          <NoDataAddress isOpen={false} />
+          <NoDataAddress isOpen={isNotFound} />
         </>
       ) : (
         <Box
@@ -59,21 +85,20 @@ export default function AddressList() {
           }}
         >
           <Stack spacing={4} px={"32px"}>
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
-            <AddressItem />
+            {listAddress.map((item) => (
+              <AddressItem key={item.id} addressItem={item} />
+            ))}
           </Stack>
           <Box sx={{ height: 0 }}>
-            {/* <Button
+            <Button
               ref={ref}
-              onClick={() => fetchNextPageNotiList()}
-              disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
-            /> */}
+              onClick={() => fetchNextPageAddressList()}
+              disabled={
+                !hasNextPageAddressList || isFetchingNextPageAddressList
+              }
+            />
           </Box>
-          <NoDataAddress isOpen={false} />
+          <NoDataAddress isOpen={isNotFound} />
         </Box>
       )}
 

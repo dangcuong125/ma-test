@@ -6,13 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useState } from "react";
 import ProductDetailsReview from "./review/ProductDetailsReview";
+import Markdown from "@/common/components/hook-form/Markdown";
+import { convertStringToHtml } from "../../(userTab)/notify/noti-common/utils/convertStringToHtml";
 
 
-type Props = {
-  dataMenu: any;
-};
 
-export const TabDescriptionReview = () => {
+
+export const TabDescriptionReview = (data:any) => {
     const [value, setValues] = useState('1');
 
   return (
@@ -34,7 +34,10 @@ export const TabDescriptionReview = () => {
 
       <TabPanel value="1">
         <Box sx={{ p: 3 }}>
-          {/* <Markdown children={product.description} /> */}
+      
+          <Markdown>
+{data?.data?.productDetails[0]?.description}
+          </Markdown>
         </Box>
       </TabPanel>
       <TabPanel value="2">

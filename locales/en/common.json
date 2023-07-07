@@ -12,6 +12,8 @@
   "phone_number": "Phone number",
   "email": "Email",
   "birthday": "Birthday",
+  "loading": "Loading...",
+  "noOptions": "No options",
   "auth": {
     "username": "Username",
     "password": "Password",
@@ -62,21 +64,27 @@
   },
   "notify": {
     "headingList": "Notifications",
-    "loadingMore": "Loading more"
+    "loadingMore": "Loading more",
+    "empty_text": "You don't have any notification"
   },
   "address": {
     "heading": "Address",
     "add_btn": "Add new Address",
     "empty_text": "You don't have any address",
+    "loadingMore": "Loading more",
+    "default": "Default",
+    "createSuccess": "Create address successfully",
+    "createError": "Create address failed",
     "form": {
       "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
-      "recipientName": "Recipient's name",
-      "phoneNumber": "Phone number",
-      "city": "City",
+      "name": "Recipient's name",
+      "phone": "Phone number",
+      "province": "Province",
       "district": "District",
       "ward": "Ward",
-      "detailAddress": "House/street address",
+      "detailAddress": "House number/street address",
+      "addressPlaceholder": "House number, street name",
       "isDefault": "Set as default address",
       "back": "Back",
       "save": "Save",

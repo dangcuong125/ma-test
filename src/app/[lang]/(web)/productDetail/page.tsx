@@ -3,8 +3,13 @@ import { Breadcrumbs, Link, Stack, Typography } from "@mui/material";
 import { VariantProduct } from "./components/variant-product/VariantProduct";
 import { TabDescriptionReview } from "./components/TabDescriptionReview";
 import { SliderProductRecomnend } from "./components/SliderProductRecomnend";
+import { useGetListCategory } from "../category/hooks/useGetListCategory";
+import { useGetDetailProd } from "./hooks/useGetDetailProd";
 
-export default function ProductDetail() {
+ const ProductDetail= ()=>{
+  const {
+    dataTest
+  } = useGetDetailProd(180);
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Trang chủ
@@ -13,7 +18,7 @@ export default function ProductDetail() {
       underline="hover"
       key="2"
       color="inherit"
-      href="/material-ui/getting-started/installation/"
+      href="/category"
     >
       Rau củ
     </Link>,
@@ -35,9 +40,10 @@ export default function ProductDetail() {
       >
         {breadcrumbs}
       </Breadcrumbs>
-      <VariantProduct />
-      <TabDescriptionReview />
+      <VariantProduct data={dataTest} />
+      <TabDescriptionReview data={dataTest} />
       <SliderProductRecomnend />
     </Stack>
   );
 }
+export default ProductDetail;

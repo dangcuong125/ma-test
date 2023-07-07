@@ -10,7 +10,7 @@ export interface IFormCustomerProfile {
   createdAt: string | null;
   status: string | null;
   rank: string | null;
-  birthday: string;
+  birthDate: string;
   avatar?: {
     url?: string;
     id?: number;
@@ -42,7 +42,8 @@ export interface ImageInfo {
 }
 export interface IEditCustomerForm {
   name: string;
-  address: string;
+  email: string;
+  birthDate: string;
   phoneNumber: string;
   avatarId: number;
 }

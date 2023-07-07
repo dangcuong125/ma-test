@@ -74,8 +74,9 @@ export default function CheckoutAddress() {
 
             {userAddress?.length === 0 && (
               <EmptyCart
-                title="Không có địa chỉ giao hàng nào"
+                title="Bạn chưa có địa chỉ nào!"
                 description=""
+                img="/assets/empty-address.svg"
               />
             )}
           </RadioGroup>

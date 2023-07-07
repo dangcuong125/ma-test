@@ -1,22 +1,28 @@
 import { Paper, Stack, Typography, Divider } from "@mui/material";
 import { ProductOrderItem } from "./ProductOrderItem";
 import { IconOnHolding } from "./icons/IconOnHolding";
+import { TLink } from "@/common/components/TLink";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export const OrderItem = () => {
   return (
     <Paper elevation={5} sx={{ paddingY: 2, paddingX: 3 }}>
       <Stack direction="column" spacing={1} width={"100%"}>
-        <Typography
-          sx={{
-            color: "#191919",
-            fontSize: "18px",
-            fontWeight: 600,
-            marginBottom: 1,
-          }}
+        <TLink
+          href={`${PATH_HOME.order_history.list}/${1}`}
+          style={{ textDecoration: "none" }}
         >
-          Mã đơn hàng # 123DYA2112234
-        </Typography>
-
+          <Typography
+            sx={{
+              color: "#191919",
+              fontSize: "18px",
+              fontWeight: 600,
+              marginBottom: 1,
+            }}
+          >
+            Mã đơn hàng # 123DYA2112234
+          </Typography>
+        </TLink>
         <Divider sx={{ borderStyle: "dashed" }} />
 
         <ProductOrderItem />

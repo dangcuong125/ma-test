@@ -8,25 +8,23 @@ import {
     Typography
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { IProductItems } from "../interfaces";
+import { useGetListCategory } from "../hooks/useGetListCategory";
 
 export default function ListProduct() {
   const route = useRouter();
-
+  const {
+    dataHomeConfig, isRefetchingHomeConfig, isLoading
+  } = useGetListCategory( 34);
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Trang chủ
     </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      href="/material-ui/getting-started/installation/"
+    <Typography
+    key="2" color="primary"
     >
-      Rau củ
-    </Link>,
-    <Typography key="3" color="primary">
-      Hoa quả nhiệt đới
-    </Typography>,
+      Sản phẩm HOT
+    </Typography>
   ];
   return (
     <Grid item md={9}>
@@ -39,13 +37,13 @@ export default function ListProduct() {
           {breadcrumbs}
         </Breadcrumbs>
         <Grid container spacing={{sm:4,xs:1}} height={"100%"} width={"100% !important"}>
-          {Array.from(Array(9)).map((itemProd, index) => (
+          {dataHomeConfig?.map((itemProd :IProductItems, index:number) => (
             <Grid item xs={6} sm={4} key={index}>
               <ProductItemDefault
-                title="Đào hồng"
-                srcImg="/Subtract.png"
-                property="1KG"
-                price={70000}
+                title={itemProd?.productDetails[0]?.name}
+                srcImg={itemProd?.thumbnail?.url}
+                property={itemProd?.productDetails[0]?.shortDescription }
+                price={itemProd?.price?.normalPrice}
                 onClick={() => route.push('/productDetail')}
               />
             </Grid>

@@ -52,16 +52,15 @@ export default function LoginForm() {
       },
     });
   };
-
-  const isTyped = watch("username") && watch("password");
+  const isTyped = watch("phoneNumber") && watch("password");
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <Typography variant={"h4"}>{t("auth.login")}</Typography>
         <RHFTextField
-          name="username"
-          label={t("auth.username")}
-          placeholder={t("auth.username")}
+          name="phoneNumber"
+          label={t("auth.phoneNumber")}
+          placeholder={t("auth.phoneNumber")}
           sx={{
             borderRadius: "8px",
           }}

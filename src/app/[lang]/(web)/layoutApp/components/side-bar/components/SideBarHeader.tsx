@@ -3,12 +3,14 @@ import React from "react";
 import { DEFAULT_AVATAR, ICON_EDIT } from "../constants";
 import Image from "@/common/components/Image";
 import Link from "next/link";
+import { useGetCustomerInfo } from "@/common/hooks/useGetCustomerInfo";
 
 const SideBarHeader = () => {
+  const { data } = useGetCustomerInfo();
   return (
     <Stack direction={"row"} mt={"50px"} spacing={2} alignItems={"center"}>
       <Avatar
-        src={DEFAULT_AVATAR}
+        src={data?.avatar?.url ?? DEFAULT_AVATAR}
         sx={{
           bgcolor: "#1F8A70",
           width: "60px",
@@ -18,7 +20,7 @@ const SideBarHeader = () => {
       />
       <Stack spacing={"5px"}>
         <Typography color={"#1A1A1A"} fontSize={"16px"} fontWeight={600}>
-          Trang Bùi
+          {data?.name ?? ""}
         </Typography>
         <Link href={"/profile"}>
           <Button sx={{ pl: 0 }}>
