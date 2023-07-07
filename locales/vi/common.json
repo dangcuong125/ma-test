@@ -107,5 +107,18 @@
   },
   "myorder": {
     "titleHeading": "Đơn hàng của tôi"
-  }
+  },
+
+  "home": {
+    "showAll": "Xem tất cả",
+    "join": "Tham gia ngay"
+  },
+  "account": "Tài khoản",
+  "myAccount": "Tài khoản của tôi",
+  "help": "Hỗ trợ",
+  "contact": "Liên hệ",
+  "shoppingCart": "Giỏ hàng",
+  "store": "Cửa hàng"
+  
+  
 }

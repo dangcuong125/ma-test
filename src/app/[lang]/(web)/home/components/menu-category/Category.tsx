@@ -33,7 +33,7 @@ export const MenuCategory = (props: Props) => {
         minHeight: "300px",
         width: "100%",
 
-        // paddingX: { lg: "100px", md: "75px", sm: "50px", xs: "25px" },
+        paddingX: { lg: "100px", md: "75px", sm: "50px", xs: "25px" },
 
         justifyContent: "space-between",
         // border: "1px solid black",
