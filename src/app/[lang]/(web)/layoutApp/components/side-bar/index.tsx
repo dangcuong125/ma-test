@@ -1,4 +1,3 @@
-"use client";
 import { Stack } from "@mui/material";
 import React from "react";
 import { SIDE_BAR_ITEM } from "./constants";
