@@ -6,9 +6,10 @@ import { BASE_URL_API, accessTokenExpiredStatusCode, unAuthorizedStatusCode } fr
 import { MERCHANT_ID } from "../config";
 import { API_REFRESH_TOKEN } from "../constants/api.constants";
 import { resetToken, setAccessToken, setIsExpiredToken } from "@/app/[lang]/(auth)/login/reducers/auth.slice";
+import { getCookie } from "./getValueFromCookie";
 
 // ----------------------------------------------------------------------
-
+const currentLang = getCookie('NEXT_LOCALE');
 const axiosClient = axios.create({
   baseURL: BASE_URL_API,
   headers: {
@@ -16,7 +17,7 @@ const axiosClient = axios.create({
     Accept: "Application/json",
     common: {
       merchant_id: MERCHANT_ID,
-      lang: 'vi',
+      lang: currentLang,
     },
   },
 });
@@ -28,7 +29,7 @@ const axiosClient2 = axios.create({
     Accept: 'Application/json',
     common: {
       merchant_id: MERCHANT_ID,
-      lang: 'vi',
+      lang: currentLang,
     },
   },
 });

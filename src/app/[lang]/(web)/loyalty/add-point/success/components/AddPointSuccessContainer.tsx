@@ -14,6 +14,7 @@ const AddPointSuccessContainer = () => {
       spacing={2}
       sx={{
         p: "5%",
+        pb: '5vh',
         backgroundImage: 'url(/assets/add-point-success-background.png)',
         backgroundSize: 'cover'
       }}
