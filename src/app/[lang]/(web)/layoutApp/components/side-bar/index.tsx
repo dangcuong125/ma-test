@@ -1,4 +1,3 @@
-"use client";
 import { Stack } from "@mui/material";
 import React from "react";
 import { SIDE_BAR_ITEM } from "./constants";
@@ -21,11 +20,11 @@ const SideBarUser = () => {
       <Breadcrumbs
         links={[
           {
-            name: `${t("sidebar.home")}`,
+            name: t("sidebar.home"),
             href: "/",
           },
           {
-            name: `${t(SIDE_BAR_ITEM[indexCurrentPage].name)}`,
+            name: t(SIDE_BAR_ITEM[indexCurrentPage].name),
             href: SIDE_BAR_ITEM[indexCurrentPage].path,
           },
         ]}

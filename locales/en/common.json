@@ -107,5 +107,17 @@
   },
   "myorder": {
     "titleHeading": "My Order"
-  }
+  },
+
+  "home": {
+    "showAll": "Show all",
+    "join": "Join now"
+  },
+  "account": "Account",
+  "myAccount": "My Account",
+  "help": "Help",
+  "contact": "Contact",
+  "shoppingCart": "Shopping cart",
+  "store": "Store"
+  
 }

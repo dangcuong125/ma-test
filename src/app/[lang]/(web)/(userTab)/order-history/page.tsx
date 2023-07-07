@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   AppBar,
   Box,
@@ -22,8 +23,7 @@ import { EmptyHistoryOrder } from "./components/EmptyHistoryOrder";
 import { OrderHistorySkeleton } from "./components/OrderHistorySkeleton";
 
 const MyOrderHistoryPage = () => {
-  const { t } = useTranslation("common");
-  const { themeLayout } = useSettings();
+  // const { t } = useTranslation("common");
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -60,13 +60,17 @@ const MyOrderHistoryPage = () => {
             ))}
           </Tabs>
         </Box>
-        <Stack spacing={3}>
-          {Array(5)
-            .fill(5)
-            .map((item, index) => (
-              <OrderItem key={index} />
-            ))}
-        </Stack>
+        {value === "ON_HOLD" || value === "" ? (
+          <Stack spacing={3}>
+            {Array(5)
+              .fill(5)
+              .map((item, index) => (
+                <OrderItem key={index} />
+              ))}
+          </Stack>
+        ) : (
+          <EmptyHistoryOrder />
+        )}
         {/* <OrderHistorySkeleton /> */}
         {/* <EmptyHistoryOrder /> */}
       </Paper>

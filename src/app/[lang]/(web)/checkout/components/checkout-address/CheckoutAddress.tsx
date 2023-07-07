@@ -1,4 +1,6 @@
 "use client";
+
+import React from "react";
 import { Box, Button, FormControl, Grid, RadioGroup } from "@mui/material";
 import { _addressBooks } from "../../constant";
 import AddressItem from "./AddressItem";
@@ -15,7 +17,6 @@ import CheckoutSummary from "../CheckoutSummary";
 import { useGetListUserAddress } from "../../hooks/useGetListUserAddress";
 import AddNewAddressModal from "./AddNewAddressModal";
 import EmptyCart from "../EmptyCart";
-import { orderShippingMock } from "../../_mock";
 import { useEffect } from "react";
 
 export default function CheckoutAddress() {
@@ -28,7 +29,7 @@ export default function CheckoutAddress() {
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
   } = useGetListUserAddress();
-  const userAddress = dataAddress?.data?.items || orderShippingMock;
+  const userAddress = dataAddress?.data?.items || [];
 
   const dispatch = useDispatch();
 

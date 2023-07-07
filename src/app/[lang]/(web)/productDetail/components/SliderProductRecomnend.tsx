@@ -23,7 +23,7 @@ import Image from "@/common/components/Image";
 import { ProductItemDefault } from "@/common/components/product/ProductItem";
 
 export const SliderProductRecomnend = () => {
-  const swiperRef = useRef< any>(null);
+  const swiperRef = useRef<any>(null);
   const [buttonSlider, setButtonSlider] = useState({
     currentIndex: 0,
     totalSlides: 0,
@@ -55,23 +55,32 @@ export const SliderProductRecomnend = () => {
       >
         <Stack display={"flex"} direction={"row"} spacing={3}>
           <Box
-            width={{xs:"11px",sm:"22px"}}
+            width={{ xs: "11px", sm: "22px" }}
             borderRadius={0.5}
             sx={{ background: "#1F8A70" }}
-          ></Box>
-          <Typography fontWeight={700} lineHeight={"50px"} fontSize={{xs:15,sm:26}}>
+          />
+          <Typography
+            fontWeight={700}
+            lineHeight={"50px"}
+            fontSize={{ xs: 15, sm: 26 }}
+          >
             Sản phẩm tương tự
           </Typography>
         </Stack>
-        <Stack display={"flex"} alignItems={"center"} direction={"row"} spacing={1}>
+        <Stack
+          display={"flex"}
+          alignItems={"center"}
+          direction={"row"}
+          spacing={1}
+        >
           <Button
             onClick={goPrev}
             sx={{
-              height: {xs:38,sm:48},
+              height: { xs: 38, sm: 48 },
               background:
                 buttonSlider?.currentIndex === 0 ? "#1F8A70" : "#E1E2E6",
               borderRadius: "100px",
-              minWidth: {xs:40,sm:48},
+              minWidth: { xs: 40, sm: 48 },
               color: buttonSlider?.currentIndex === 0 ? "white" : "black",
             }}
           >
@@ -81,13 +90,13 @@ export const SliderProductRecomnend = () => {
           <Button
             onClick={goNext}
             sx={{
-              height: {xs:38,sm:48},
+              height: { xs: 38, sm: 48 },
               background:
                 buttonSlider?.currentIndex === buttonSlider?.totalSlides - 4
                   ? "#1F8A70"
                   : "#E1E2E6",
               borderRadius: "100px",
-              minWidth: {xs:40,sm:48},
+              minWidth: { xs: 40, sm: 48 },
               color:
                 buttonSlider?.currentIndex === buttonSlider?.totalSlides - 4
                   ? "white"
@@ -100,7 +109,6 @@ export const SliderProductRecomnend = () => {
       </Stack>
       <Swiper
         ref={swiperRef}
-        style={{ height: "600px" }}
         spaceBetween={10}
         // pagination={{
         //   clickable: true,
@@ -110,7 +118,7 @@ export const SliderProductRecomnend = () => {
         onSlideChange={handleSlideChange}
         breakpoints={{
           0: {
-            slidesPerView: 2
+            slidesPerView: 2,
           },
           400: {
             slidesPerView: 1,
@@ -131,15 +139,13 @@ export const SliderProductRecomnend = () => {
         }}
       >
         {Array.from(Array(20)).map((itemProd, index) => (
-          <SwiperSlide style={{ height: "400px" }} key={index}>
-            <Stack>
-              <ProductItemDefault
-                title="Đào hồng"
-                srcImg="/Subtract.png"
-                property="1KG"
-                price={70000}
-              />
-            </Stack>
+          <SwiperSlide key={index}>
+            <ProductItemDefault
+              title="Đào hồng"
+              srcImg="/Subtract.png"
+              property="1KG"
+              price={70000}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
