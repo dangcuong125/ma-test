@@ -1,5 +1,5 @@
 "use client";
-import { Box, Paper, Skeleton, Stack } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import React from "react";
 import { TitleHeader } from "../../order-history/components/TitleHeader";
 import { useGetListHistoryPoint } from "../hooks/useGetListHistoryPoint";
@@ -22,40 +22,15 @@ export default function ListHistoryPoint() {
       >
         <TitleHeader title="Danh sách tích xu/đổi xu" />
 
-        {/* {isLoading ? ( */}
-        {/* <LoadingHistoryPoint /> */}
-        <Stack direction={"row"} marginTop={"40px"}>
-          <Skeleton variant="rectangular" width={100} height={100} />
-          <Box
-            paddingLeft={"10px"}
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-          >
-            <Skeleton
-              variant="text"
-              sx={{ fontSize: "18px", width: "100%" }}
-              animation="wave"
-            />
-            <Skeleton
-              variant="text"
-              sx={{ fontSize: "18px", width: "100%" }}
-              animation="wave"
-            />
-            <Skeleton
-              variant="text"
-              sx={{ fontSize: "18px", width: "100%" }}
-              animation="wave"
-            />
-          </Box>
-        </Stack>
-        {/* ) : (
+        {isLoading ? (
+          <LoadingHistoryPoint />
+        ) : (
           <>
             {listHistory?.map((item) => (
               <CardHistoryPoint item={item} key={item.id} />
             ))}
           </>
-        )} */}
+        )}
       </Paper>
     </>
   );
