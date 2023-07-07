@@ -17,13 +17,13 @@ export const SIDE_BAR_ITEM = [
     type: SideBarItemType.ORDER,
     src: "/assets/icons/sidebar/shoppingbag.svg",
     name: "sidebar.eVoucher",
-    path: "/e-voucher",
+    path: "/order-history",
   },
   {
     type: SideBarItemType.HISTORY,
     src: "/assets/icons/sidebar/trucktime.svg",
     name: "sidebar.orderHistory",
-    path: "/order-history",
+    path: "/history-point",
   },
   {
     type: SideBarItemType.NOTIFICATION,
