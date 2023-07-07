@@ -1,5 +1,6 @@
 "use client";
 import {
+  Box,
   Breadcrumbs,
   Container,
   Grid,
@@ -15,13 +16,15 @@ import Iconify from "@/common/components/Iconify";
 import { useEffect } from "react";
 import { dispatch, useSelector } from "@/common/redux/store";
 import { setCart } from "./order.slice";
-import { STEPS } from "./constant";
+import { STEPS, productFavorite } from "./constant";
 import { useGetCheckoutCart } from "./hooks/useGetcheckoutCart";
 import QontoStepIcon from "./components/QontoStepIcon";
 import CheckoutCart from "./components/checkoutCart/CheckoutCart";
 import CheckoutAddress from "./components/checkout-address/CheckoutAddress";
 import CheckoutPayment from "./components/checkout-payment/CheckoutPayment";
 import { cartItemMock } from "./_mock";
+import { MenuCategory } from "../home/components/menu-category/Category";
+import { SliderProductRecomnend } from "../productDetail/components/SliderProductRecomnend";
 
 export default function CheckOut() {
   const { activeStep } = useSelector((state) => state.checkout);
@@ -87,6 +90,9 @@ export default function CheckOut() {
             {activeStep === 2 && <CheckoutPayment />}
           </>
         )}
+        <Box sx={{ width: "100%", marginTop: 8 }}>
+          <SliderProductRecomnend />
+        </Box>
       </Container>
     </>
   );

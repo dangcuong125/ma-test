@@ -27,3 +27,33 @@ export const paramsDefault = {
   page: 1,
   limit: 20,
 };
+
+export const productFavorite = {
+  title: "Có thể bạn cũng thích",
+  data: [
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+    {
+      image: "/Subtract.png",
+      name: "Đào hồng",
+    },
+  ],
+};

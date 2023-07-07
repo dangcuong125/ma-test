@@ -2,21 +2,29 @@ import axios from "axios";
 // config
 
 import { store } from "../redux/store";
-import { BASE_URL_API, accessTokenExpiredStatusCode, unAuthorizedStatusCode } from "../constants/config.constant";
-import { MERCHANT_ID } from "../config";
+import {
+  BASE_URL_API,
+  accessTokenExpiredStatusCode,
+  unAuthorizedStatusCode,
+} from "../constants/config.constant";
+import { HOST_API, MERCHANT_ID } from "../config";
 import { API_REFRESH_TOKEN } from "../constants/api.constants";
-import { resetToken, setAccessToken, setIsExpiredToken } from "@/app/[lang]/(auth)/login/reducers/auth.slice";
+import {
+  resetToken,
+  setAccessToken,
+  setIsExpiredToken,
+} from "@/app/[lang]/(auth)/login/reducers/auth.slice";
 
 // ----------------------------------------------------------------------
 
 const axiosClient = axios.create({
-  baseURL: BASE_URL_API,
+  baseURL: HOST_API,
   headers: {
     "Content-Type": "application/json",
     Accept: "Application/json",
     common: {
       merchant_id: MERCHANT_ID,
-      lang: 'vi',
+      lang: "vi",
     },
   },
 });
@@ -24,11 +32,11 @@ const axiosClient = axios.create({
 const axiosClient2 = axios.create({
   baseURL: BASE_URL_API,
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'Application/json',
+    "Content-Type": "application/json",
+    Accept: "Application/json",
     common: {
       merchant_id: MERCHANT_ID,
-      lang: 'vi',
+      lang: "vi",
     },
   },
 });
@@ -37,7 +45,8 @@ axiosClient.interceptors.response.use(
   (response) => response.data,
   async (error: any) => {
     const { response, config: originalRequest } = error;
-    let isAccessTokenExpired = response?.data?.subCode === accessTokenExpiredStatusCode;
+    let isAccessTokenExpired =
+      response?.data?.subCode === accessTokenExpiredStatusCode;
     let is401 = response?.status === unAuthorizedStatusCode;
 
     const { refreshToken, accessToken } = store?.getState().authLogin;
