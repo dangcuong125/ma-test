@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { MOCK_DATA_PRODUCT } from "../../constants";
 import { useRouter } from 'next/navigation';
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 type Props = {
   dataMenu: any;
@@ -113,7 +114,7 @@ export const PopularProduct = (props: Props) => {
             minHeight: "56px",
             textTransform: "none",
           }}
-          onClick={()=>{route.push("/category")}}
+          onClick={()=>{route.push(PATH_HOME.product.root)}}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
         >
           Xem tất cả
