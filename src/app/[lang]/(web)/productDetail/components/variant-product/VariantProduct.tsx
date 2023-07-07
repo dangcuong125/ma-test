@@ -39,7 +39,7 @@ const ArrowStyle = styled(IconButton)(({ theme }) => ({
   color: theme.palette.common.white,
   "&:hover": { opacity: 1 },
 }));
-export const VariantProduct = () => {
+export const VariantProduct = (data:any) => {
   const theme = useTheme();
 
   const isRTL = theme.direction === "rtl";
@@ -105,7 +105,6 @@ export const VariantProduct = () => {
     slider2.current?.slickNext();
   };
   const onSubmit = async (data: any) => {};
-
   return (
     <Grid
       container
@@ -220,9 +219,9 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               Khuyến mãi
             </Typography>
             <Stack>
-              <Typography variant="h3">Súp lơ xanh</Typography>
+              <Typography variant="h3">{data?.data?.productDetails[0]?.name}</Typography>
               <Typography variant="h4" sx={{ color: "#98A1B3" }}>
-                Súp lơ xanh trồng tại Đà Lạt
+              {data?.data?.productDetails[0]?.shortDescription} 
               </Typography>
             </Stack>
             <Stack>
