@@ -5,3 +5,5 @@ export const API_ORDER_SHIPPING = "/customer/customer-shipping";
 export const API_PROVINCE_CUSTOMER = "/customer/province";
 export const API_CUSTOMER_ORDER = "/customer/order";
 export const API_CUSTOMER_PROFILE = "/customer/profile";
+export const API_NOTIFY = "/customer/user-noti";
+export const API_ADDRESS = "/customer/address";

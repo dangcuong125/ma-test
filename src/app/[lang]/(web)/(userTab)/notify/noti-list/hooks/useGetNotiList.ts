@@ -1,6 +1,7 @@
-import { useInfiniteQuery } from 'react-query';
-import { INotiList, IParamsNotiList } from '../../noti-common/interface';
-import { getNotiList } from '../../noti-common/service';
+import { useInfiniteQuery } from "react-query";
+import { INotiList, IParamsNotiList } from "../../noti-common/interface";
+import { getNotiList } from "../../noti-common/service";
+import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 
 export const useGetNotiList = (params: IParamsNotiList) => {
   const {
@@ -8,10 +9,11 @@ export const useGetNotiList = (params: IParamsNotiList) => {
     isLoading: isLoadingNotiList,
     fetchNextPage: fetchNextPageNotiList,
     isFetchingNextPage: isFetchingNextPageNotiList,
-    hasNextPage: hasNextPageNotiList
+    hasNextPage: hasNextPageNotiList,
   } = useInfiniteQuery(
-    ["NOTI_LIST", params],
-    ({ pageParam = params.page }) => getNotiList({ ...params, page: pageParam }),
+    [QUERY_KEYS.LIST_NOTI, params],
+    ({ pageParam = params.page }) =>
+      getNotiList({ ...params, page: pageParam }),
     {
       getNextPageParam: (lastPage: INotiList) => {
         const { meta } = lastPage;
@@ -19,6 +21,7 @@ export const useGetNotiList = (params: IParamsNotiList) => {
         return currentPage < totalPages ? currentPage + 1 : undefined;
       },
       cacheTime: 60000,
+      staleTime: 10000,
     }
   );
 
@@ -27,6 +30,6 @@ export const useGetNotiList = (params: IParamsNotiList) => {
     isLoadingNotiList,
     fetchNextPageNotiList,
     isFetchingNextPageNotiList,
-    hasNextPageNotiList
+    hasNextPageNotiList,
   };
 };

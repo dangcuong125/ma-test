@@ -12,6 +12,8 @@
   "phone_number": "Số điện thoại",
   "email": "Email",
   "birthday": "Ngày sinh",
+  "loading": "Đang tải...",
+  "noOptions": "Không có lựa chọn nào",
   "auth": {
     "username": "Tên đăng nhập",
     "password": "Mật khẩu",
@@ -62,21 +64,27 @@
   },
   "notify": {
     "headingList": "Thông báo của tôi",
-    "loadingMore": "Xem thêm"
+    "loadingMore": "Xem thêm",
+    "empty_text": "Bạn chưa có thông báo nào"
   },
   "address": {
     "heading": "Địa chỉ của tôi",
     "add_btn": "Thêm địa chỉ mới",
     "empty_text": "Bạn chưa có địa chỉ nào",
+    "loadingMore": "Xem thêm",
+    "default": "Mặc định",
+    "createSuccess": "Thêm địa chỉ mới thành công",
+    "createError": "Thêm địa chỉ mới thất bại",
     "form": {
       "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",
-      "recipientName": "Tên người nhận",
-      "phoneNumber": "Số điện thoại",
-      "city": "Thành phố/Tỉnh",
+      "name": "Tên người nhận",
+      "phone": "Số điện thoại",
+      "province": "Thành phố/Tỉnh",
       "district": "Quận/Huyện",
       "ward": "Phường/Xã",
       "detailAddress": "Số nhà/tên đường",
+      "addressPlaceholder": "Số nhà, tên đường",
       "isDefault": "Đặt làm địa chỉ mặc định",
       "back": "Trở lại",
       "save": "Lưu",
