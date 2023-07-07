@@ -9,13 +9,12 @@ import { SliderMenuItem } from "./SlideMenuItem";
 import { MOCK_DATA_PRODUCT } from "../../constants";
 import { useCallback, useRef } from "react";
 
-type Props ={
-  dataMenu: any,
-}
+type Props = {
+  dataMenu: any;
+};
 
 export const MenuCategory = (props: Props) => {
-
-  const { dataMenu} = props; 
+  const { dataMenu } = props;
   const sliderRef = useRef<any>(null);
 
   const handleClickPrev = useCallback(() => {
@@ -34,7 +33,7 @@ export const MenuCategory = (props: Props) => {
         minHeight: "300px",
         width: "100%",
 
-        paddingX: { lg: "100px", md: "75px", sm: "50px", xs: "25px" },
+        // paddingX: { lg: "100px", md: "75px", sm: "50px", xs: "25px" },
 
         justifyContent: "space-between",
         // border: "1px solid black",
@@ -146,10 +145,7 @@ export const MenuCategory = (props: Props) => {
           ))} */}
           {dataMenu?.data?.map((item: any, index: number) => (
             <SwiperSlide key={index}>
-              <SliderMenuItem
-                srcImg={item?.image}
-                title={item?.name}
-              />
+              <SliderMenuItem srcImg={item?.image} title={item?.name} />
             </SwiperSlide>
           ))}
         </Swiper>

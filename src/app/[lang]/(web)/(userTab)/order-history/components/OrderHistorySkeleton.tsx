@@ -17,7 +17,7 @@ export const OrderHistorySkeleton = () => {
         {Array(3)
           .fill(3)
           .map((_, index) => (
-            <Paper elevation={5} sx={{ paddingY: 2, paddingX: 3 }}>
+            <Paper elevation={5} sx={{ paddingY: 2, paddingX: 3 }} key={index}>
               <Stack direction="column" spacing={1} width={"100%"}>
                 <Skeleton width={"30%"} animation="wave" />
 

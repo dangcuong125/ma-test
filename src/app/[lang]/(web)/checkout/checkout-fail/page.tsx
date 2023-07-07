@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, Container, Stack, Typography } from "@mui/material";
+import Image from "next/image";
 
 export default function CheckoutFail() {
   return (
@@ -18,11 +19,11 @@ export default function CheckoutFail() {
           Đặt hàng không thành công!
         </Typography>
 
-        <img
+        <Image
           src="/assets/checkout-fail.svg"
           alt="checkout-fail"
-          width={"50%"}
-          height="auto"
+          width={250}
+          height={250}
           style={{ margin: "0 auto" }}
         />
 

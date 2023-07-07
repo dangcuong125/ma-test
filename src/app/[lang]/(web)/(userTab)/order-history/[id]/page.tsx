@@ -15,9 +15,16 @@ import { TitleHeader } from "../components/TitleHeader";
 import { AddressInfo } from "./components/AddressInfo";
 import { ProductInfo } from "./components/ProductInfo";
 import { PaymentInfo } from "./components/PaymentInfo";
-import Iconify from "../../../../../../common/components/Iconify";
+import Iconify from "@/common/components/Iconify";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
-export const OrderHistoryDetail = () => {
+export default function OrderHistoryDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const router = useRouter();
   return (
     <>
       <Paper
@@ -78,6 +85,9 @@ export const OrderHistoryDetail = () => {
               fontSize: "16px",
               color: "rgba(31, 138, 112, 1)",
             }}
+            onClick={() => {
+              router.push(PATH_HOME.order_history.list);
+            }}
           >
             Quay lại
           </Button>
@@ -96,6 +106,4 @@ export const OrderHistoryDetail = () => {
       </Paper>
     </>
   );
-};
-
-export default OrderHistoryDetail;
+}

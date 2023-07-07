@@ -55,16 +55,16 @@ const MyOrderHistoryPage = () => {
             scrollButtons="auto"
             textColor="inherit"
           >
-            {LIST_TAB_CONTENT.map((item) => (
-              <Tab label={item.label} value={item.value} />
+            {LIST_TAB_CONTENT.map((item, index) => (
+              <Tab label={item.label} value={item.value} key={index} />
             ))}
           </Tabs>
         </Box>
         <Stack spacing={3}>
           {Array(5)
             .fill(5)
-            .map((item) => (
-              <OrderItem />
+            .map((item, index) => (
+              <OrderItem key={index} />
             ))}
         </Stack>
         {/* <OrderHistorySkeleton /> */}

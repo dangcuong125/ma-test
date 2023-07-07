@@ -43,7 +43,7 @@ export const HeaderBar = () => {
           backgroundSize: "cover",
           objectFit: "cover",
           padding: "10px",
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         onClick={() => route.push(PATH_HOME.root)}
       />
@@ -56,7 +56,7 @@ export const HeaderBar = () => {
           // borderRadius: "10px",
         }}
       >
-        <SearchBox/>
+        <SearchBox />
       </Box>
       <Stack direction={"row"} spacing={"20px"}>
         <Button
@@ -72,7 +72,7 @@ export const HeaderBar = () => {
               }}
             />
           }
-          onClick={() => route.push('/login')}
+          onClick={() => route.push("/login")}
         >
           <Typography display={{ xs: "none", md: "flex" }}>
             Đăng ký/Đăng nhập
@@ -92,6 +92,7 @@ export const HeaderBar = () => {
               }}
             />
           }
+          onClick={() => route.push(PATH_HOME.checkout)}
         >
           <Typography display={{ xs: "none", md: "flex" }}>Giỏ hàng</Typography>
         </Button>

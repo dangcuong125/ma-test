@@ -1,6 +1,7 @@
 "use client";
 
 import { Button, Container, Stack, Typography } from "@mui/material";
+import Image from "next/image";
 
 export default function CheckoutSuccess() {
   return (
@@ -18,11 +19,11 @@ export default function CheckoutSuccess() {
           Wow, đơn hàng của bạn đã được đặt thành công !
         </Typography>
 
-        <img
+        <Image
           src="/assets/checkout-success.svg"
           alt="checkout-success"
-          width={"50%"}
-          height="auto"
+          width={250}
+          height={250}
           style={{ margin: "0 auto" }}
         />
 
