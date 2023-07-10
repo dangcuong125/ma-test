@@ -9,25 +9,33 @@ import { ORDER_STATUS, OrderStatus } from "../common/constant";
 
 type Props = {
   data: IOrder;
+  isLastChild: boolean;
 };
 
-export const OrderItem = ({ data }: Props) => {
+export const OrderItem = ({ data, isLastChild }: Props) => {
   let showStatus = ORDER_STATUS.find((item) => item.status === data.status);
+  console.log(showStatus);
   // if (data?.orderRefund?.status === OrderRefundStatus.REFUNDED) {
   //   showStatus = ORDER_STATUS.find(
   //     (item) => item.status === OrderRefundStatus.REFUNDED
   //   );
   // }
 
-  const IconStatus = () => {
-    return <>{showStatus?.Icon}</>;
-  };
+  console.log(data);
 
   return (
-    <Paper elevation={5} sx={{ paddingY: 2, paddingX: 3 }}>
+    <Paper
+      elevation={5}
+      sx={{
+        paddingY: 2,
+        paddingX: 3,
+        width: "97%",
+        marginBottom: isLastChild ? "3vh!important" : 0,
+      }}
+    >
       <Stack direction="column" spacing={1} width={"100%"}>
         <TLink
-          href={`${PATH_HOME.order_history.list}/${1}`}
+          href={`${PATH_HOME.order_history.list}/${data?.id}`}
           style={{ textDecoration: "none" }}
         >
           <Typography
@@ -62,7 +70,7 @@ export const OrderItem = ({ data }: Props) => {
           paddingY={1}
         >
           <Stack direction="row" alignItems={"center"} spacing={0.5}>
-            <IconStatus />
+            {showStatus?.renderIcon()}
             <Typography
               sx={{
                 fontSize: "14px",

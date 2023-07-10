@@ -116,9 +116,7 @@ export type IResCheckoutCart = {
 };
 
 export type IOrderShippingResponse = {
-  data: {
-    items: IOrderShippingItem[];
-  };
+  items: IOrderShippingItem[];
 };
 
 export type IOrderShippingItem = {

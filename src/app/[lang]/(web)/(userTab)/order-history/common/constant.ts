@@ -37,31 +37,31 @@ export const LIST_TAB_CONTENT = [
 export const ORDER_STATUS = [
   {
     title: "Đã tiếp nhận",
-    Icon: IconOnHolding,
+    renderIcon: IconOnHolding,
     status: OrderStatus.ON_HOLD,
     color: "#54D62C",
   },
   {
     title: "Giao hàng thất bại",
-    Icon: IconOnHolding,
+    renderIcon: IconOnHolding,
     status: OrderStatus.CANCELLED,
     color: "#FF4842",
   },
   {
     title: "Giao hàng thành công",
-    Icon: IconOnCompleted,
+    renderIcon: IconOnCompleted,
     status: OrderStatus.COMPLETED,
     color: "#54D62C",
   },
   {
     title: "Đang vận chuyển",
-    Icon: IconProcessing,
+    renderIcon: IconProcessing,
     status: OrderStatus.PROCESSING,
     color: "#54D62C",
   },
   {
     title: "Đã hoàn xu",
-    Icon: IconOnHolding,
+    renderIcon: IconOnHolding,
     status: OrderRefundStatus.REFUNDED,
     color: "#1DA891",
   },

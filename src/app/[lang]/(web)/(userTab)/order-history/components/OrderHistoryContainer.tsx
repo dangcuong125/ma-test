@@ -42,13 +42,12 @@ export default function OrderHistoryContainer() {
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useGetOrder({ limit: 6, page: 1, statuses: currentTab });
+  } = useGetOrder({ limit: 10, page: 1, statuses: currentTab });
 
+  // @ts-ignore
   const listOrderHistory = data?.pages?.map((item) => item?.items).flat() || [];
 
   const isNotFound = !listOrderHistory.length || isError;
-
-  console.log(!listOrderHistory.length);
 
   const handleScroll = () => {
     if (ref?.current) {
@@ -91,34 +90,26 @@ export default function OrderHistoryContainer() {
 
         {!isLoading &&
           (!isNotFound ? (
-            <Box
-              onScroll={handleScroll}
-              position={"relative"}
-              sx={{
-                height: "60vh",
-                overflow: "scroll",
-              }}
-              ref={ref}
-            >
-              <Stack spacing={3} alignItems={"center"}>
-                {listOrderHistory.map((item, index) => (
-                  <OrderItem key={index} data={item} />
-                ))}
-              </Stack>
-            </Box>
+            <Stack spacing={3} alignItems={"center"}>
+              {listOrderHistory.map((item, index) => (
+                <OrderItem
+                  key={index}
+                  data={item}
+                  isLastChild={index === listOrderHistory.length - 1}
+                />
+              ))}
+              {isFetchingNextPage && (
+                <CircularProgress
+                  size={"24px"}
+                  sx={{
+                    bottom: "5vh",
+                  }}
+                />
+              )}
+            </Stack>
           ) : (
             <EmptyHistoryOrder />
           ))}
-
-        {isFetchingNextPage && (
-          <CircularProgress
-            size={"24px"}
-            sx={{
-              position: "fixed",
-              bottom: "5vh",
-            }}
-          />
-        )}
       </Paper>
     </>
   );

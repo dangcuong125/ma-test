@@ -1,6 +1,15 @@
-import { Card, CardHeader, Typography } from "@mui/material";
-import TableProductList from "../../../../checkout/components/checkout-payment/TableProductList";
+import {
+  Card,
+  CardHeader,
+  Table,
+  TableBody,
+  TableContainer,
+  Typography,
+} from "@mui/material";
 import { IOrderLineItemReqDto } from "../../common/interface";
+import TableHeadCustom from "@/common/components/table/TableHeadCustom";
+import { TABLE_PAYMENT_PRODUCT_HEAD } from "../../../../checkout/constant";
+import TableProductListRow from "./TableProductListRow";
 
 type Props = {
   data: IOrderLineItemReqDto[] | undefined;
@@ -16,8 +25,17 @@ export const ProductInfo = ({ data }: Props) => {
           </>
         }
       />
+      <TableContainer>
+        <Table>
+          <TableHeadCustom headLabel={TABLE_PAYMENT_PRODUCT_HEAD} />
 
-      <TableProductList products={data || []} />
+          <TableBody>
+            {data?.map((row, index) => (
+              <TableProductListRow key={index} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Card>
   );
 };

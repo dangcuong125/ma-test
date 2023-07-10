@@ -6,22 +6,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { ICartItem } from "../../interface";
 import Image from "next/image";
 import { fFormatCoin } from "@/common/utils/formatNumber";
+import { IOrderLineItemReqDto } from "../../common/interface";
 
 type Props = {
-  row: ICartItem;
+  row: IOrderLineItemReqDto;
 };
 
 export default function TableProductListRow({ row }: Props) {
-  const { product, quantity, productToVariantIds } = row;
-
-  const pointVariant = row?.product?.productVariants[0]?.productVariantPoint;
-  const point = pointVariant?.salePoint
-    ? pointVariant?.salePoint
-    : pointVariant?.point;
-
   return (
     <TableRow>
       <TableCell sx={{ display: "flex", alignItems: "center" }}>
@@ -63,9 +56,9 @@ export default function TableProductListRow({ row }: Props) {
           </Stack>
         </Stack>
       </TableCell>
-      <TableCell align="center">{fFormatCoin(point)} xu</TableCell>
-      <TableCell align="center">{quantity}</TableCell>
-      <TableCell align="center">{fFormatCoin(point * quantity)} xu</TableCell>
+      <TableCell align="center">{fFormatCoin(row?.point)} xu</TableCell>
+      <TableCell align="center">{row?.quantity}</TableCell>
+      <TableCell align="right">{fFormatCoin(row?.total)} xu</TableCell>
     </TableRow>
   );
 }

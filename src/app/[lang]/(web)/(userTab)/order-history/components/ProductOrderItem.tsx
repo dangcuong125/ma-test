@@ -25,17 +25,13 @@ type Props = {
 export const ProductOrderItem = ({ product, quantity, total }: Props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  const router = useRouter();
 
   return (
     <Stack
       direction={matches ? "row" : "column"}
       width="100%"
-      sx={{ paddingY: "15px!important" }}
+      sx={{ paddingY: "15px!important", cursor: "pointer" }}
       spacing={matches ? 0 : 3}
-      onClick={() => {
-        router.push(`${PATH_HOME.order_history.list}/${product.product.id}`);
-      }}
     >
       <Stack
         direction="row"

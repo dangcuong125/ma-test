@@ -29,7 +29,8 @@ export default function CheckoutAddress() {
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
   } = useGetListUserAddress();
-  const userAddress = dataAddress?.data?.items || [];
+  console.log(dataAddress);
+  const userAddress = dataAddress?.items || [];
 
   const dispatch = useDispatch();
 
@@ -101,11 +102,7 @@ export default function CheckoutAddress() {
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          <CheckoutSummary
-            subtotal={subtotal}
-            total={total}
-            discount={discount}
-          />
+          <CheckoutSummary subtotal={total} total={total} discount={discount} />
           <Button
             fullWidth
             size="large"

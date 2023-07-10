@@ -38,7 +38,7 @@ export const AddressInfo = ({ address }: Props) => {
           <Typography
             sx={{ fontWeight: 400, fontSize: "15px", color: "#212B36" }}
           >
-            {`${address?.address1}, ${address?.district}, ${address?.ward}, ${address?.province}`}
+            {`${address?.address1}, ${address?.ward}, ${address?.district}, ${address?.province}`}
           </Typography>
         </Stack>
       </CardContent>
