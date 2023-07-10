@@ -44,7 +44,7 @@ export default function AddressList() {
         bgcolor: "#FFF",
         py: "36px",
         width: "100%",
-        borderRadius: "24px",
+        borderRadius: { xs: 0, md: "24px" },
         overflowY: "auto",
         maxHeight: { xs: "auto", md: "934px" },
       }}
