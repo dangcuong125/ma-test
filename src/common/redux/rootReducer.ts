@@ -6,6 +6,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import addressSlice from "@/app/[lang]/(web)/(userTab)/address/address-common/slice";
 import customerSlice from "@/app/[lang]/(web)/(userTab)/profile/account-common/reducers/customer-profile.slice";
 import forgotPasswordSlice from "@/app/[lang]/(auth)/forgot-password/slice";
+import headerSlice from "@/app/[lang]/(web)/layoutApp/components/header/header.slice";
 import orderHistorySlice from "@/app/[lang]/(web)/(userTab)/order-history/common/slice";
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   checkout: checkoutSlice,
   customerProfile: customerSlice,
   forgotPassword: forgotPasswordSlice,
+  headerSlice: headerSlice,
   orderHistory: orderHistorySlice,
 });
 
