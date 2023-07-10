@@ -9,12 +9,14 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchBox from "./components/SearchBox";
 import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
+import { useSelector } from "@/common/redux/store";
+import UserWithLogin from "./components/UserWithLogin";
 
 export const HeaderBar = () => {
+  const { accessToken } = useSelector((state) => state.authLogin);
   const route = useRouter();
   return (
     <Stack
@@ -59,25 +61,29 @@ export const HeaderBar = () => {
         <SearchBox />
       </Box>
       <Stack direction={"row"} spacing={"20px"}>
-        <Button
-          sx={{
-            color: "#666666",
-          }}
-          startIcon={
-            <Box
-              sx={{
-                backgroundImage: "url(/assets/icons/core/user.svg)",
-                width: "24px",
-                height: "24px",
-              }}
-            />
-          }
-          onClick={() => route.push(PATH_AUTH.login)}
-        >
-          <Typography display={{ xs: "none", md: "flex" }}>
-            Đăng ký/Đăng nhập
-          </Typography>
-        </Button>
+        {accessToken === "" ? (
+          <Button
+            sx={{
+              color: "#666666",
+            }}
+            startIcon={
+              <Box
+                sx={{
+                  backgroundImage: "url(/assets/icons/core/user.svg)",
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            }
+            onClick={() => route.push(PATH_AUTH.login)}
+          >
+            <Typography display={{ xs: "none", md: "flex" }}>
+              Đăng ký/Đăng nhập
+            </Typography>
+          </Button>
+        ) : (
+          <UserWithLogin />
+        )}
         <Divider orientation="vertical" flexItem />
         <Button
           sx={{

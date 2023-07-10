@@ -32,13 +32,11 @@
     "tableWeight": "Bảng khối lượng",
     "addToCart": "Thêm vào giỏ hàng",
     "productRecommend": "Sản phẩm tương tự",
-    "review":"Viết đánh giá",
-    "questionReview":"Bạn thấy sản phẩm thế nào ?",
-    "cancel":"Hủy",
-    "sendReview":"Gửi đánh giá"
-
+    "review": "Viết đánh giá",
+    "questionReview": "Bạn thấy sản phẩm thế nào ?",
+    "cancel": "Hủy",
+    "sendReview": "Gửi đánh giá"
   },
-
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
@@ -90,7 +88,6 @@
   "myorder": {
     "titleHeading": "Đơn hàng của tôi"
   },
-
   "home": {
     "showAll": "Xem tất cả",
     "join": "Tham gia ngay"
@@ -100,7 +97,9 @@
   "help": "Hỗ trợ",
   "contact": "Liên hệ",
   "shoppingCart": "Giỏ hàng",
-  "store": "Cửa hàng"
-  
-  
+  "store": "Cửa hàng",
+  "edit_profile": "sửa hồ sơ",
+  "information_account": "Thông tin tài khoản",
+  "my_order": "Đơn hàng của tôi",
+  "logout": "Đăng xuất"
 }
