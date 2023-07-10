@@ -41,10 +41,10 @@ export default function CheckoutPayment() {
         },
         {
           onSuccess: () => {
-            console.log("success");
+            router.push(`${PATH_HOME.checkout}/checkout-success`);
           },
           onError: () => {
-            console.log("error");
+            router.push(`${PATH_HOME.checkout}/checkout-fail`);
           },
         }
       );
@@ -66,7 +66,7 @@ export default function CheckoutPayment() {
             router.push(`${PATH_HOME.checkout}/checkout-success`);
           },
           onError: () => {
-            router.push(`${PATH_HOME.checkout}/checkout-success`);
+            router.push(`${PATH_HOME.checkout}/checkout-fail`);
           },
         }
       );
