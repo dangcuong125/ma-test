@@ -41,7 +41,7 @@ const RegisterForm = () => {
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
   const { isShowPassword } = useSelector((state) => state.login);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   const { mutate, isLoading } = useCheckPhoneExisted();
 
@@ -62,11 +62,11 @@ const RegisterForm = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.register")}</Typography>
+        <Typography variant={"h4"}>{t("register")}</Typography>
         <RHFTextField
           name="phoneNumber"
-          label={t("auth.phoneNumber")}
-          placeholder={t("auth.phoneNumber")}
+          label={t("phoneNumber")}
+          placeholder={t("phoneNumber")}
           sx={{
             borderRadius: "8px",
           }}
@@ -92,7 +92,7 @@ const RegisterForm = () => {
             )
           }
         >
-          {t('continue')}
+          {t('common:continue')}
         </Button>
       </Stack>
     </FormProvider>

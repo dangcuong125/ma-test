@@ -49,7 +49,7 @@ const InformationForm = () => {
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
   const { isShowPassword } = useSelector((state) => state.forgotPassword);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   //   const { mutate, isLoading } = useLogin();
 
@@ -64,11 +64,11 @@ const InformationForm = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.create_account")}</Typography>
+        <Typography variant={"h4"}>{t("reset_password")}</Typography>
         <RHFTextField
           name="password"
-          label={t("auth.password")}
-          placeholder={t("auth.password")}
+          label={t("password")}
+          placeholder={t("password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -92,8 +92,8 @@ const InformationForm = () => {
         />
         <RHFTextField
           name="confirmPassword"
-          label={t("auth.confirm_password")}
-          placeholder={t("auth.confirm_password")}
+          label={t("confirm_password")}
+          placeholder={t("confirm_password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -133,7 +133,7 @@ const InformationForm = () => {
           //     )
           //   }
         >
-          {t("continue")}
+          {t("common:continue")}
         </Button>
       </Stack>
     </FormProvider>

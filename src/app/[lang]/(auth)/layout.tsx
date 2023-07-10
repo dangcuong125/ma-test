@@ -32,7 +32,7 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
           pt: "8%",
           pb: '4%',
           backgroundImage: 'url(/assets/auth_background.svg)',
-          backgroundSize: 'contain',
+          backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }}
       >

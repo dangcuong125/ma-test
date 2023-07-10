@@ -23,6 +23,7 @@ import Image from "@/common/components/Image";
 import { ProductItemDefault } from "@/common/components/product/ProductItem";
 import { useRouter } from "next/navigation";
 import { PATH_HOME } from "@/common/constants/path.constants";
+import useTranslation from "next-translate/useTranslation";
 
 type Props = {
   dataProductRelated?: any;
@@ -34,6 +35,7 @@ export const SliderProductRecomnend = (props: Props) => {
   const swiperRef = useRef<any>(null);
   const route = useRouter();
   
+  const {t} =useTranslation("common")
   const [buttonSlider, setButtonSlider] = useState({
     currentIndex: 0,
     totalSlides: 0,
@@ -74,7 +76,8 @@ export const SliderProductRecomnend = (props: Props) => {
             lineHeight={"50px"}
             fontSize={{ xs: 15, sm: 26 }}
           >
-            Sản phẩm tương tự
+                       {t('product.productRecommend')}
+
           </Typography>
         </Stack>
         <Stack
@@ -94,7 +97,7 @@ export const SliderProductRecomnend = (props: Props) => {
               color: buttonSlider?.currentIndex === 0 ? "white" : "black",
             }}
           >
-            {" "}
+            
             <Iconify height={24} width={24} icon={"ic:round-arrow-back"} />
           </Button>
           <Button

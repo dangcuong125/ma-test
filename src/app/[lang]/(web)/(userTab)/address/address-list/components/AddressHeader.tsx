@@ -22,7 +22,7 @@ export default function AddressHeader() {
       <Typography
         sx={{
           color: "#1A1A1A",
-          fontSize: "24px",
+          fontSize: { xs: "20px", md: "24px" },
           fontWeight: "700",
           fontFamily: "Plus Jakarta Sans",
           mb: "10px",

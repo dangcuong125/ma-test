@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { MOCK_COMBO_DATA_PRODUCT, MOCK_DATA_PRODUCT } from "../../constants";
 import { ComboItemDefault } from "@/common/components/product/ComboItem";
+import { useRouter } from "next/navigation";
 
 type Props = {
   dataMenu: any;
@@ -20,6 +21,8 @@ type Props = {
 
 export const ComboPopular = (props: Props) => {
   const {dataMenu} = props;
+  const router = useRouter();
+
   return (
     <Stack
       sx={{
@@ -108,6 +111,8 @@ export const ComboPopular = (props: Props) => {
             textTransform: "none",
           }}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
+          onClick={()=>{router.push(`category/${dataMenu?.data?.categoryId}`)}}
+
         >
           Xem tất cả
         </Button>

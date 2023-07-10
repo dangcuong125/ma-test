@@ -28,7 +28,7 @@ export default function NoDataAddress({ isOpen = false }: Props) {
         <Typography
           sx={{
             fontFamily: "Plus Jakarta Sans",
-            fontSize: "21.83px",
+            fontSize: { xs: "18px", md: "21.83px" },
             fontWeight: "700",
             color: "#666E80",
           }}

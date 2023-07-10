@@ -16,7 +16,7 @@ import { LoginSchema } from "../schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormLogin } from "../interface";
 import { useRouter } from "next/navigation";
-import { PATH_AUTH } from "@/common/constants/path.constants";
+import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 import React from "react";
 import { useLogin } from "../hooks/useLogin";
 // import useShowSnackbar from '@/common/hooks/useMessage';
@@ -41,12 +41,15 @@ export default function LoginForm() {
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
   const { isShowPassword } = useSelector((state) => state.login);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   const { mutate, isLoading } = useLogin();
 
   const onSubmit = (data: IFormLogin) => {
     mutate(data, {
+      onSuccess: () => {
+        router.push(PATH_HOME.root);
+      },
       onError: (error: any) => {
         // showErrorSnackbar(error?.message);
       },
@@ -56,19 +59,19 @@ export default function LoginForm() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.login")}</Typography>
+        <Typography variant={"h4"}>{t("login")}</Typography>
         <RHFTextField
           name="phoneNumber"
-          label={t("auth.phoneNumber")}
-          placeholder={t("auth.phoneNumber")}
+          label={t("phoneNumber")}
+          placeholder={t("phoneNumber")}
           sx={{
             borderRadius: "8px",
           }}
         />
         <RHFTextField
           name="password"
-          label={t("auth.password")}
-          placeholder={t("auth.password")}
+          label={t("password")}
+          placeholder={t("password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -98,7 +101,7 @@ export default function LoginForm() {
               textAlign: "end",
             }}
           >
-            {t("auth.forgot_password")}
+            {t("forgot_password")}
           </TLink>
         </Stack>
         <Button
@@ -115,11 +118,14 @@ export default function LoginForm() {
             isLoading || isSubmitting ? (
               <CircularProgress color="inherit" size={"24px"} />
             ) : (
-              <></>
+              <Iconify
+                icon={"heroicons:arrow-right-20-solid"}
+                sx={{ width: "24px" }}
+              />
             )
           }
         >
-          {t("auth.login")}
+          {t("login")}
         </Button>
       </Stack>
     </FormProvider>

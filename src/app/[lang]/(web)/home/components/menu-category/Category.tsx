@@ -7,13 +7,20 @@ import "swiper/css/pagination";
 import Iconify from "@/common/components/Iconify";
 import { SliderMenuItem } from "./SlideMenuItem";
 import { useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 type Props = {
   dataMenu: any;
 };
 
 export const MenuCategory = (props: Props) => {
+  const router =useRouter();
+
   const { dataMenu } = props;
+
+
+
   const sliderRef = useRef<any>(null);
 
   const handleClickPrev = useCallback(() => {
@@ -144,7 +151,7 @@ export const MenuCategory = (props: Props) => {
           ))} */}
           {dataMenu?.data?.map((item: any, index: number) => (
             <SwiperSlide key={index}>
-              <SliderMenuItem srcImg={item?.image} title={item?.name} />
+              <SliderMenuItem srcImg={item?.image} title={item?.name} onClick={() => router.push(PATH_HOME.product.root)}/>
             </SwiperSlide>
           ))}
         </Swiper>

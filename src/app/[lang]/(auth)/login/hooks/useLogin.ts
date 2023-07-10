@@ -6,7 +6,6 @@ import {
   setIsLoggedIn,
   setRefreshToken,
 } from "../reducers/auth.slice";
-import { ILoginCallback } from "../interface";
 
 export const useLogin = () => {
   const { mutate, isLoading } = useMutation(loginCustomer, {

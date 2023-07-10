@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import ListProduct from "./components/ListProduct";
 import Filter from "./components/Filter";
+import ListAllCategory from "./components/ListAllCategory";
 
 const Category = () => {
   return (
@@ -19,7 +20,7 @@ const Category = () => {
         height={"100%"}
       >
         <Filter />
-        <ListProduct />
+        <ListAllCategory/>
       </Grid>
     </>
   );

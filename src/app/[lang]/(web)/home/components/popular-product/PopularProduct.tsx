@@ -12,8 +12,8 @@ import "src/common/styles/css/homeStyle.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import { MOCK_DATA_PRODUCT } from "../../constants";
-import { useRouter } from 'next/navigation';
 import { PATH_HOME } from "@/common/constants/path.constants";
+import { useRouter } from "next/navigation";
 
 type Props = {
   dataMenu: any;
@@ -21,8 +21,8 @@ type Props = {
 
 export const PopularProduct = (props: Props) => {
   const { dataMenu } = props;
-  const route = useRouter();
-
+  const router = useRouter();
+console.log(dataMenu)
   return (
     <Stack
       sx={{
@@ -99,7 +99,7 @@ export const PopularProduct = (props: Props) => {
                 srcImg={item?.thumbnail?.url}
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
-                onClick={() => route.push(PATH_HOME.product.detail(item?.id))}
+                onClick={() => router.push(PATH_HOME.product.detail(item?.id))}
               />
             </Grid>
           ))}
@@ -114,7 +114,7 @@ export const PopularProduct = (props: Props) => {
             minHeight: "56px",
             textTransform: "none",
           }}
-          onClick={()=>{route.push(PATH_HOME.product.root)}}
+          onClick={()=>{router.push(`category/${dataMenu?.data?.categoryId}`)}}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
         >
           Xem tất cả
