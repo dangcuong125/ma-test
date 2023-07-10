@@ -92,7 +92,7 @@ export default function SearchBox() {
         return (
           <li {...props} style={{ width: "100%" }}>
             <Stack
-              onClick={() => route.push(PATH_HOME.product.detail)}
+              onClick={() => route.push(PATH_HOME.product.detail(options?.id))}
               width={"100%"}
               direction="row"
               spacing={"16px"}
