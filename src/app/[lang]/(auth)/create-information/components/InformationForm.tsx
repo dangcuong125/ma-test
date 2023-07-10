@@ -20,13 +20,14 @@ import { RegisterSchema } from "../schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormCreateInfo } from "../../register/interface";
 import { useRouter } from "next/navigation";
-import { PATH_AUTH } from "@/common/constants/path.constants";
+import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 import React from "react";
-// import { useLogin } from '../hooks/useLogin';
 // import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import { useRegisterInformation } from "../hooks/useRegisterInformation";
+import { IRegisterInformationRequest } from "../interface";
 
 const InformationForm = () => {
   const registerSchema = RegisterSchema();
@@ -50,17 +51,29 @@ const InformationForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.register);
+  const { isShowPassword, otpValue, phoneNumber } = useSelector(
+    (state) => state.register
+  );
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
-  //   const { mutate, isLoading } = useLogin();
+  const { mutate, isLoading } = useRegisterInformation();
 
   const onSubmit = (data: IFormCreateInfo) => {
-    // mutate(data, {
-    //   onError: (error: any) => {
-    //     // showErrorSnackbar(error?.message);
-    //   },
-    // });
+    const dataSubmit: IRegisterInformationRequest = {
+      name: data?.fullName,
+      otp: otpValue,
+      password: data?.password,
+      referralCode: data?.referralCode,
+      phoneNumber,
+    };
+    mutate(dataSubmit, {
+      onSuccess: () => {
+        router.push(PATH_HOME.root);
+      },
+      onError: (error: any) => {
+        // showErrorSnackbar(error?.message);
+      },
+    });
   };
 
   return (
@@ -155,13 +168,13 @@ const InformationForm = () => {
             boxShadow: 0.5,
             backgroundColor: "#1F8A70",
           }}
-          //   endIcon={
-          //     isLoading || isSubmitting ? (
-          //       <CircularProgress color="inherit" size={'24px'} />
-          //     ) : (
-          //       <></>
-          //     )
-          //   }
+          endIcon={
+            isLoading || isSubmitting ? (
+              <CircularProgress color="inherit" size={"24px"} />
+            ) : (
+              <></>
+            )
+          }
         >
           {t("common:continue")}
         </Button>
@@ -171,4 +184,3 @@ const InformationForm = () => {
 };
 
 export default InformationForm;
-

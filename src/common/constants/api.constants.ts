@@ -8,3 +8,6 @@ export const API_CUSTOMER_ORDER = "/customer/order";
 export const API_CUSTOMER_PROFILE = "/customer/profile";
 export const API_NOTIFY = "/customer/user-noti";
 export const API_ADDRESS = "/customer/customer-shipping";
+export const API_CHECK_PHONE_EXISTED = "/customer/auth/is-phone-existed";
+export const API_CUSTOMER_OTP_SEND = '/customer/otp/send';
+export const API_CUSTOMER_REGISTER = '/customer/auth/register';
