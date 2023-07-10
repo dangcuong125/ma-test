@@ -1,6 +1,8 @@
 import { Stack, Box, Typography, IconButton, Chip } from "@mui/material";
 import Image from "../Image";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 type Props = {
   title?: string;
@@ -13,6 +15,8 @@ type Props = {
 
 export const ComboItemDefault = (props: Props) => {
   const { title, property, srcImg, price, flashPrice, onClick} = props;
+  const router = useRouter();
+
   return (
     <Stack
     onClick={onClick}
@@ -132,6 +136,7 @@ export const ComboItemDefault = (props: Props) => {
                 background: "black",
               },
             }}
+            onClick={() => router.push(PATH_HOME.checkout) }
           >
             <Image
               sx={{ width: "32px", height: "32px" }}

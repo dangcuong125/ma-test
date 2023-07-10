@@ -20,4 +20,6 @@ export const PATH_HOME = {
     detail: "/order-history/:id",
   },
   checkout: "/checkout",
+  profile: "/profile",
+  notify: "/notify",
 };
