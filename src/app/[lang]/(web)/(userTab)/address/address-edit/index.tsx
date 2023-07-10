@@ -113,7 +113,6 @@ export default function AddressEdit() {
       address2: data.address,
       isDefault: data.isDefault,
     };
-    console.log(data);
     mutateEditAddress(dataEdit);
   };
 

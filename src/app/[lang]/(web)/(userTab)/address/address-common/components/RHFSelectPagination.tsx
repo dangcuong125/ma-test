@@ -1,4 +1,4 @@
-// form
+"use client";
 import { useFormContext, Controller } from "react-hook-form";
 // @mui
 import {
@@ -38,22 +38,25 @@ export default function RHFSelectPagination({
   ...other
 }: Props) {
   const { t } = useTranslation("common");
-  const { control } = useFormContext();
+  const { control, watch } = useFormContext();
+  const [value, setValue] = useState<any>(null);
 
   return (
     <Controller
       name={name}
       control={control}
       render={({ fieldState: { error }, field: { ref, ...field } }) => {
+        if (field.value !== undefined) setValue(field.value);
         return (
           <Autocomplete
             {...field}
             options={options}
             getOptionLabel={(option) => option[labelProp] || ""}
             disableClearable={disableClear}
-            value={field.value}
+            value={value}
             onChange={(event, values) => {
               field.onChange(values);
+              setValue(values);
             }}
             fullWidth
             ListboxComponent={ListBox}
