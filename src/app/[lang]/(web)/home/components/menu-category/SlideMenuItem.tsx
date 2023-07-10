@@ -20,7 +20,9 @@ export const SliderMenuItem = (props: Props) => {
         justifyContent: "center",
         justifyItems: "center",
         align: "center",
+        cursor: "pointer",
       }}
+      onClick ={onClick}
     >
       <Stack
         onClick={onClick}

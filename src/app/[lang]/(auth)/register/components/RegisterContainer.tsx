@@ -8,7 +8,7 @@ import Link from "next/link";
 import { PATH_AUTH } from "@/common/constants/path.constants";
 import RegisterForm from "./RegisterForm";
 const RegisterContainer = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -20,21 +20,21 @@ const RegisterContainer = () => {
     >
       <RegisterForm />
       <Typography variant="body2" align="left" sx={{ mt: 3 }}>
-        {t("auth.register_term")}{" "}
+        {t("auth:register_term")}{" "}
         <Link href={PATH_AUTH.register} style={{ color: "#1F8A70" }}>
-          {t("auth.terms_of_service")}
+          {t("auth:terms_of_service")}
         </Link>{" "}
         {t("and")}{" "}
         <Link href={PATH_AUTH.register} style={{ color: "#1F8A70" }}>
-          {t("auth.privacy_policy")}{" "}
+          {t("auth:privacy_policy")}{" "}
         </Link>
-        {t("auth.end_register_term")}
+        {t("auth:end_register_term")}
       </Typography>
 
       <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-        {t("auth.already_have_account")}{" "}
+        {t("auth:already_have_account")}{" "}
         <Link href={PATH_AUTH.login} style={{ color: "#1F8A70" }}>
-          {t("auth.login")}
+          {t("auth:login")}
         </Link>
       </Typography>
       <Divider
@@ -42,7 +42,7 @@ const RegisterContainer = () => {
           my: 3,
         }}
       >
-        {t("auth.or")}
+        {t("auth:or")}
       </Divider>
 
       <SocialLogin />

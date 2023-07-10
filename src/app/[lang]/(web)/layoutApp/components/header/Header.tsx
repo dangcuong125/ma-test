@@ -12,7 +12,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchBox from "./components/SearchBox";
-import { PATH_HOME } from "@/common/constants/path.constants";
+import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 
 export const HeaderBar = () => {
   const route = useRouter();
@@ -72,7 +72,7 @@ export const HeaderBar = () => {
               }}
             />
           }
-          onClick={() => route.push("/login")}
+          onClick={() => route.push(PATH_AUTH.login)}
         >
           <Typography display={{ xs: "none", md: "flex" }}>
             Đăng ký/Đăng nhập

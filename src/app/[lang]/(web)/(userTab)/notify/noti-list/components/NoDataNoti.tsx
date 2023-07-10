@@ -30,7 +30,7 @@ export default function NoDataNoti({ isOpen }: Props) {
           sx={{
             fontFamily: " Plus Jakarta Sans",
             fontWeight: 700,
-            fontSize: "21.83px",
+            fontSize: { xs: "18px", md: "21.83px" },
             color: "rgba(102, 110, 128, 1)",
           }}
         >

@@ -7,7 +7,7 @@ import useTranslation from "next-translate/useTranslation";
 import { PATH_AUTH } from "@/common/constants/path.constants";
 import { TLink } from "@/common/components/TLink";
 const LoginContainer = () => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("auth");
   return (
     <Card
       sx={{
@@ -19,9 +19,9 @@ const LoginContainer = () => {
     >
       <LoginForm />
       <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-        {t("auth.dont_have_account")}{" "}
+        {t("dont_have_account")}{" "}
         <TLink href={PATH_AUTH.register} style={{ color: "#1F8A70" }}>
-          {t("auth.get_started")}
+          {t("get_started")}
         </TLink>
       </Typography>
     </Card>
