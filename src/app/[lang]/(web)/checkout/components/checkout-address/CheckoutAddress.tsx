@@ -29,7 +29,7 @@ export default function CheckoutAddress() {
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
   } = useGetListUserAddress();
-  console.log(dataAddress);
+
   const userAddress = dataAddress?.items || [];
 
   const dispatch = useDispatch();
@@ -64,12 +64,7 @@ export default function CheckoutAddress() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
-          <RadioGroup
-            name="addressCurrentId"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              console.log(e.target.value);
-            }}
-          >
+          <RadioGroup name="addressCurrentId">
             {userAddress.map((address, index) => (
               <AddressItem key={index} address={address} />
             ))}

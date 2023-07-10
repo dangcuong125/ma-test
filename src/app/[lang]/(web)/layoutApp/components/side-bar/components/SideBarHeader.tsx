@@ -4,9 +4,14 @@ import { DEFAULT_AVATAR, ICON_EDIT } from "../constants";
 import Image from "@/common/components/Image";
 import Link from "next/link";
 import { useGetCustomerInfo } from "@/common/hooks/useGetCustomerInfo";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
+import useTranslation from "next-translate/useTranslation";
 
 const SideBarHeader = () => {
   const { data } = useGetCustomerInfo();
+  const { t } = useTranslation("common");
+  const router = useRouter();
   return (
     <Stack direction={"row"} mt={"50px"} spacing={2} alignItems={"center"}>
       <Avatar
@@ -23,7 +28,7 @@ const SideBarHeader = () => {
           {data?.name ?? ""}
         </Typography>
         <Link href={"/profile"}>
-          <Button sx={{ pl: 0 }}>
+          <Button sx={{ pl: 0 }} onClick={() => router.push(PATH_HOME.profile)}>
             <Stack direction={"row"} spacing={"8px"}>
               <Image
                 src={ICON_EDIT}
@@ -31,7 +36,7 @@ const SideBarHeader = () => {
                 sx={{ width: "18px", height: "18px" }}
               />
               <Typography color={"#666E80"} fontSize={"14px"} fontWeight={400}>
-                Sửa hồ sơ
+                {t("edit_profile")}
               </Typography>
             </Stack>
           </Button>

@@ -32,10 +32,10 @@
     "tableWeight": "Weight",
     "addToCart": "Add to cart",
     "productRecommend": "Similar Product",
-    "review":"Review",
-    "questionReview":"How do you feel about product ?",
-    "cancel":"Cancel",
-    "sendReview":"Send"
+    "review": "Review",
+    "questionReview": "How do you feel about product ?",
+    "cancel": "Cancel",
+    "sendReview": "Send"
   },
   "form": {
     "field_required": "This field is required",
@@ -88,7 +88,6 @@
   "myorder": {
     "titleHeading": "My Order"
   },
-
   "home": {
     "showAll": "Show all",
     "join": "Join now"
@@ -98,6 +97,9 @@
   "help": "Help",
   "contact": "Contact",
   "shoppingCart": "Shopping cart",
-  "store": "Store"
-  
+  "store": "Store",
+  "edit_profile": "Edit profile",
+  "information_account": "Information account",
+  "my_order": "My order",
+  "logout": "Logout"
 }
