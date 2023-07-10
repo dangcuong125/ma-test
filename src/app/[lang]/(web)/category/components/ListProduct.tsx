@@ -27,17 +27,7 @@ function ListProduct(props: Props) {
   const {
     dataListProd, isLoadingListProd
   } = useGetProductList(categoryId);
-  console.log(dataListProd)
-  const breadcrumbs = [
-    <Link underline="hover" key="1" color="inherit" href="/">
-      { }
-    </Link>,
-    <Typography
-      key="2" color="primary"
-    >
-      { }
-    </Typography>
-  ];
+  
   return (
     <Grid item md={9}>
       <Stack spacing={2}>
