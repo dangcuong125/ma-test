@@ -6,7 +6,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Iconify from "@/common/components/Iconify";
 import { SliderMenuItem } from "./SlideMenuItem";
-import { MOCK_DATA_PRODUCT } from "../../constants";
 import { useCallback, useRef } from "react";
 
 type Props = {

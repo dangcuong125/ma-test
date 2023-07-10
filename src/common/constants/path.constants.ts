@@ -13,7 +13,7 @@ export const PATH_HOME = {
   add_point_success: "/loyalty/add-point/success",
   product: {
     root: "/category",
-    detail: "/productDetail",
+    detail: (id: number) => `/productDetail/${id}`,
   },
   order_history: {
     list: "/order-history",

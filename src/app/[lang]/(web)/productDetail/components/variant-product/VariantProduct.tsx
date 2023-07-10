@@ -26,6 +26,7 @@ import { FormProvider, RHFSelect } from "@/common/components/hook-form";
 import Iconify from "@/common/components/Iconify";
 import { STATUS } from "../../../category/constants";
 import { ItemDelivery } from "./components/ItemDelivery";
+import { useParams } from "next/navigation";
 
 const RootStyle = styled("div")(({ theme }) => ({
   "& .slick-slide": {
@@ -39,7 +40,17 @@ const ArrowStyle = styled(IconButton)(({ theme }) => ({
   color: theme.palette.common.white,
   "&:hover": { opacity: 1 },
 }));
-export const VariantProduct = (data:any) => {
+
+
+type Props = {
+  dataItem: any;
+}
+
+export const VariantProduct = (props: Props) => {
+  const {dataItem} = props;
+  const params = useParams();
+
+
   const theme = useTheme();
 
   const isRTL = theme.direction === "rtl";
@@ -125,15 +136,15 @@ export const VariantProduct = (data:any) => {
               }}
             >
               <Slider {...settings1} asNavFor={nav2} ref={slider1}>
-                {images.map((img) => (
+                {/* {dataItem?.thumbnail?.map((img:any) => ( */}
                   <Image
-                    key={img}
+                    // key={dataItem?.thumbnail?.id}
                     alt="large image"
-                    src={img}
+                    src={dataItem?.thumbnail?.url}
                     ratio="1/1"
                     sx={{ cursor: "zoom-in" }}
                   />
-                ))}
+                {/* ))} */}
               </Slider>
             </Box>
           </Box>
@@ -219,18 +230,18 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               Khuyến mãi
             </Typography>
             <Stack>
-              <Typography variant="h3">{data?.data?.productDetails[0]?.name}</Typography>
+              <Typography variant="h3">{dataItem?.productDetails[0]?.name}</Typography>
               <Typography variant="h4" sx={{ color: "#98A1B3" }}>
-              {data?.data?.productDetails[0]?.shortDescription} 
+              {dataItem?.productDetails[0]?.shortDescription} 
               </Typography>
             </Stack>
             <Stack>
-              <Typography variant="h3">50.000VND</Typography>
+              <Typography variant="h3">{dataItem?.price?.salePrice}</Typography>
               <Typography
                 variant="h4"
                 sx={{ color: "#98A1B3", textDecoration: "line-through" }}
               >
-                50.000VND
+                {dataItem?.price?.normalPrice}
               </Typography>
             </Stack>
             <Divider />

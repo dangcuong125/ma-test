@@ -1,30 +1,28 @@
 import { ProductItemDefault } from "@/common/components/product/ProductItem";
 import {
-    Breadcrumbs,
-    Grid,
-    Link,
-    Pagination,
-    Stack,
-    Typography
+  Breadcrumbs,
+  Grid,
+  Link,
+  Pagination,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { IProductItems } from "../interfaces";
 import { useGetListCategory } from "../hooks/useGetListCategory";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export default function ListProduct() {
   const route = useRouter();
-  const {
-    dataHomeConfig, isRefetchingHomeConfig, isLoading
-  } = useGetListCategory( 34);
+  const { dataHomeConfig, isRefetchingHomeConfig, isLoading } =
+    useGetListCategory(34);
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
       Trang chủ
     </Link>,
-    <Typography
-    key="2" color="primary"
-    >
-      Sản phẩm HOT
-    </Typography>
+    <Typography key="2" color="primary">
+      Sản phẩm
+    </Typography>,
   ];
   return (
     <Grid item md={9}>
@@ -36,15 +34,20 @@ export default function ListProduct() {
         >
           {breadcrumbs}
         </Breadcrumbs>
-        <Grid container spacing={{sm:4,xs:1}} height={"100%"} width={"100% !important"}>
-          {dataHomeConfig?.map((itemProd :IProductItems, index:number) => (
+        <Grid
+          container
+          spacing={{ sm: 4, xs: 1 }}
+          height={"100%"}
+          width={"100%"}
+        >
+          {dataHomeConfig?.map((itemProd: IProductItems, index: number) => (
             <Grid item xs={6} sm={4} key={index}>
               <ProductItemDefault
                 title={itemProd?.productDetails[0]?.name}
                 srcImg={itemProd?.thumbnail?.url}
-                property={itemProd?.productDetails[0]?.shortDescription }
+                property={itemProd?.productDetails[0]?.shortDescription}
                 price={itemProd?.price?.normalPrice}
-                onClick={() => route.push('/productDetail')}
+                onClick={() => route.push(PATH_HOME.product.detail(itemProd?.id))}
               />
             </Grid>
           ))}
@@ -65,4 +68,4 @@ export default function ListProduct() {
       </Stack>
     </Grid>
   );
-};
+}

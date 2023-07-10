@@ -99,7 +99,7 @@ export const PopularProduct = (props: Props) => {
                 srcImg={item?.thumbnail?.url}
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
-                onClick={() => route.push('/productDetail')}
+                onClick={() => route.push(PATH_HOME.product.detail(item?.id))}
               />
             </Grid>
           ))}
