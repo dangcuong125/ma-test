@@ -16,8 +16,11 @@ import { TLink } from "@/common/components/TLink";
 import TableProductList from "./TableProductList";
 import { onBackStep, onGotoStep } from "../../order.slice";
 import { useAddOrder } from "../../hooks/useAddOrder";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "../../../../../../common/constants/path.constants";
 
 export default function CheckoutPayment() {
+  const router = useRouter();
   const { cart, subtotal, discount, shipping, total, selectedAddress } =
     useSelector((state) => state.checkout);
 
@@ -38,10 +41,10 @@ export default function CheckoutPayment() {
         },
         {
           onSuccess: () => {
-            console.log("success");
+            router.push(`${PATH_HOME.checkout}/checkout-success`);
           },
           onError: () => {
-            console.log("error");
+            router.push(`${PATH_HOME.checkout}/checkout-fail`);
           },
         }
       );
@@ -60,10 +63,10 @@ export default function CheckoutPayment() {
         },
         {
           onSuccess: () => {
-            console.log("success");
+            router.push(`${PATH_HOME.checkout}/checkout-success`);
           },
           onError: () => {
-            console.log("error");
+            router.push(`${PATH_HOME.checkout}/checkout-fail`);
           },
         }
       );

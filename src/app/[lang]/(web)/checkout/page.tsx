@@ -87,9 +87,9 @@ export default function CheckOut() {
             {activeStep === 2 && <CheckoutPayment />}
           </>
         )}
-        <Box sx={{ width: "100%", marginTop: 8 }}>
+        {/* <Box sx={{ width: "100%", marginTop: 8 }}>
           <SliderProductRecomnend />
-        </Box>
+        </Box> */}
       </Container>
     </>
   );

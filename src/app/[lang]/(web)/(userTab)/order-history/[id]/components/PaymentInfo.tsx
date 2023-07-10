@@ -7,8 +7,14 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { fFormatCoin } from "@/common/utils/formatNumber";
 
-export const PaymentInfo = () => {
+type Props = {
+  totalPoint: number;
+  totalShipping: number;
+};
+
+export const PaymentInfo = ({ totalPoint, totalShipping }: Props) => {
   return (
     <Card sx={{ mb: 3 }} elevation={5}>
       <CardHeader title="Chi tiết đơn hàng" />
@@ -21,7 +27,7 @@ export const PaymentInfo = () => {
             </Typography>
             <Typography variant="subtitle2">
               {/* {fFormatCoin(subtotal)} xu */}
-              200.000 xu
+              {fFormatCoin(totalPoint)} xu
             </Typography>
           </Stack>
 
@@ -30,7 +36,8 @@ export const PaymentInfo = () => {
               Giảm giá
             </Typography>
             <Typography variant="subtitle2">
-              {/* {discount ? fCurrency(-discount) : "-"} */}-
+              {/* {discount ? fCurrency(-discount) : "-"} */}
+              {totalShipping === 0 || !totalShipping ? "-" : totalShipping}
             </Typography>
           </Stack>
 
@@ -49,7 +56,10 @@ export const PaymentInfo = () => {
             <Typography variant="subtitle1">Tổng thanh toán</Typography>
             <Box sx={{ textAlign: "right" }}>
               <Typography variant="subtitle1" sx={{ color: "error.main" }}>
-                200.000 xu
+                {fFormatCoin(
+                  totalShipping ? totalPoint + totalShipping : totalPoint
+                )}{" "}
+                xu
                 {/* {fFormatCoin(total)} xu */}
               </Typography>
               <Typography variant="caption" sx={{ fontStyle: "italic" }}>

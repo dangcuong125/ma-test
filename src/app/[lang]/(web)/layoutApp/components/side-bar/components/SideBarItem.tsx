@@ -23,6 +23,7 @@ const SideBarItem = ({
           borderRadius: "32px",
           pr: "80px",
           pl: "5px",
+          width: "100%",
         }}
       >
         <Stack direction="row" spacing={2} alignItems="center" width="100%">
