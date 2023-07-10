@@ -1,7 +1,12 @@
 import { Card, CardHeader, Typography } from "@mui/material";
 import TableProductList from "../../../../checkout/components/checkout-payment/TableProductList";
+import { IOrderLineItemReqDto } from "../../common/interface";
 
-export const ProductInfo = () => {
+type Props = {
+  data: IOrderLineItemReqDto[] | undefined;
+};
+
+export const ProductInfo = ({ data }: Props) => {
   return (
     <Card sx={{ mb: 3 }} elevation={5}>
       <CardHeader
@@ -12,7 +17,7 @@ export const ProductInfo = () => {
         }
       />
 
-      <TableProductList products={[]} />
+      <TableProductList products={data || []} />
     </Card>
   );
 };

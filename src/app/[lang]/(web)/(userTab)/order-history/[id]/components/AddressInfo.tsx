@@ -6,8 +6,13 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { IOrderShipping } from "../../common/interface";
 
-export const AddressInfo = () => {
+type Props = {
+  address: IOrderShipping | undefined;
+};
+
+export const AddressInfo = ({ address }: Props) => {
   return (
     <Card sx={{ mb: 3, borderRadius: "16px" }} elevation={5}>
       <CardHeader
@@ -23,17 +28,17 @@ export const AddressInfo = () => {
           }}
         >
           <Typography sx={{ fontWeight: 600, fontSize: "15px" }}>
-            ABC
+            {address?.name}
           </Typography>
           <Typography
             sx={{ fontWeight: 400, fontSize: "13px", color: "#637381" }}
           >
-            0971111111
+            {address?.phone}
           </Typography>
           <Typography
             sx={{ fontWeight: 400, fontSize: "15px", color: "#212B36" }}
           >
-            571 Quán Sứ, Láng Thượng, Cầu Giấy, Hà Nội
+            {`${address?.address1}, ${address?.district}, ${address?.ward}, ${address?.province}`}
           </Typography>
         </Stack>
       </CardContent>

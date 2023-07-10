@@ -4,8 +4,25 @@ import { ProductOrderItem } from "./ProductOrderItem";
 import { IconOnHolding } from "./icons/IconOnHolding";
 import { TLink } from "@/common/components/TLink";
 import { PATH_HOME } from "@/common/constants/path.constants";
+import { IOrder, OrderRefundStatus } from "../common/interface";
+import { ORDER_STATUS, OrderStatus } from "../common/constant";
 
-export const OrderItem = () => {
+type Props = {
+  data: IOrder;
+};
+
+export const OrderItem = ({ data }: Props) => {
+  let showStatus = ORDER_STATUS.find((item) => item.status === data.status);
+  // if (data?.orderRefund?.status === OrderRefundStatus.REFUNDED) {
+  //   showStatus = ORDER_STATUS.find(
+  //     (item) => item.status === OrderRefundStatus.REFUNDED
+  //   );
+  // }
+
+  const IconStatus = () => {
+    return <>{showStatus?.Icon}</>;
+  };
+
   return (
     <Paper elevation={5} sx={{ paddingY: 2, paddingX: 3 }}>
       <Stack direction="column" spacing={1} width={"100%"}>
@@ -21,12 +38,20 @@ export const OrderItem = () => {
               marginBottom: 1,
             }}
           >
-            Mã đơn hàng # 123DYA2112234
+            Mã đơn hàng #{data?.displayId}
           </Typography>
         </TLink>
         <Divider sx={{ borderStyle: "dashed" }} />
 
-        <ProductOrderItem />
+        <ProductOrderItem
+          product={data?.orderLineItemReqDto[0]}
+          quantity={data?.orderLineItemReqDto.reduce((qty, object) => {
+            return qty + object.quantity;
+          }, 0)}
+          total={data?.orderLineItemReqDto.reduce((qty, object) => {
+            return qty + object.point * object.quantity;
+          }, 0)}
+        />
 
         <Divider sx={{ borderStyle: "dashed" }} />
 
@@ -37,7 +62,7 @@ export const OrderItem = () => {
           paddingY={1}
         >
           <Stack direction="row" alignItems={"center"} spacing={0.5}>
-            <IconOnHolding />
+            <IconStatus />
             <Typography
               sx={{
                 fontSize: "14px",
@@ -45,7 +70,7 @@ export const OrderItem = () => {
                 color: "rgba(31, 138, 112, 1)",
               }}
             >
-              Đã tiếp nhận
+              {showStatus?.title}
             </Typography>
           </Stack>
           <Typography

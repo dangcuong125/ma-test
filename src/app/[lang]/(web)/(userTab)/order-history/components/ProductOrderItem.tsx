@@ -11,10 +11,21 @@ import {
 } from "@mui/material";
 import Image from "@/common/components/Image";
 import Iconify from "@/common/components/Iconify";
+import { IOrderLineItemReqDto } from "../common/interface";
+import { fFormatCoin } from "../../../../../../common/utils/formatNumber";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "../../../../../../common/constants/path.constants";
 
-export const ProductOrderItem = () => {
+type Props = {
+  product: IOrderLineItemReqDto;
+  quantity: number;
+  total: number;
+};
+
+export const ProductOrderItem = ({ product, quantity, total }: Props) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const router = useRouter();
 
   return (
     <Stack
@@ -22,41 +33,59 @@ export const ProductOrderItem = () => {
       width="100%"
       sx={{ paddingY: "15px!important" }}
       spacing={matches ? 0 : 3}
+      onClick={() => {
+        router.push(`${PATH_HOME.order_history.list}/${product.product.id}`);
+      }}
     >
       <Stack
         direction="row"
         width={matches ? "70%" : "100%"}
         justifyContent={"flex-start"}
       >
-        <Image
-          src="https://s3.ap-southeast-1.amazonaws.com/awd-dev-bucket/images/14/bd1921b6-4be0-4d8a-85b4-381731d6e157.png"
-          alt="Order Item Image"
-          sx={{ width: "100px", height: "100px", marginRight: 3 }}
-        />
+        {product?.product?.thumbnail?.url ? (
+          <Image
+            src={product?.product?.thumbnail?.url}
+            alt="Order Item Image"
+            sx={{
+              width: "100px",
+              height: "100px",
+              marginRight: 3,
+              borderRadius: "16px",
+            }}
+          />
+        ) : (
+          <Box
+            sx={{
+              width: "100px",
+              height: "100px",
+              marginRight: 3,
+              borderRadius: "16px",
+              backgroundColor: "gray",
+            }}
+          ></Box>
+        )}
         <Stack spacing={0.5} width={"100%"} minHeight={"100%"}>
           <Typography sx={{ fontSize: "18px", fontWeight: 600 }}>
-            Ổi hồng chín cây
+            {product?.product?.productDetails[0]?.name}
           </Typography>
           <Stack
             direction="row"
             alignItems="flex-start"
             marginBottom={"10px!important"}
           >
-            <Typography variant="body2">
-              <Box component="span" sx={{ color: "text.secondary" }}>
-                size:&nbsp;
-              </Box>
-              khối lượng:
-            </Typography>
-
-            <Divider orientation="vertical" sx={{ mx: 1, height: 16 }} />
-
-            <Typography variant="body2">
-              <Box component="span" sx={{ color: "text.secondary" }}>
-                color:&nbsp;
-              </Box>
-              9
-            </Typography>
+            {product?.product?.attributeAndTerm?.map((item, index) => (
+              <>
+                <Typography variant="body2" key={index}>
+                  <Box component="span" sx={{ color: "text.secondary" }}>
+                    {item?.name}:&nbsp;
+                  </Box>
+                  {item?.term[0]?.value}
+                </Typography>
+                {index !== product?.product?.attributeAndTerm?.length - 1 && (
+                  <Divider orientation="vertical" sx={{ mx: 1, height: 16 }} />
+                )}
+              </>
+            ))}
           </Stack>
           <Box
             sx={{
@@ -70,7 +99,7 @@ export const ProductOrderItem = () => {
               <IconButton size="small" color="inherit" disabled={true}>
                 <Iconify icon={"eva:minus-fill"} width={16} height={16} />
               </IconButton>
-              9
+              {quantity}
               <IconButton size="small" color="inherit" disabled={true}>
                 <Iconify icon={"eva:plus-fill"} width={16} height={16} />
               </IconButton>
@@ -85,7 +114,7 @@ export const ProductOrderItem = () => {
         justifyContent={"center"}
       >
         <Typography sx={{ fontSize: "16px", fontWwight: 600 }}>
-          900.000 VND
+          {fFormatCoin(total)} xu
         </Typography>
       </Stack>
     </Stack>

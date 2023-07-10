@@ -1,11 +1,11 @@
 import { Table, TableBody, TableContainer } from "@mui/material";
 import TableHeadCustom from "@/common/components/table/TableHeadCustom";
 import { TABLE_PAYMENT_PRODUCT_HEAD } from "../../constant";
-import { ICartItem } from "../../interface";
 import TableProductListRow from "./TableProductListRow";
+import { IOrderLineItemReqDto } from "../../../(userTab)/order-history/common/interface";
 
 type Props = {
-  products: ICartItem[];
+  products: IOrderLineItemReqDto[];
 };
 
 export default function TableProductList({ products }: Props) {
@@ -15,8 +15,8 @@ export default function TableProductList({ products }: Props) {
         <TableHeadCustom headLabel={TABLE_PAYMENT_PRODUCT_HEAD} />
 
         <TableBody>
-          {products.map((row) => (
-            <TableProductListRow key={row?.productToVariantIds[0]} row={row} />
+          {products.map((row, index) => (
+            <TableProductListRow key={index} row={row} />
           ))}
         </TableBody>
       </Table>
