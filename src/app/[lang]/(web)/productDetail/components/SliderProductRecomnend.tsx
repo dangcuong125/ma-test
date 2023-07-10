@@ -21,10 +21,20 @@ import { useRef, useState } from "react";
 import Iconify from "@/common/components/Iconify";
 import Image from "@/common/components/Image";
 import { ProductItemDefault } from "@/common/components/product/ProductItem";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
 import useTranslation from "next-translate/useTranslation";
 
-export const SliderProductRecomnend = () => {
+type Props = {
+  dataProductRelated?: any;
+}
+
+
+export const SliderProductRecomnend = (props: Props) => {
+  const { dataProductRelated } = props;
   const swiperRef = useRef<any>(null);
+  const route = useRouter();
+  
   const {t} =useTranslation("common")
   const [buttonSlider, setButtonSlider] = useState({
     currentIndex: 0,
@@ -49,7 +59,7 @@ export const SliderProductRecomnend = () => {
     }
   };
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} width={'100%'}>
       <Stack
         display={"flex"}
         direction={"row"}
@@ -110,9 +120,15 @@ export const SliderProductRecomnend = () => {
           </Button>
         </Stack>
       </Stack>
+
+      
+
       <Swiper
         ref={swiperRef}
         spaceBetween={10}
+        style={{
+          width: '100%',
+        }}
         // pagination={{
         //   clickable: true,
         // }}
@@ -141,13 +157,14 @@ export const SliderProductRecomnend = () => {
           },
         }}
       >
-        {Array.from(Array(20)).map((itemProd, index) => (
+        {dataProductRelated?.items?.map((itemProd: any, index: number) => (
           <SwiperSlide key={index}>
             <ProductItemDefault
-              title="Đào hồng"
-              srcImg="/Subtract.png"
+              title={itemProd?.productDetails[0]?.name}
+              srcImg={itemProd?.thumbnail?.url}
               property="1KG"
-              price={70000}
+              price={itemProd?.price?.normalPrice}
+              onClick={() => route.push(PATH_HOME.product.detail(itemProd?.id))}
             />
           </SwiperSlide>
         ))}

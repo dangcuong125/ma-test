@@ -2,6 +2,7 @@ import { Stack, Box, Typography, IconButton } from "@mui/material";
 import Image from "../Image";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
 import { useRouter } from 'next/navigation';
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 type Props = {
   title?: string;
@@ -109,6 +110,7 @@ export const ProductItemDefault = (props: Props) => {
                 background: "black",
               },
             }}
+            onClick={() => router.push(PATH_HOME.checkout) }
           >
             <Image
               alt=""

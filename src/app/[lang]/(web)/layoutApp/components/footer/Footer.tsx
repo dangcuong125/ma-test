@@ -13,8 +13,12 @@ import {
   ListSubheader,
 } from "@mui/material";
 import { ICON_SOCIAL, QUICK_LINK, USER_FEATURES } from "./constants";
+import { useRouter } from "next/navigation";
+import { PATH_HOME } from "@/common/constants/path.constants";
 
 export const FooterBar = () => {
+
+  const router = useRouter();
   return (
     <Stack
       width={"100%"}
@@ -106,7 +110,8 @@ export const FooterBar = () => {
             {USER_FEATURES?.map((feature, index) => (
               <ListItem
                 key={index}
-                sx={{ p: 0, mb: "16px", textTransform: "capitalize" }}
+                sx={{ p: 0, mb: "16px", textTransform: "capitalize", cursor: "pointer" }}
+                onClick={() => router.push(PATH_HOME.profile)}
               >
                 {feature}
               </ListItem>
@@ -124,7 +129,7 @@ export const FooterBar = () => {
             {QUICK_LINK?.map((feature, index) => (
               <ListItem
                 key={index}
-                sx={{ p: 0, mb: "16px", textTransform: "capitalize" }}
+                sx={{ p: 0, mb: "16px", textTransform: "capitalize", cursor: "pointer" }}
               >
                 {feature}
               </ListItem>

@@ -1540,36 +1540,6 @@ export const MOCK_DATA = {
       title: 'Category1',
     },
     {
-      id: 'c092ff07-e9de-4dc4-a4ac-ac9e41c50d5e',
-      data: [
-        {
-          link: 'NEWS',
-          name: 'title',
-          image:
-            'https://awd-dev-bucket.s3.ap-southeast-1.amazonaws.com/images/14/d8a3e9eb-37e4-4b3e-b429-4cb315a6f8c1.png',
-          imageId: 2838,
-          typeRoute: 'ROUTER',
-        },
-      ],
-      type: 'NORMAL_SERVICE',
-      title: 'Hello world',
-    },
-    {
-      id: 'dd6a17ba-c36b-492b-b161-5f69e2efdd2c',
-      data: [
-        {
-          link: 'MY_VOUCHER',
-          name: 'E-voucher cuả tôi',
-          image:
-            'https://awd-dev-bucket.s3.ap-southeast-1.amazonaws.com/images/14/a34b0e89-7113-42a5-9f7f-c7695764e5e9.png',
-          imageId: 2980,
-          typeRoute: 'ROUTER',
-        },
-      ],
-      type: 'NORMAL_SERVICE',
-      title: 'new service',
-    },
-    {
       id: 'f11e2453-1650-473f-aa18-ac0884b438e8',
       data: {
         products: [
