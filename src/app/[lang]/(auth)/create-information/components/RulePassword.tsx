@@ -6,7 +6,7 @@ import React from 'react';
 
 export const RulePassword = () => {
   const bulletPointUnicode = '\u2022';
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('auth');
   return (
     <Box
       sx={{
@@ -19,14 +19,14 @@ export const RulePassword = () => {
     >
       <Stack spacing={0.5} alignItems={'flex-start'} m={2}>
         <Typography fontSize={'12px'} color={'#737B7B'}>
-          {t('auth.rule_password')}:
+          {t('rule_password')}:
         </Typography>
         <Stack direction={'row'} spacing={2}>
           <Typography fontSize={'12px'} color={'#737B7B'} ml={1}>
             {bulletPointUnicode}
           </Typography>
           <Typography fontSize={'12px'} color={'#737B7B'}>
-            {t('auth.1_number_character')}
+            {t('1_number_character')}
           </Typography>
         </Stack>
         <Stack direction={'row'} spacing={2} ml={1}>
@@ -34,7 +34,7 @@ export const RulePassword = () => {
             {bulletPointUnicode}
           </Typography>
           <Typography fontSize={'12px'} color={'#737B7B'}>
-            {t('auth.10_letter_characters')}
+            {t('10_letter_characters')}
           </Typography>
         </Stack>
       </Stack>

@@ -13,12 +13,17 @@ const persistConfig = {
   key: 'root',
   storage,
   keyPrefix: 'ecomloyalty-',
-  whiteList: ['authLogin']
+  whitelist: ['authLogin', 'customerProfile']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      immutableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);
