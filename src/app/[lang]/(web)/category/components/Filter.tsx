@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import Iconify from "@/common/components/Iconify";
 import {
   FormProvider,
@@ -11,10 +10,11 @@ import { Button, Divider, Grid, Stack, Typography,Drawer, IconButton } from "@mu
 import { useForm } from "react-hook-form";
 import { GENDER_OPTION, SHIPPING, STATUS } from "../constants";
 import { useState } from "react";
+import useTranslation from "next-translate/useTranslation";
 
 export default function Filter() {
   const [openFilter, setOpenFilter] = useState(false);
-
+const {t} =useTranslation("common")
   const methods = useForm({
     defaultValues: {
       priceRange: [0, 200],
@@ -52,9 +52,9 @@ export default function Filter() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={2} display={{ sm: "flex", xs: "none" }}>
           
-          <Typography variant="h4">Bộ lọc tìm kiếm</Typography>
+          <Typography variant="h4">{t('category.filter')}</Typography>
           <Stack>
-            <Typography variant="subtitle1"> Theo danh mục </Typography>
+            <Typography variant="subtitle1"> {t('category.categorySub')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={GENDER_OPTION}
@@ -66,12 +66,12 @@ export default function Filter() {
               fontWeight={700}
               sx={{ textDecoration: "underline" }}
             >
-              Xem thêm
+             {t('category.addMore')}
             </Typography>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Địa điểm </Typography>
+            <Typography variant="subtitle1">{t('category.location')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={GENDER_OPTION}
@@ -83,12 +83,12 @@ export default function Filter() {
               fontWeight={700}
               sx={{ textDecoration: "underline" }}
             >
-              Xem thêm
+             {t('category.addMore')}
             </Typography>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Đơn vị vận chuyển </Typography>
+            <Typography variant="subtitle1"> {t('category.shipping')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={SHIPPING}
@@ -98,7 +98,7 @@ export default function Filter() {
           <Divider />
           <Stack width={"100%"} spacing={2} pb={2}>
             <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
-              Khoảng giá
+            {t('category.rangPrice')}
             </Typography>
 
             <Stack direction="row" spacing={2}>
@@ -126,12 +126,12 @@ export default function Filter() {
                 color: "white",
               }}
             >
-              Áp dụng
+               {t('category.apply')}
             </Button>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Tình trạng </Typography>
+            <Typography variant="subtitle1">  {t('category.status')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={STATUS}
@@ -151,7 +151,7 @@ export default function Filter() {
               <Iconify icon={"formkit:arrowright"} width={24} height={24} />
             }
           >
-            Xóa tất cả
+             {t('category.deleteAll')}
           </Button>
         </Stack>
         <Button
@@ -162,7 +162,7 @@ export default function Filter() {
             onClick={handleOpenFilter}
             sx={{display:{sm:"block" ,md:"none"},p:0}}
           >
-            Filters
+             {t('category.filter')}
           </Button>
           <Drawer
         anchor="right"
@@ -178,7 +178,7 @@ export default function Filter() {
           alignItems="center"
           justifyContent="space-between"
         >
-         <Typography variant="h4">Bộ lọc tìm kiếm</Typography>
+         <Typography variant="h4"> {t('category.filter')}</Typography>
           <IconButton onClick={handleCloseFilter}>
             <Iconify icon={'eva:close-fill'} width={20} height={20} />
           </IconButton>
@@ -187,7 +187,7 @@ export default function Filter() {
           
           <Stack>
 
-            <Typography variant="subtitle1"> Theo danh mục </Typography>
+            <Typography variant="subtitle1">  {t('category.categorySub')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={GENDER_OPTION}
@@ -199,12 +199,12 @@ export default function Filter() {
               fontWeight={700}
               sx={{ textDecoration: "underline" }}
             >
-              Xem thêm
+              {t('category.addMore')}
             </Typography>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Địa điểm </Typography>
+            <Typography variant="subtitle1"> {t('category.location')}</Typography>
             <RHFMultiCheckbox
               name="gender"
               options={GENDER_OPTION}
@@ -216,12 +216,12 @@ export default function Filter() {
               fontWeight={700}
               sx={{ textDecoration: "underline" }}
             >
-              Xem thêm
+              {t('category.addMore')}
             </Typography>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Đơn vị vận chuyển </Typography>
+            <Typography variant="subtitle1">  {t('category.shipping')} </Typography>
             <RHFMultiCheckbox
               name="gender"
               options={SHIPPING}
@@ -231,7 +231,7 @@ export default function Filter() {
           <Divider />
           <Stack width={"100%"} spacing={2} pb={2}>
             <Typography variant="subtitle1" sx={{ flexGrow: 1 }}>
-              Khoảng giá
+            {t('category.rangPrice')}
             </Typography>
 
             <Stack direction="row" spacing={2}>
@@ -259,12 +259,12 @@ export default function Filter() {
                 color: "white",
               }}
             >
-              Áp dụng
+              {t('category.apply')}
             </Button>
           </Stack>
           <Divider />
           <Stack>
-            <Typography variant="subtitle1"> Tình trạng </Typography>
+            <Typography variant="subtitle1"> {t('category.status')}</Typography>
             <RHFMultiCheckbox
               name="gender"
               options={STATUS}
@@ -284,7 +284,7 @@ export default function Filter() {
               <Iconify icon={"formkit:arrowright"} width={24} height={24} />
             }
           >
-            Xóa tất cả
+           {t('category.deleteAll')}
           </Button>
         </Stack>
       </Drawer>

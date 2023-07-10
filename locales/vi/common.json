@@ -31,8 +31,14 @@
     "weight": "Chọn khối lượng",
     "tableWeight": "Bảng khối lượng",
     "addToCart": "Thêm vào giỏ hàng",
-    "productRecommend": "Sản phẩm tương tự"
+    "productRecommend": "Sản phẩm tương tự",
+    "review":"Viết đánh giá",
+    "questionReview":"Bạn thấy sản phẩm thế nào ?",
+    "cancel":"Hủy",
+    "sendReview":"Gửi đánh giá"
+
   },
+
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",

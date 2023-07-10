@@ -21,9 +21,11 @@ import { useRef, useState } from "react";
 import Iconify from "@/common/components/Iconify";
 import Image from "@/common/components/Image";
 import { ProductItemDefault } from "@/common/components/product/ProductItem";
+import useTranslation from "next-translate/useTranslation";
 
 export const SliderProductRecomnend = () => {
   const swiperRef = useRef<any>(null);
+  const {t} =useTranslation("common")
   const [buttonSlider, setButtonSlider] = useState({
     currentIndex: 0,
     totalSlides: 0,
@@ -64,7 +66,8 @@ export const SliderProductRecomnend = () => {
             lineHeight={"50px"}
             fontSize={{ xs: 15, sm: 26 }}
           >
-            Sản phẩm tương tự
+                       {t('product.productRecommend')}
+
           </Typography>
         </Stack>
         <Stack
@@ -84,7 +87,7 @@ export const SliderProductRecomnend = () => {
               color: buttonSlider?.currentIndex === 0 ? "white" : "black",
             }}
           >
-            {" "}
+            
             <Iconify height={24} width={24} icon={"ic:round-arrow-back"} />
           </Button>
           <Button

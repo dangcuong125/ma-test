@@ -31,7 +31,11 @@
     "weight": "Weight",
     "tableWeight": "Weight",
     "addToCart": "Add to cart",
-    "productRecommend": "Similar Product"
+    "productRecommend": "Similar Product",
+    "review":"Review",
+    "questionReview":"How do you feel about product ?",
+    "cancel":"Cancel",
+    "sendReview":"Send"
   },
   "form": {
     "field_required": "This field is required",

@@ -26,6 +26,7 @@ import { FormProvider, RHFSelect } from "@/common/components/hook-form";
 import Iconify from "@/common/components/Iconify";
 import { STATUS } from "../../../category/constants";
 import { ItemDelivery } from "./components/ItemDelivery";
+import useTranslation from "next-translate/useTranslation";
 
 const RootStyle = styled("div")(({ theme }) => ({
   "& .slick-slide": {
@@ -41,7 +42,7 @@ const ArrowStyle = styled(IconButton)(({ theme }) => ({
 }));
 export const VariantProduct = (data:any) => {
   const theme = useTheme();
-
+const {t} =useTranslation("common")
   const isRTL = theme.direction === "rtl";
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -240,7 +241,8 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               justifyContent={"space-between"}
             >
               <Typography variant="subtitle1" sx={{ color: "#666E80" }}>
-                Chọn màu sắc
+              {t('product.color')}
+
               </Typography>
               <Controller
                 name="color"
@@ -266,7 +268,8 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               justifyContent={"space-between"}
             >
               <Typography variant="subtitle1" sx={{ color: "#666E80" }}>
-                Chọn khối lượng
+              {t('product.weight')}
+
               </Typography>
               <Stack width={"50%"}>
                 <RHFSelect name="country" label="Chọn khối lượng">
@@ -284,7 +287,8 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
                     py: "6px",
                   }}
                 >
-                  Bảng khối lượng
+                               {t('product.tableWeight')}
+
                 </Typography>
               </Stack>
             </Stack>
@@ -318,7 +322,8 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
                   fontSize: {xs:"12px",sm:"18px"},
                 }}
               >
-                Thêm vào giỏ hàng
+                              {t('product.addToCart')}
+
               </Button>
             </Stack>
             <Stack
