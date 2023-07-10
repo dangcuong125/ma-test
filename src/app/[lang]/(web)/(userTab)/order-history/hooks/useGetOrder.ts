@@ -4,7 +4,7 @@ import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 import { getMyOrder } from "../common/services";
 
 export const useGetOrder = (params: IDefaultParams) => {
-  return useInfiniteQuery<IListOrderResponse>(
+  return useInfiniteQuery(
     [QUERY_KEYS.GET_MY_ORDER, params?.statuses],
     ({ pageParam = 1 }) =>
       getMyOrder({
