@@ -42,7 +42,7 @@ const ForgotPasswordForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { phoneNumber } = useSelector((state) => state.forgotPassword);
+  const { phoneNumber } = useSelector((state) => state.register);
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber});

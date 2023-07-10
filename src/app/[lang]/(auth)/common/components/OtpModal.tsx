@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 // form
 import { useForm, Controller } from "react-hook-form";
@@ -23,23 +23,24 @@ import { FormProvider } from "@/common/components/hook-form";
 import { IOtpForm, ValueNames } from "../interface";
 import { VerifyCodeSchema } from "../schema";
 import { useDispatch, useSelector } from "../../../../../common/redux/store";
-// import { useVerifyOtp } from '../hooks/useVerifyOtp';
+import { useVerifyOtp } from "../hooks/useVerifyOtp";
 // import useShowSnackbar from '../../../../common/hooks/useMessage';
-// import { useSendOtp } from '../../forgot-password/hooks/useSendOtp';
 import { setOtpValue } from "../../register/slice";
 import useTranslation from "next-translate/useTranslation";
 import Iconify from "@/common/components/Iconify";
 import { PATH_AUTH } from "@/common/constants/path.constants";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
+import { useSendOtp } from "../hooks/useSendOtp";
 
 // ----------------------------------------------------------------------
 type FormProps = {
-  count: number;
   onClose: VoidFunction;
 };
-const OtpModal = ({ count, onClose }: FormProps) => {
+const OtpModal = ({ onClose }: FormProps) => {
   const router = useRouter();
+  const [count, setCount] = useState(120);
+  const intervalID = useRef<NodeJS.Timer>();
   const { t } = useTranslation("common");
   const inputOtp = useRef(null);
   const { phoneNumber } = useSelector((state) => state.register);
@@ -57,7 +58,18 @@ const OtpModal = ({ count, onClose }: FormProps) => {
       code6: "",
     },
   });
-
+  useEffect(() => {
+    if (count > 0) {
+      intervalID.current = setInterval(() => {
+        setCount((prevCount: number) => prevCount - 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalID.current as NodeJS.Timer);
+    }
+    return () => {
+      clearInterval(intervalID.current as NodeJS.Timer);
+    };
+  });
   const {
     watch,
     control,
@@ -67,8 +79,8 @@ const OtpModal = ({ count, onClose }: FormProps) => {
   } = methods;
 
   const values = watch();
-  // const { mutate, isLoading } = useVerifyOtp();
-  // const { mutate: resendOtp } = useSendOtp();
+  const { mutate, isLoading } = useVerifyOtp();
+  const { mutate: resendOtp } = useSendOtp();
   // const { showErrorSnackbar } = useShowSnackbar();
   useEffect(() => {
     const target = document.querySelector("input.field-code");
@@ -145,16 +157,17 @@ const OtpModal = ({ count, onClose }: FormProps) => {
   };
 
   const handleResendOtp = () => {
-    // resendOtp(
-    //   {
-    //     customerId,
-    //   },
-    //   {
-    //     onError: (error: any) => {
-    //       showErrorSnackbar(error?.message);
-    //     },
-    //   }
-    // );
+    resendOtp(
+      {
+        phoneNumber,
+        type: openOtpModal?.type as OtpModalType,
+      },
+      {
+        onError: (error: any) => {
+          // showErrorSnackbar(error?.message);
+        },
+      }
+    );
   };
   const onSubmit = async (data: IOtpForm) => {
     try {
@@ -162,24 +175,26 @@ const OtpModal = ({ count, onClose }: FormProps) => {
       const dataSubmit = {
         phoneNumber,
         otp: otpValue,
+        type: openOtpModal.type as OtpModalType,
       };
-      if(openOtpModal.type === OtpModalType.REGISTER) {
-        router.push(PATH_AUTH.create_information);
-      } else if (openOtpModal.type === OtpModalType.FORGOT_PASSWORD) {
-       router.push(PATH_AUTH.reset_password); 
-      }
-      dispatch(setOpenOtpModal({
-        isOpen: false
-      }));
-      // mutate(dataSubmit, {
-      //   onSuccess: () => {
-      //     dispatch(setOtpValue(otpValue));
-      //     navigate(PATH_AUTH.resetPassword);
-      //   },
-      //   onError: (error: any) => {
-      //     showErrorSnackbar(error?.message);
-      //   },
-      // });
+      dispatch(
+        setOpenOtpModal({
+          isOpen: false,
+        })
+      );
+      mutate(dataSubmit, {
+        onSuccess: () => {
+          dispatch(setOtpValue(otpValue));
+          if (openOtpModal.type === OtpModalType.REGISTER) {
+            router.push(PATH_AUTH.create_information);
+          } else if (openOtpModal.type === OtpModalType.FORGOT_PASSWORD) {
+            router.push(PATH_AUTH.reset_password);
+          }
+        },
+        onError: (error: any) => {
+          // showErrorSnackbar(error?.message);
+        },
+      });
     } catch (error) {
       console.error(error);
     }
@@ -260,7 +275,8 @@ const OtpModal = ({ count, onClose }: FormProps) => {
               !!errors.code2 ||
               !!errors.code3 ||
               !!errors.code4 ||
-              !!errors.code5) && (
+              !!errors.code5 ||
+              !!errors.code6) && (
               <FormHelperText error sx={{ textAlign: "center" }}>
                 *Mã OTP không đúng, vui lòng nhập lại!
               </FormHelperText>
@@ -308,7 +324,7 @@ const OtpModal = ({ count, onClose }: FormProps) => {
                 disabled={!watch("code6")}
                 sx={{ width: "40%", borderRadius: "24px" }}
                 endIcon={
-                   isSubmitting ? (
+                  isLoading || isSubmitting ? (
                     <CircularProgress color="inherit" size={"24px"} />
                   ) : (
                     <Iconify
@@ -329,4 +345,3 @@ const OtpModal = ({ count, onClose }: FormProps) => {
 };
 
 export default OtpModal;
-

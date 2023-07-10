@@ -11,3 +11,4 @@ export const API_ADDRESS = "/customer/customer-shipping";
 export const API_CHECK_PHONE_EXISTED = "/customer/auth/is-phone-existed";
 export const API_CUSTOMER_OTP_SEND = '/customer/otp/send';
 export const API_CUSTOMER_REGISTER = '/customer/auth/register';
+export const API_CUSTOMER_VERIFY_OTP = '/customer/otp/verify';

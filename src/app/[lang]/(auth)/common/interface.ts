@@ -16,3 +16,9 @@ export interface IOtpParamsSend {
   type: OtpModalType;
 }
 
+export interface IOtpParamsVerify {
+  phoneNumber: string;
+  type: OtpModalType;
+  otp: string
+}
+
