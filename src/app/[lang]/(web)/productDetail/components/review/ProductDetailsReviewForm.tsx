@@ -8,6 +8,7 @@ import { Button, Stack, Rating, Typography, FormHelperText } from '@mui/material
 import { LoadingButton } from '@mui/lab';
 import { FormProvider, RHFTextField } from '@/common/components/hook-form';
 import Iconify from '@/common/components/Iconify';
+import useTranslation from 'next-translate/useTranslation';
 // components
 
 // ----------------------------------------------------------------------
@@ -30,6 +31,7 @@ type FormValuesProps = {
 
 
 export default function ProductDetailsReviewForm() {
+  const {t} = useTranslation("common")
   const ReviewSchema = Yup.object().shape({
     rating: Yup.mixed().required('Rating is required'),
     review: Yup.string().required('Review is required'),
@@ -66,14 +68,15 @@ export default function ProductDetailsReviewForm() {
   return (
     <Stack spacing={2} pt="20px" width={{xs:"100%",sm:"50%"}}>
       <Typography variant="h5" gutterBottom>
-        Viết đánh giá
+      {t('product.review')}
+
       </Typography>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <div>
             <Stack spacing={1.5}>
-              <Typography variant="body2">Bạn thấy sản phẩm thế nào ?</Typography>
+              <Typography variant="body2"> {t('product.review')}</Typography>
 
               <Controller
                 name="rating"
@@ -98,12 +101,12 @@ export default function ProductDetailsReviewForm() {
 
           <Stack direction="row" justifyContent="flex-start" spacing={1.5}>
             <Button color="inherit" sx={{ borderRadius: "20px" }} variant="outlined" onClick={onCancel}>
-              Cancel
+            {t('product.cancel')}
             </Button>
             <LoadingButton endIcon={
               <Iconify icon={"formkit:arrowright"} width={24} height={24} />
             } sx={{ borderRadius: "20px !important", background: "#1F8A70" }} type="submit" variant="contained" loading={isSubmitting}>
-              Gửi đánh giá
+              {t('product.sendReview')}
             </LoadingButton>
           </Stack>
         </Stack>
