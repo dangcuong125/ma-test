@@ -9,11 +9,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { IProductItems } from "../interfaces";
+import { IProductItems } from "../../interfaces";
 import { PATH_HOME } from "@/common/constants/path.constants";
-import { useGetListCategory } from "../hooks/useGetAllCategory";
+import { useGetListCategory } from "../../hooks/useGetAllCategory";
 
-export default function ListProduct() {
+export default function ListAllCategoryProduct() {
   const route = useRouter();
 
   const { dataListCategory } = useGetListCategory();
