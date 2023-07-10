@@ -1,3 +1,8 @@
+import { IconOnCompleted } from "../components/icons/IconOnCompleted";
+import { IconProcessing } from "../components/icons/IconProcessing";
+import { IconOnHolding } from "./../components/icons/IconOnHolding";
+import { OrderRefundStatus } from "./interface";
+
 export enum OrderStatus {
   ON_HOLD = "ON_HOLD",
   CANCELLED = "CANCELLED",
@@ -26,5 +31,38 @@ export const LIST_TAB_CONTENT = [
   {
     label: "Giao thất bại",
     value: OrderStatus.CANCELLED,
+  },
+];
+
+export const ORDER_STATUS = [
+  {
+    title: "Đã tiếp nhận",
+    renderIcon: IconOnHolding,
+    status: OrderStatus.ON_HOLD,
+    color: "#54D62C",
+  },
+  {
+    title: "Giao hàng thất bại",
+    renderIcon: IconOnHolding,
+    status: OrderStatus.CANCELLED,
+    color: "#FF4842",
+  },
+  {
+    title: "Giao hàng thành công",
+    renderIcon: IconOnCompleted,
+    status: OrderStatus.COMPLETED,
+    color: "#54D62C",
+  },
+  {
+    title: "Đang vận chuyển",
+    renderIcon: IconProcessing,
+    status: OrderStatus.PROCESSING,
+    color: "#54D62C",
+  },
+  {
+    title: "Đã hoàn xu",
+    renderIcon: IconOnHolding,
+    status: OrderRefundStatus.REFUNDED,
+    color: "#1DA891",
   },
 ];
