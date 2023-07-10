@@ -31,6 +31,7 @@ import useTranslation from "next-translate/useTranslation";
 import Iconify from "@/common/components/Iconify";
 import { PATH_AUTH } from "@/common/constants/path.constants";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
+import { OtpModalType } from "../../login/interface";
 
 // ----------------------------------------------------------------------
 type FormProps = {
@@ -42,7 +43,7 @@ const OtpModal = ({ count, onClose }: FormProps) => {
   const { t } = useTranslation("common");
   const inputOtp = useRef(null);
   const { phoneNumber } = useSelector((state) => state.register);
-  const { isOpenOtpModal } = useSelector((state) => state.authLogin);
+  const { openOtpModal } = useSelector((state) => state.authLogin);
   const dispatch = useDispatch();
   const methods = useForm<IOtpForm>({
     mode: "all",
@@ -162,8 +163,14 @@ const OtpModal = ({ count, onClose }: FormProps) => {
         phoneNumber,
         otp: otpValue,
       };
-      router.push(PATH_AUTH.create_information);
-      dispatch(setOpenOtpModal(false));
+      if(openOtpModal.type === OtpModalType.REGISTER) {
+        router.push(PATH_AUTH.create_information);
+      } else if (openOtpModal.type === OtpModalType.FORGOT_PASSWORD) {
+       router.push(PATH_AUTH.reset_password); 
+      }
+      dispatch(setOpenOtpModal({
+        isOpen: false
+      }));
       // mutate(dataSubmit, {
       //   onSuccess: () => {
       //     dispatch(setOtpValue(otpValue));
@@ -179,7 +186,7 @@ const OtpModal = ({ count, onClose }: FormProps) => {
   };
 
   return (
-    <Modal open={isOpenOtpModal}>
+    <Modal open={openOtpModal?.isOpen}>
       <Card
         sx={{
           position: "absolute",

@@ -1,9 +1,8 @@
 "use client";
 
 import { Card } from "@mui/material";
-import useTranslation from "next-translate/useTranslation";
-import InformationForm from "./InformationForm";
-import { RulePassword } from "./RulePassword";
+import ResetPasswordForm from "./ResetPasswordForm";
+import { RulePassword } from "@/app/[lang]/(auth)/create-information/components/RulePassword";
 const InformationContainer = () => {
   return (
     <Card
@@ -14,7 +13,7 @@ const InformationContainer = () => {
         mx: "auto",
       }}
     >
-      <InformationForm />
+      <ResetPasswordForm />
       <RulePassword />
     </Card>
   );

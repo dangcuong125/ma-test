@@ -1,17 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { OtpModalType } from '../interface';
 type AuthLoginProps = {
   isLoggedIn: boolean;
   accessToken: string;
   refreshToken: string;
   isExpiredToken: boolean;
-  isOpenOtpModal: boolean;
+  openOtpModal: {
+    isOpen: boolean;
+    type?: OtpModalType;
+  };
 };
 const initialState: AuthLoginProps = {
   isLoggedIn: false,
   accessToken: '',
   refreshToken: '',
   isExpiredToken: false,
-  isOpenOtpModal: false,
+  openOtpModal: {
+    isOpen: false,
+  },
 };
 export const authLoginSlice = createSlice({
   name: 'authLogin',
@@ -34,8 +40,8 @@ export const authLoginSlice = createSlice({
       state.refreshToken = initialState.refreshToken;
       state.isLoggedIn = initialState.isLoggedIn;
     },
-    setOpenOtpModal: (state, action: PayloadAction<boolean>) => {
-      state.isOpenOtpModal = action.payload;
+    setOpenOtpModal: (state, action: PayloadAction<AuthLoginProps['openOtpModal']>) => {
+      state.openOtpModal = action.payload;
     },
     setIsExpiredToken: (state, action: PayloadAction<boolean>) => {
       state.isExpiredToken = action.payload;

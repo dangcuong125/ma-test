@@ -201,6 +201,9 @@ export default function AccountGeneralForm() {
                     <Stack position="relative" width="100%">
                       <MobileDatePicker
                         {...field}
+                        onChange={(value) => {
+                          setValue("birthDate", value ?? "");
+                        }}
                         inputFormat="dd/MM/yyyy"
                         dayOfWeekFormatter={(day: any) => day}
                         renderInput={(params: any) => (

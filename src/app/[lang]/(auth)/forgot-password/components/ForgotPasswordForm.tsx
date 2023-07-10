@@ -3,6 +3,7 @@ import { FormProvider, RHFTextField } from "@/common/components/hook-form";
 import {
   Box,
   Button,
+  Card,
   CircularProgress,
   IconButton,
   InputAdornment,
@@ -11,21 +12,21 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "@/common/redux/store";
-import { setPhoneNumber } from "../slice";
-import { RegisterSchema } from "../schema";
+import { setPhoneNumber } from "../../register/slice";
+import { RegisterSchema } from "../../register/schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IFormRegister } from "../interface";
+import { IFormRegister } from "../../register/interface";
 import { useRouter } from "next/navigation";
 import { PATH_AUTH } from "@/common/constants/path.constants";
 import React from "react";
-import { useCheckPhoneExisted } from "../hooks/useCheckPhoneExisted";
+import { useCheckPhoneExisted } from "../../register/hooks/useCheckPhoneExisted";
 // import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
 
-const RegisterForm = () => {
+const ForgotPasswordForm = () => {
   const registerSchema = RegisterSchema();
   const methods = useForm<IFormRegister>({
     resolver: yupResolver(registerSchema),
@@ -49,7 +50,7 @@ const RegisterForm = () => {
     dispatch(setPhoneNumber(data?.phoneNumber))
     dispatch(setOpenOtpModal({
       isOpen: true,
-      type: OtpModalType.REGISTER
+      type: OtpModalType.FORGOT_PASSWORD
     }));
     // mutate(data, {
     //   onError: (error: any) => {
@@ -60,9 +61,17 @@ const RegisterForm = () => {
 
   const isTyped = watch("phoneNumber");
   return (
+    <Card
+      sx={{
+        width: "30vw",
+        p: 3,
+        minWidth: "350px",
+        mx: "auto",
+      }}
+    >
+    <Typography variant={"h4"} mb={2}>{t("auth.forgot_password")}</Typography>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.register")}</Typography>
         <RHFTextField
           name="phoneNumber"
           label={t("auth.phoneNumber")}
@@ -96,8 +105,9 @@ const RegisterForm = () => {
         </Button>
       </Stack>
     </FormProvider>
+    </Card>
   );
 }
 
-export default RegisterForm;
+export default ForgotPasswordForm;
 

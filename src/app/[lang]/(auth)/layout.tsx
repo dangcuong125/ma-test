@@ -9,10 +9,12 @@ import OtpModal from "./common/components/OtpModal";
 import { setOpenOtpModal } from "./login/reducers/auth.slice";
 
 export default function LayoutAuth({ children }: { children: ReactNode }) {
-  const { isOpenOtpModal } = useSelector(state => state.authLogin);
+  const { openOtpModal } = useSelector(state => state.authLogin);
   const dispatch = useDispatch();
   const handleCloseModal = () => {
-    dispatch(setOpenOtpModal(false));
+    dispatch(setOpenOtpModal({
+      isOpen: false
+    }));
   }
   return (
     <Stack
@@ -26,7 +28,7 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
       <Box
         sx={{
           width: "100%",
-          maxHeight: "95%",
+          minHeight: "95%",
           pt: "8%",
           pb: '4%',
           backgroundImage: 'url(/assets/auth_background.svg)',
@@ -50,7 +52,7 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
       </Box>
       <FooterBar />
       {
-        isOpenOtpModal && (
+        openOtpModal?.isOpen && (
           <OtpModal count={120} onClose={handleCloseModal} />
         )
       }
