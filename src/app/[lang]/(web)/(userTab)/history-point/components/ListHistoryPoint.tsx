@@ -9,7 +9,6 @@ import LoadingHistoryPoint from "./LoadingHistoryPoint";
 export default function ListHistoryPoint() {
   const { isLoading, listHistory } = useGetListHistoryPoint();
 
-  console.log("isLoading: ", isLoading);
   return (
     <>
       <Paper
