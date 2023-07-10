@@ -1,5 +1,5 @@
 import axiosClient from "@/common/utils/axios";
-import { IDefaultParams, IOrder } from "./interface";
+import { IDefaultParams, IListOrderResponse, IOrder } from "./interface";
 import { API_CUSTOMER_ORDER } from "@/common/constants/api.constants";
 
 export const getMyOrder = (params: IDefaultParams, pageParams?: number) => {
@@ -14,7 +14,7 @@ export const getMyOrder = (params: IDefaultParams, pageParams?: number) => {
           page: pageParams || params.page,
           statuses: params.statuses,
         };
-  return axiosClient.get(API_CUSTOMER_ORDER, {
+  return axiosClient.get<any, IListOrderResponse>(API_CUSTOMER_ORDER, {
     params: { ...transParams },
   });
 };
