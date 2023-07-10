@@ -51,7 +51,7 @@ const InformationForm = () => {
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
   const { isShowPassword } = useSelector((state) => state.register);
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   //   const { mutate, isLoading } = useLogin();
 
@@ -66,19 +66,19 @@ const InformationForm = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.create_account")}</Typography>
+        <Typography variant={"h4"}>{t("create_account")}</Typography>
         <RHFTextField
           name="fullName"
-          label={t("auth.full_name")}
-          placeholder={t("auth.full_name")}
+          label={t("full_name")}
+          placeholder={t("full_name")}
           sx={{
             borderRadius: "8px",
           }}
         />
         <RHFTextField
           name="password"
-          label={t("auth.password")}
-          placeholder={t("auth.password")}
+          label={t("password")}
+          placeholder={t("password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -102,8 +102,8 @@ const InformationForm = () => {
         />
         <RHFTextField
           name="confirmPassword"
-          label={t("auth.confirm_password")}
-          placeholder={t("auth.confirm_password")}
+          label={t("confirm_password")}
+          placeholder={t("confirm_password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -127,8 +127,8 @@ const InformationForm = () => {
         />
         <RHFTextField
           name="referralCode"
-          label={t("auth.referral_code")}
-          placeholder={t("auth.referral_code")}
+          label={t("referral_code")}
+          placeholder={t("referral_code")}
           sx={{
             borderRadius: "8px",
           }}
@@ -163,7 +163,7 @@ const InformationForm = () => {
           //     )
           //   }
         >
-          {t("continue")}
+          {t("common:continue")}
         </Button>
       </Stack>
     </FormProvider>
