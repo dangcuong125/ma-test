@@ -14,6 +14,6 @@ export interface IResLogin {
 
 export enum OtpModalType {
   REGISTER = 'REGISTER',
-  FORGOT_PASSWORD = 'FORGOT_PASSWORD'
+  RESET_PASSWORD = 'RESET_PASSWORD'
 }
   
