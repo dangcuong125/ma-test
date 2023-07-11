@@ -9,3 +9,4 @@ export const API_CUSTOMER_PROFILE = "/customer/profile";
 export const API_NOTIFY = "/customer/user-noti";
 export const API_ADDRESS = "/customer/customer-shipping";
 export const API_USER_LOGOUT = "/customer/auth/logout";
+export const API_CUSTOMER_CART = "/customer/cart";
