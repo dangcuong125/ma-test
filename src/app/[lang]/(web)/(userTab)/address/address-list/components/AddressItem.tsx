@@ -97,7 +97,7 @@ export default function AddressItem({ addressItem }: Props) {
               color: "rgba(33, 43, 54, 1)",
             }}
           >
-            {`${address1} ${address2}, ${ward.name}, ${district.name}, ${province.name}`}
+            {`${address1}, ${ward.name}, ${district.name}, ${province.name}`}
           </Box>
         </Stack>
         <Button

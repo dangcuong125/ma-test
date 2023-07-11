@@ -48,7 +48,7 @@ const InformationForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.forgotPassword);
+  const { isShowPassword } = useSelector((state) => state.register);
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   //   const { mutate, isLoading } = useLogin();

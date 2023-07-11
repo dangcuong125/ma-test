@@ -1,3 +1,5 @@
+import { OtpModalType } from "../login/interface";
+
 export interface IOtpForm {
     code1: string;
     code2: string;
@@ -8,4 +10,15 @@ export interface IOtpForm {
   };
   
 export type ValueNames = 'code1' | 'code2' | 'code3' | 'code4' | 'code5';
+
+export interface IOtpParamsSend {
+  phoneNumber: string;
+  type: OtpModalType;
+}
+
+export interface IOtpParamsVerify {
+  phoneNumber: string;
+  type: OtpModalType;
+  otp: string
+}
 

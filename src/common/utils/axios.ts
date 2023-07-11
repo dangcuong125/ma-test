@@ -5,12 +5,15 @@ import { store } from "../redux/store";
 import {
   BASE_URL_API,
   accessTokenExpiredStatusCode,
+  accessTokenNotValidCode,
   unAuthorizedStatusCode,
 } from "../constants/config.constant";
 import { HOST_API, MERCHANT_ID } from "../config";
 import { API_REFRESH_TOKEN } from "../constants/api.constants";
 import { resetToken, setAccessToken, setIsExpiredToken } from "@/app/[lang]/(auth)/login/reducers/auth.slice";
 import { getCookie } from "./getValueFromCookie";
+import { PATH_AUTH } from "../constants/path.constants";
+import { setPopupLogin } from "@/app/[lang]/(web)/layoutApp/components/header/header.slice";
 
 // ----------------------------------------------------------------------
 const currentLang = getCookie('NEXT_LOCALE');
@@ -45,9 +48,14 @@ axiosClient.interceptors.response.use(
     let isAccessTokenExpired =
       response?.data?.subCode === accessTokenExpiredStatusCode;
     let is401 = response?.status === unAuthorizedStatusCode;
+    let isAccessTokenInvalid = response?.data?.subCode === accessTokenNotValidCode;
 
     const { refreshToken, accessToken } = store?.getState().authLogin;
 
+    if (is401 && isAccessTokenInvalid) {
+      store.dispatch(setPopupLogin(true));
+      return Promise.reject(error?.response?.data);
+    }
     if (is401 && isAccessTokenExpired) {
       return new Promise(function (resolve, reject) {
         axiosClient2.defaults.headers.common.Authorization = accessToken;

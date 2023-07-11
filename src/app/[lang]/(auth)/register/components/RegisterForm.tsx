@@ -17,13 +17,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormRegister } from "../interface";
 import { useRouter } from "next/navigation";
 import { PATH_AUTH } from "@/common/constants/path.constants";
-import React from "react";
+import React, { useEffect } from "react";
 import { useCheckPhoneExisted } from "../hooks/useCheckPhoneExisted";
 // import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
+import { useSendOtp } from "../../common/hooks/useSendOtp";
 
 const RegisterForm = () => {
   const registerSchema = RegisterSchema();
@@ -40,25 +41,41 @@ const RegisterForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.login);
+  const { phoneNumber } = useSelector((state) => state.register);
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
-  const { mutate, isLoading } = useCheckPhoneExisted();
-
-  const onSubmit = (data: IFormRegister) => {
-    dispatch(setPhoneNumber(data?.phoneNumber))
-    dispatch(setOpenOtpModal({
-      isOpen: true,
-      type: OtpModalType.REGISTER
-    }));
-    // mutate(data, {
-    //   onError: (error: any) => {
-    //     // showErrorSnackbar(error?.message);
-    //   },
-    // });
-  };
-
   const isTyped = watch("phoneNumber");
+
+  const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber: isTyped});
+  const {mutate, isLoading} = useSendOtp();
+  const onSubmit = async (data: IFormRegister) => {
+    dispatch(setPhoneNumber(data?.phoneNumber));
+    try {
+      const result = await checkUserExisted();
+      if(result?.data?.isExisted) {
+        alert("phone number is existed")
+        return;
+      }
+      mutate({
+        phoneNumber: data?.phoneNumber,
+        type: OtpModalType.REGISTER
+      },
+        {
+          onSuccess: () => {
+            dispatch(setOpenOtpModal({
+              isOpen: true,
+              type: OtpModalType.REGISTER
+            }))
+          },
+          onError: (error) => {
+            alert(error)
+          }
+        }
+      )
+    } catch(error) {
+      console.log(error)
+    }
+  };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>

@@ -11,6 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { useGetNotiList } from "./hooks/useGetNotiList";
 import { LoadingButton } from "@mui/lab";
 import useTranslation from "next-translate/useTranslation";
+import { NotiSkeleton } from "./components/NotiSkeleton";
 
 // type Props = {
 //   listNoti: INotiItem[];
@@ -36,7 +37,7 @@ const NotiList = () => {
       fetchNextPageNotiList();
     }
   }, [inView]);
-  const isNotFound = !listNoti.length;
+  const isNotFound = !isLoadingNotiList && !listNoti.length;
   return (
     <Paper
       sx={{
@@ -48,6 +49,7 @@ const NotiList = () => {
       }}
     >
       <NotiHeader />
+      {isLoadingNotiList && <NotiSkeleton />}
       {isXs ? (
         <>
           {listNoti.map((item) => (

@@ -1,21 +1,25 @@
 "use client";
+import { useDispatch, useSelector } from "@/common/redux/store";
 import { Box, Grid, Stack } from "@mui/material";
 import { ReactNode } from "react";
-import { HeaderBar } from "./common/components/Header";
 import { FooterBar } from "../(web)/layoutApp/components/footer/Footer";
-import Slogan from "./common/components/Slogan";
-import { useDispatch, useSelector } from "@/common/redux/store";
+import { HeaderBar } from "./common/components/Header";
 import OtpModal from "./common/components/OtpModal";
+import Slogan from "./common/components/Slogan";
 import { setOpenOtpModal } from "./login/reducers/auth.slice";
 
 export default function LayoutAuth({ children }: { children: ReactNode }) {
-  const { openOtpModal } = useSelector(state => state.authLogin);
+  const { openOtpModal } = useSelector((state) => state.authLogin);
+
   const dispatch = useDispatch();
   const handleCloseModal = () => {
-    dispatch(setOpenOtpModal({
-      isOpen: false
-    }));
-  }
+    dispatch(
+      setOpenOtpModal({
+        isOpen: false,
+      })
+    );
+  };
+
   return (
     <Stack
       sx={{
@@ -30,19 +34,14 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
           width: "100%",
           minHeight: "95%",
           pt: "8%",
-          pb: '4%',
-          backgroundImage: 'url(/assets/auth_background.svg)',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat'
+          pb: "4%",
+          backgroundImage: "url(/assets/auth_background.svg)",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <Grid container spacing={2}>
-          <Grid
-            item
-            xs={12}
-            sm={5}
-            display={{ xs: "none", sm: "flex" }}
-          >
+          <Grid item xs={12} sm={5} display={{ xs: "none", sm: "flex" }}>
             <Slogan />
           </Grid>
           <Grid item xs={12} sm={7}>
@@ -51,11 +50,7 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
         </Grid>
       </Box>
       <FooterBar />
-      {
-        openOtpModal?.isOpen && (
-          <OtpModal count={120} onClose={handleCloseModal} />
-        )
-      }
+      {openOtpModal?.isOpen && <OtpModal onClose={handleCloseModal} />}
     </Stack>
   );
 }

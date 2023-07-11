@@ -13,3 +13,7 @@ export interface IFormHome {
     type: string;
   }[];
 }
+
+export interface IResHomeConfig {
+  sections: any;
+}

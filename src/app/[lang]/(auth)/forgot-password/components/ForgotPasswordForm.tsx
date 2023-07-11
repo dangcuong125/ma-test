@@ -25,6 +25,7 @@ import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
+import { useSendOtp } from "../../common/hooks/useSendOtp";
 
 const ForgotPasswordForm = () => {
   const registerSchema = RegisterSchema();
@@ -41,22 +42,39 @@ const ForgotPasswordForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.login);
+  const { phoneNumber } = useSelector((state) => state.register);
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
-  const { mutate, isLoading } = useCheckPhoneExisted();
+  const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber});
+  const {mutate, isLoading} = useSendOtp();
 
-  const onSubmit = (data: IFormRegister) => {
+  const onSubmit = async (data: IFormRegister) => {
     dispatch(setPhoneNumber(data?.phoneNumber))
-    dispatch(setOpenOtpModal({
-      isOpen: true,
-      type: OtpModalType.FORGOT_PASSWORD
-    }));
-    // mutate(data, {
-    //   onError: (error: any) => {
-    //     // showErrorSnackbar(error?.message);
-    //   },
-    // });
+    
+    try {
+      const result = await checkUserExisted();
+      if(result?.data?.isExisted) {
+        alert("phone number is existed")
+      }
+      mutate({
+        phoneNumber: data?.phoneNumber,
+        type: OtpModalType.FORGOT_PASSWORD
+      },
+        {
+          onSuccess: () => {
+            dispatch(setOpenOtpModal({
+              isOpen: true,
+              type: OtpModalType.FORGOT_PASSWORD
+            }))
+          },
+          onError: (error) => {
+            alert(error)
+          }
+        }
+      )
+    } catch(error) {
+      console.log(error)
+    }
   };
 
   const isTyped = watch("phoneNumber");
