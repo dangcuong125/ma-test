@@ -11,6 +11,7 @@ import { useGetAddressList } from "./hooks/useGetAddressList";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
+import { AddressSkeleton } from "./components/AddressSkeleton";
 
 export default function AddressList() {
   const isXs = useMediaQuery("(max-width:600px)");
@@ -30,7 +31,7 @@ export default function AddressList() {
 
   const listAddress =
     dataAddressList?.pages?.map((item) => item?.items).flat() || [];
-  const isNotFound = !listAddress.length;
+  const isNotFound = !isLoadingAddressList && !listAddress.length;
 
   useEffect(() => {
     if (inView && !isXs) {
@@ -50,6 +51,7 @@ export default function AddressList() {
       }}
     >
       <AddressHeader />
+      {isLoadingAddressList && <AddressSkeleton />}
       {isXs ? (
         <>
           <Stack spacing={4} px={"16px"}>
