@@ -5,7 +5,7 @@ import { getProductDetail } from '../services';
 
 export function useGetDetailProd(id:number) {
   const { data: data_ProductDetail, isLoading, refetch, isRefetching } = useQuery(
-    [QUERY_KEYS.CATE_DETAIL],
+    [QUERY_KEYS.CATE_DETAIL, id],
    () => getProductDetail(id)
   );
 

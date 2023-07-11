@@ -15,4 +15,5 @@ export const API_CUSTOMER_VERIFY_OTP = "/customer/otp/verify";
 export const API_USER_LOGOUT = "/customer/auth/logout";
 export const API_CUSTOMER_CART = "/customer/cart";
 export const API_HOME_CONFIG = "/customer/home-config";
+export const API_CUSTOMER_PRODUCT = "/customer/product";
 export const API_RESET_PASSWORD = "/customer/auth/reset-password";
