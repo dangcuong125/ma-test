@@ -32,5 +32,5 @@ export const getAddressById = (id: number) => {
 };
 
 export const editAddress = (data: IDataEditAddress) => {
-  return axiosClient.put(API_PROVINCE_CUSTOMER, data);
+  return axiosClient.put(API_ADDRESS, data);
 };
