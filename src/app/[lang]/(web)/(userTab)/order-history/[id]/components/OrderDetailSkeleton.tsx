@@ -41,8 +41,8 @@ export const OrderDetailSkeleton = () => {
         />
         {Array(5)
           .fill(5)
-          .map((_) => (
-            <Stack direction="row" marginBottom={1}>
+          .map((index) => (
+            <Stack direction="row" marginBottom={1} key={index}>
               <Box sx={{ width: "40%" }}>
                 <Skeleton variant="text" width="40%" animation="wave" />
               </Box>
