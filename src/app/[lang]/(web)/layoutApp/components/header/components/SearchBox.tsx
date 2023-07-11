@@ -2,7 +2,6 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
 import {
   InputAdornment,
   IconButton,
@@ -11,7 +10,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { MOCK_DATA_SEARCH } from "../../../constants";
 import ATypographyEllipsis from "@/common/components/customComponent/ATyporgraphyEllipsis";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
 import Image from "@/common/components/Image";
@@ -20,13 +18,11 @@ import { PATH_HOME } from "@/common/constants/path.constants";
 import useSearchProd from "../hooks/useSearchProd";
 import useDebounce from "../hooks/useDebounce";
 import { dispatch, useSelector } from "@/common/redux/store";
-import { setSearchText } from "../../../search.slice";
+import { setSearchText, setValueSearch } from "../../../search.slice";
 
 export default function SearchBox() {
   const route = useRouter();
-  const { searchText } = useSelector((state) => state.search);
-  const [value, setValue] = React.useState("");
-
+  const { searchText, valueSearch } = useSelector((state) => state.search);
   const debouncedSearchText = useDebounce<string>(searchText, 500);
   const searchParams: {
     page: number;
@@ -37,12 +33,11 @@ export default function SearchBox() {
     limit: 20,
   };
   if (debouncedSearchText?.length > 2) {
-
     searchParams.searchText = debouncedSearchText;
-    
   }
 
-  const {data, fetchNextPage, isFetchingNextPage, isLoading} = useSearchProd(searchParams)
+  const { data, fetchNextPage, isFetchingNextPage, isLoading } =
+    useSearchProd(searchParams);
 
   const handleScroll = (event: any) => {
     const listBoxNode = event?.currentTarget;
@@ -52,13 +47,14 @@ export default function SearchBox() {
     }
   };
   React.useEffect(() => {
-    console.log(data?.pages?.map((item) => item?.items).flat())
+    console.log(data?.pages?.map((item) => item?.items).flat());
   }, [data]);
   const options = data?.pages?.map((item) => item?.items).flat() || [];
   return (
     <Autocomplete
-    value={value}
+      value={valueSearch}
       options={options}
+      getOptionLabel={(option) => option?.productDetails?.[0]?.name || ""}
       sx={{
         width: "100%",
         "& .MuiAutocomplete-popper": {
@@ -72,8 +68,8 @@ export default function SearchBox() {
         //   display: 'none', // Hide the popup icon
         // },
       }}
-      onChange={(event,newInputValue) =>{
-        setValue(newInputValue?.productDetails[0]?.name)
+      onChange={(event, newInputValue) => {
+        dispatch(setValueSearch(newInputValue?.productDetails[0]?.name));
       }}
       inputValue={searchText}
       onInputChange={(event, newInputValue) => {
@@ -133,7 +129,6 @@ export default function SearchBox() {
         />
       )}
       renderOption={(props, options) => {
-        console.log(options)
         return (
           <li {...props} style={{ width: "100%" }}>
             <Stack
@@ -148,7 +143,7 @@ export default function SearchBox() {
               //     background: "#FFF9DE",
               //   },
               // }}
-            >   
+            >
               <Avatar
                 src={options?.thumbnail?.url}
                 alt=""
@@ -164,7 +159,7 @@ export default function SearchBox() {
                 overflow="hidden"
                 // spacing={2}
               >
-                <Stack spacing={1} width={{md: '70%', xs: '100%'}}>
+                <Stack spacing={1} width={{ md: "70%", xs: "100%" }}>
                   <ATypographyEllipsis
                     fontWeight={600}
                     fontSize={"18px"}
@@ -200,8 +195,8 @@ export default function SearchBox() {
                 <IconButton
                   sx={{
                     display: {
-                      xs: 'none',
-                      md: 'flex',
+                      xs: "none",
+                      md: "flex",
                     },
                     background:
                       "linear-gradient(90deg, #66BA7A , #00A55D, #1F8A70)",
