@@ -12,11 +12,25 @@ import { useRouter } from "next/navigation";
 import { IProductItems } from "../../interfaces";
 import { PATH_HOME } from "@/common/constants/path.constants";
 import { useGetListCategory } from "../../hooks/useGetAllCategory";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { pageCategorySelector, setPageNumber } from "../../category.slice";
 
 export default function ListAllCategoryProduct() {
   const route = useRouter();
+  const dispatch = useDispatch();
+  const pageNumber = useSelector(pageCategorySelector);
 
-  const { dataListCategory } = useGetListCategory();
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    dispatch(setPageNumber(value));
+  };
+
+  const searchParams = {
+    page: pageNumber,
+    limit: 20,
+  };
+
+  const { dataListCategory } = useGetListCategory(searchParams);
 
   const data_CATEGORY = dataListCategory?.items || [];
 
@@ -45,7 +59,7 @@ export default function ListAllCategoryProduct() {
           width={"100%"}
         >
           {data_CATEGORY?.map((itemProd: any, index: number) => (
-            <Grid item xs={6} sm={4} key={index}>
+            <Grid item xs={6} sm={4} md={3} key={index}>
               <ProductItemDefault
                 title={itemProd?.productDetails[0]?.name}
                 srcImg={itemProd?.thumbnail?.url}
@@ -59,6 +73,8 @@ export default function ListAllCategoryProduct() {
           ))}
           <Pagination
             count={dataListCategory?.meta?.totalPages}
+            page={pageNumber}
+            onChange={handleChange}
             sx={{
               display: "flex",
               justifyContent: "center",
