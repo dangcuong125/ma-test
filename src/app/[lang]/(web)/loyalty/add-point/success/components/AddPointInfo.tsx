@@ -2,12 +2,14 @@
 
 import Iconify from "@/common/components/Iconify";
 import Image from "@/common/components/Image";
+import { useSelector } from "@/common/redux/store";
 import { Box, Button, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const AddPointInfo = () => {
   const router = useRouter();
+  const {data} = useSelector(state => state.addPointSuccess);
   return (
     <Box
       sx={{
@@ -26,12 +28,12 @@ const AddPointInfo = () => {
       </Typography>
 
       <Typography variant="h6" mt={2}>
-        Bạn đã tích thành công <span style={{ color: "#1F8A70" }}>100 xu</span>!
+        Bạn đã tích thành công <span style={{ color: "#1F8A70" }}>{data?.addPoint} xu</span>!
       </Typography>
 
       <Typography variant="body1">
-        Bạn còn <span style={{ color: "#1F8A70" }}>50 xu</span> để thăng hạn{" "}
-        <span style={{ color: "#1F8A70" }}>Gold</span>
+        Bạn còn <span style={{ color: "#1F8A70" }}>{data?.lackRankPoint} xu</span> để thăng hạn{" "}
+        <span style={{ color: "#1F8A70" }}>{data?.nextTierCode}</span>
       </Typography>
 
       <Image
@@ -80,7 +82,7 @@ const AddPointInfo = () => {
             position: "absolute",
             zIndex: 1,
             backgroundColor: "#1F8A70",
-            width: "40%",
+            width: `${data?.percent}%`,
             height: "1vh",
             borderRadius: "24px",
           }}
