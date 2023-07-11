@@ -1,4 +1,7 @@
+import axiosClient from "@/common/utils/axios";
 import { MOCK_DATA } from "./constants";
+import { API_ADDRESS, API_CUSTOMER_PRODUCT } from "@/common/constants/api.constants";
+import { IParamsListProduct, IResProductList } from "./interfaces";
 
 export async function getListCategory(categoryId: number) {
   const res = await fetch(
@@ -20,6 +23,6 @@ export async function getProjects(categoryId: number) {
   return projects;
 }
 
-export const getAllCategory=() => {
-    return MOCK_DATA;
+export const getAllCategory=(params?: IParamsListProduct) => {
+    return axiosClient.get<unknown, IResProductList>(API_CUSTOMER_PRODUCT, {params});
 }
