@@ -16,6 +16,7 @@ import { PATH_HOME } from "@/common/constants/path.constants";
 
 export const HeaderBar = () => {
   const route = useRouter();
+
   return (
     <Stack
       direction={"row"}

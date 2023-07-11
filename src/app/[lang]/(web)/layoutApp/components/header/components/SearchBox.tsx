@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -16,13 +17,48 @@ import { formatNumberToCurrency } from "@/common/utils/common.utils";
 import Image from "@/common/components/Image";
 import { useRouter } from "next/navigation";
 import { PATH_HOME } from "@/common/constants/path.constants";
+import useSearchProd from "../hooks/useSearchProd";
+import useDebounce from "../hooks/useDebounce";
+import { dispatch, useSelector } from "@/common/redux/store";
+import { setSearchText } from "../../../search.slice";
 
 export default function SearchBox() {
   const route = useRouter();
+  const { searchText } = useSelector((state) => state.search);
+  const [value, setValue] = React.useState("");
+
+  const debouncedSearchText = useDebounce<string>(searchText, 500);
+  const searchParams: {
+    page: number;
+    limit: number;
+    searchText?: string;
+  } = {
+    page: 1,
+    limit: 20,
+  };
+  if (debouncedSearchText?.length > 2) {
+
+    searchParams.searchText = debouncedSearchText;
+    
+  }
+
+  const {data, fetchNextPage, isFetchingNextPage, isLoading} = useSearchProd(searchParams)
+
+  const handleScroll = (event: any) => {
+    const listBoxNode = event?.currentTarget;
+    const position = listBoxNode?.scrollTop + listBoxNode?.clientHeight;
+    if (listBoxNode.scrollHeight - position <= 1) {
+      fetchNextPage();
+    }
+  };
+  React.useEffect(() => {
+    console.log(data?.pages?.map((item) => item?.items).flat())
+  }, [data]);
+  const options = data?.pages?.map((item) => item?.items).flat() || [];
   return (
     <Autocomplete
-      disablePortal
-      options={MOCK_DATA_SEARCH}
+    value={value}
+      options={options}
       sx={{
         width: "100%",
         "& .MuiAutocomplete-popper": {
@@ -36,6 +72,14 @@ export default function SearchBox() {
         //   display: 'none', // Hide the popup icon
         // },
       }}
+      onChange={(event,newInputValue) =>{
+        setValue(newInputValue?.productDetails[0]?.name)
+      }}
+      inputValue={searchText}
+      onInputChange={(event, newInputValue) => {
+        dispatch(setSearchText(newInputValue));
+      }}
+      loading={isLoading}
       popupIcon={
         <IconButton sx={{ p: 0 }}>
           <Box
@@ -89,6 +133,7 @@ export default function SearchBox() {
         />
       )}
       renderOption={(props, options) => {
+        console.log(options)
         return (
           <li {...props} style={{ width: "100%" }}>
             <Stack
@@ -103,9 +148,9 @@ export default function SearchBox() {
               //     background: "#FFF9DE",
               //   },
               // }}
-            >
+            >   
               <Avatar
-                src={options?.img}
+                src={options?.thumbnail?.url}
                 alt=""
                 sx={{
                   borderRadius: "12px",
@@ -125,7 +170,7 @@ export default function SearchBox() {
                     fontSize={"18px"}
                     lineHeight={"24px"}
                   >
-                    {options?.label}
+                    {options?.productDetails[0]?.name}
                   </ATypographyEllipsis>
                   <Box
                     sx={{
@@ -148,7 +193,7 @@ export default function SearchBox() {
                   >
                     Giá trị:{" "}
                     <ATypographyEllipsis color={"#212B36"}>
-                      {formatNumberToCurrency(options?.price)}
+                      {formatNumberToCurrency(options?.price?.normalPrice)}
                     </ATypographyEllipsis>
                   </Box>
                 </Stack>
@@ -178,6 +223,9 @@ export default function SearchBox() {
             </Stack>
           </li>
         );
+      }}
+      ListboxProps={{
+        onScroll: handleScroll,
       }}
     />
   );

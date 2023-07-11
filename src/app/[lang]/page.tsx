@@ -4,6 +4,7 @@ import { LangSwitcher } from "@/common/components/LangSwitcher";
 import { TLink } from "@/common/components/TLink";
 import HomeApp from "./(web)/home";
 import LayoutApp from "./(web)/layoutApp";
+import { useSelector } from "@/common/redux/store";
 
 const META_OBJECT = {
   title: {
@@ -26,7 +27,6 @@ export const generateMetadata = ({
     description: META_OBJECT.description[lang],
   };
 };
-
 export default function Home() {
   const { t } = useTranslation();
   return (
