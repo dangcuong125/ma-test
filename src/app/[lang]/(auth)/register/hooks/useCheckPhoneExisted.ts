@@ -1,7 +1,14 @@
-import { useMutation } from "react-query";
+import {useQuery} from 'react-query';
+import {IPhoneExisted} from '../interface';
+import {checkPhoneExisted} from '../service';
+import { QUERY_KEYS } from '@/common/constants/queryKeys.constant';
 
-export const useCheckPhoneExisted = () => {
-  const { isLoading, mutate } = useMutation('asd');
+export const useCheckPhoneExisted = (params: IPhoneExisted) => {
+  const { data: isPhoneExisted, refetch} = useQuery(
+    [QUERY_KEYS.CHECK_PHONE_EXISTED],
+    () => checkPhoneExisted(params),
+    {enabled: false},
+  );
 
-  return { mutate, isLoading };
+  return { isPhoneExisted, refetch}
 };
