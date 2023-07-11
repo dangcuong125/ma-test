@@ -51,7 +51,9 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
           mt={{ xs: "0", md: "80px" }}
           alignSelf={"flex-start"}
           sx={{
-            padding: { xs: "0 !important", md: "16px" },
+            padding: "0 !important",
+            pl: { md: "16px !important" },
+            pt: { md: "16px !important" },
           }}
         >
           {children}
