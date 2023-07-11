@@ -13,3 +13,4 @@ export const API_CUSTOMER_OTP_SEND = '/customer/otp/send';
 export const API_CUSTOMER_REGISTER = '/customer/auth/register';
 export const API_CUSTOMER_VERIFY_OTP = '/customer/otp/verify';
 export const API_USER_LOGOUT = "/customer/auth/logout";
+export const API_HOME_CONFIG = '/customer/home-config';
