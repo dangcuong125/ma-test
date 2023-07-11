@@ -55,6 +55,8 @@
     "default": "Mặc định",
     "createSuccess": "Thêm địa chỉ mới thành công",
     "createError": "Thêm địa chỉ mới thất bại",
+    "updateSuccess": "Cập nhật địa chỉ thành công",
+    "updateError": "Cập nhật địa chỉ thất bại",
     "form": {
       "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",

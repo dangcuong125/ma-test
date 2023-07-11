@@ -54,3 +54,13 @@ export type ISelectedLang = {
   payload: LangObj;
   type: string;
 };
+
+export enum MessageType {
+  ERROR = "error",
+  SUCCESS = "success",
+}
+
+export interface IShowMessage {
+  type: MessageType;
+  message: string;
+}

@@ -55,6 +55,8 @@
     "default": "Default",
     "createSuccess": "Create address successfully",
     "createError": "Create address failed",
+    "updateSuccess": "Update address successfully",
+    "updateError": "Update address failed",
     "form": {
       "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
