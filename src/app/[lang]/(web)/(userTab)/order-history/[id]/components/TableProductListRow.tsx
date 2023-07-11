@@ -58,7 +58,9 @@ export default function TableProductListRow({ row }: Props) {
       </TableCell>
       <TableCell align="center">{fFormatCoin(row?.point)} xu</TableCell>
       <TableCell align="center">{row?.quantity}</TableCell>
-      <TableCell align="right">{fFormatCoin(row?.total)} xu</TableCell>
+      <TableCell align="right">
+        {fFormatCoin(row?.point * row?.quantity)} xu
+      </TableCell>
     </TableRow>
   );
 }
