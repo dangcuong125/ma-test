@@ -12,21 +12,21 @@ export default function HomeApp() {
 
   return (
     <Stack minHeight={"100%"} minWidth={"100%"} spacing={"100px"}>
-      {dataHomeConfig?.bannerData?.map((data, index) => (
+
+      {dataHomeConfig?.bannerData?.map((data: any, index: number) => (
         <Banner key={index} dataMenu={data} />
       ))}
 
-      {dataHomeConfig?.normalServiceData?.map((data, index) => (
+      {dataHomeConfig?.normalServiceData?.map((data: any, index: number) => (
         <MenuCategory key={index} dataMenu={data} />
       ))}
 
-      {dataHomeConfig?.horizontalProductData1?.map((data, index) => (
+      {dataHomeConfig?.horizontalProductData1?.map((data: any, index: number) => (
         <PopularProduct key={index} dataMenu={data} />
       ))}
-      {dataHomeConfig?.horizontalProductData1?.map((data, index) => (
+      {dataHomeConfig?.horizontalProductData1?.map((data: any, index: number) => (
         <ComboPopular key={index} dataMenu={data} />
       ))}
-      {/* <ComboPopular /> */}
     </Stack>
   );
 }
