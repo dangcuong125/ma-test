@@ -24,7 +24,6 @@ import { IOtpForm, ValueNames } from "../interface";
 import { VerifyCodeSchema } from "../schema";
 import { useDispatch, useSelector } from "../../../../../common/redux/store";
 import { useVerifyOtp } from "../hooks/useVerifyOtp";
-// import useShowSnackbar from '../../../../common/hooks/useMessage';
 import { setOtpValue } from "../../register/slice";
 import useTranslation from "next-translate/useTranslation";
 import Iconify from "@/common/components/Iconify";
@@ -32,6 +31,7 @@ import { PATH_AUTH } from "@/common/constants/path.constants";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
 import { useSendOtp } from "../hooks/useSendOtp";
+import useShowSnackbar from "@/common/hooks/useShowSnackbar";
 
 // ----------------------------------------------------------------------
 type FormProps = {
@@ -81,7 +81,7 @@ const OtpModal = ({ onClose }: FormProps) => {
   const values = watch();
   const { mutate, isLoading } = useVerifyOtp();
   const { mutate: resendOtp } = useSendOtp();
-  // const { showErrorSnackbar } = useShowSnackbar();
+  const { showErrorSnackbar } = useShowSnackbar();
   useEffect(() => {
     const target = document.querySelector("input.field-code");
 
@@ -161,10 +161,11 @@ const OtpModal = ({ onClose }: FormProps) => {
       {
         phoneNumber,
         type: openOtpModal?.type as OtpModalType,
+        deviceId: new Date().toISOString()
       },
       {
         onError: (error: any) => {
-          // showErrorSnackbar(error?.message);
+          showErrorSnackbar(error?.message);
         },
       }
     );
@@ -177,19 +178,19 @@ const OtpModal = ({ onClose }: FormProps) => {
         otp: otpValue,
         type: openOtpModal.type as OtpModalType,
       };
-      dispatch(
-        setOpenOtpModal({
-          isOpen: false,
-        })
-      );
       mutate(dataSubmit, {
         onSuccess: () => {
           dispatch(setOtpValue(otpValue));
           if (openOtpModal.type === OtpModalType.REGISTER) {
             router.push(PATH_AUTH.create_information);
-          } else if (openOtpModal.type === OtpModalType.FORGOT_PASSWORD) {
+          } else if (openOtpModal.type === OtpModalType.RESET_PASSWORD) {
             router.push(PATH_AUTH.reset_password);
           }
+          dispatch(
+            setOpenOtpModal({
+              isOpen: false,
+            })
+          );
         },
         onError: (error: any) => {
           // showErrorSnackbar(error?.message);

@@ -19,6 +19,7 @@ import { ProductInfo } from "./ProductInfo";
 import { PaymentInfo } from "./PaymentInfo";
 import { useRouter } from "next/navigation";
 import { useGetDetailOrder } from "../../hooks/useGetDetailOrder";
+import { OrderDetailSkeleton } from "./OrderDetailSkeleton";
 
 type Props = {
   orderId: string;
@@ -27,7 +28,13 @@ type Props = {
 const OrderHistoryDetailContainer = ({ orderId }: Props) => {
   const router = useRouter();
 
-  const { orderDetail, isLoading } = useGetDetailOrder(parseInt(orderId));
+  const { orderDetail, isLoading, isError } = useGetDetailOrder(
+    parseInt(orderId)
+  );
+
+  if (isLoading || isError) {
+    return <OrderDetailSkeleton />;
+  }
 
   return (
     <>

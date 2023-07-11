@@ -19,7 +19,7 @@ import { useEffect } from "react";
 import { dispatch, useSelector } from "@/common/redux/store";
 import { useGetCheckoutCart } from "../hooks/useGetcheckoutCart";
 import { STEPS } from "../constant";
-import { setCart } from "../order.slice";
+import { onGotoStep, setCart } from "../order.slice";
 import QontoStepIcon from "./QontoStepIcon";
 import CheckoutCart from "./checkoutCart/CheckoutCart";
 import CheckoutAddress from "./checkout-address/CheckoutAddress";
@@ -37,6 +37,10 @@ export default function CheckOutContainer() {
       dispatch(setCart(dataCart));
     }
   }, [dataCart]);
+
+  // useEffect(() => {
+  //   dispatch(onGotoStep(0));
+  // }, []);
 
   return (
     <>
@@ -81,7 +85,9 @@ export default function CheckOutContainer() {
         </Grid>
         {!isComplete && (
           <>
-            {activeStep === 0 && <CheckoutCart data={dataCart || []} />}
+            {activeStep === 0 && (
+              <CheckoutCart data={dataCart || []} isLoading={isLoading} />
+            )}
             {activeStep === 1 && <CheckoutAddress />}
             {activeStep === 2 && <CheckoutPayment />}
           </>

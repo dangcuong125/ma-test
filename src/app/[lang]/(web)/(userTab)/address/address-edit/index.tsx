@@ -33,6 +33,7 @@ import { useGetAddressById } from "./hooks/useGetAddressById";
 import { reset } from "numeral";
 import { useGetProvinceList } from "../address-common/hooks/useGetProvinceList";
 import { useEditAddress } from "./hooks/useEditAddress";
+import useMessage from "@/common/hooks/useMessage";
 
 export default function AddressEdit() {
   const methods = useForm<ISubmitData>({
@@ -52,6 +53,7 @@ export default function AddressEdit() {
   const isOpen = useSelector(isOpenEditForm);
   const idEdit = useSelector(idEditForm);
   const provinceParams = useSelector(provinceParamsForm);
+  const { showSuccessSnackbar, showErrorSnackbar } = useMessage();
 
   const searchParamsProvince: IParamsProvinceList = {
     type: provinceParams.type,
@@ -94,10 +96,10 @@ export default function AddressEdit() {
   const { mutateEditAddress } = useEditAddress({
     onSuccess: () => {
       dispatch(setIsOpenEditForm(false));
-      // enqueueSnackbar(t('address.createSuccess'));
+      showSuccessSnackbar(t("address.updateSuccess"));
     },
     onError: () => {
-      // enqueueSnackbar(t('address.createError'));
+      showErrorSnackbar(t("address.updateError"));
     },
   });
 

@@ -9,9 +9,9 @@ export const RegisterSchema = () => {
       .required(t("form.field_required")),
     password: yup
       .string()
-      .required('Vui lòng nhập mật khẩu có từ 10 ký tự bao gồm chữ thường, chữ hoa và số')
+      .required('Vui lòng nhập mật khẩu có từ 10 ký tự bao gồm chữ và số')
       .matches(
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{10,50}$/gm,
+          /^(?=.*\d)(?=.*[a-z])(?=\S+$).{10,50}$/gm,
         'Mật khẩu phải trong khoảng 10 đến 50 kí tự, bao gồm ít nhất 1 chữ và 1 số',
       ),
     confirmPassword: yup

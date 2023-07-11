@@ -14,10 +14,14 @@ import SearchBox from "./components/SearchBox";
 import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 import { useSelector } from "@/common/redux/store";
 import UserWithLogin from "./components/UserWithLogin";
+import { useGetCart } from "@/common/hooks/useGetCart";
 
 export const HeaderBar = () => {
   const { accessToken } = useSelector((state) => state.authLogin);
   const route = useRouter();
+
+  const { data, isLoading } = useGetCart();
+
   return (
     <Stack
       direction={"row"}
@@ -90,13 +94,31 @@ export const HeaderBar = () => {
             color: "#666666",
           }}
           startIcon={
-            <Box
-              sx={{
-                backgroundImage: "url(/assets/icons/core/shopping-cart.svg)",
-                width: "24px",
-                height: "24px",
-              }}
-            />
+            <Box sx={{ position: "relative" }}>
+              <Box
+                sx={{
+                  backgroundImage: "url(/assets/icons/core/shopping-cart.svg)",
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+              <Stack
+                sx={{
+                  background: "red",
+                  position: "absolute",
+                  borderRadius: "50%",
+                  width: "22px",
+                  textAlign: "center",
+                  color: "#FFFFFF",
+                  padding: "1px",
+                  fontSize: "12px",
+                  top: -8,
+                  right: -10,
+                }}
+              >
+                <span>{data?.length || 0}</span>
+              </Stack>
+            </Box>
           }
           onClick={() => route.push(PATH_HOME.checkout)}
         >

@@ -18,6 +18,7 @@ import { useGetListUserAddress } from "../../hooks/useGetListUserAddress";
 import AddNewAddressModal from "./AddNewAddressModal";
 import EmptyCart from "../EmptyCart";
 import { useEffect } from "react";
+import { CheckoutAddressSkeleton } from "./CheckoutAddressSkeleton";
 
 export default function CheckoutAddress() {
   const { subtotal, total, discount, cart, selectedAddress } = useSelector(
@@ -28,6 +29,7 @@ export default function CheckoutAddress() {
     data: dataAddress,
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
+    isError,
   } = useGetListUserAddress();
 
   const userAddress = dataAddress?.items || [];
@@ -65,17 +67,20 @@ export default function CheckoutAddress() {
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
           <RadioGroup name="addressCurrentId">
-            {userAddress.map((address, index) => (
-              <AddressItem key={index} address={address} />
-            ))}
+            {(isLoadingDataAddress || isError) && <CheckoutAddressSkeleton />}
+            {!isLoadingDataAddress &&
+              userAddress.map((address, index) => (
+                <AddressItem key={index} address={address} />
+              ))}
 
-            {userAddress?.length === 0 && (
-              <EmptyCart
-                title="Bạn chưa có địa chỉ nào!"
-                description=""
-                img="/assets/empty-address.svg"
-              />
-            )}
+            {!(isLoadingDataAddress || isError) &&
+              userAddress?.length === 0 && (
+                <EmptyCart
+                  title="Bạn chưa có địa chỉ nào!"
+                  description=""
+                  img="/assets/empty-address.svg"
+                />
+              )}
           </RadioGroup>
 
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
