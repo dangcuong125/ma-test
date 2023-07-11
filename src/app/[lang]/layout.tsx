@@ -6,6 +6,7 @@ import "src/common/styles/css/global.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/bundle";
+import NotistackProvider from "@/common/components/NotistackProvider";
 
 export default function RootLayout({
   children,
@@ -21,7 +22,7 @@ export default function RootLayout({
           <AppThemeProvider>
             <ReduxProviders>
               <Providers>
-                {children}
+                <NotistackProvider>{children}</NotistackProvider>
               </Providers>
             </ReduxProviders>
           </AppThemeProvider>
