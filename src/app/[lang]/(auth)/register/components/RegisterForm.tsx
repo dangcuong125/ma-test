@@ -46,7 +46,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const isTyped = watch("phoneNumber");
 
-  const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber});
+  const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber: isTyped});
   const {mutate, isLoading} = useSendOtp();
   const onSubmit = async (data: IFormRegister) => {
     dispatch(setPhoneNumber(data?.phoneNumber));
@@ -54,6 +54,7 @@ const RegisterForm = () => {
       const result = await checkUserExisted();
       if(result?.data?.isExisted) {
         alert("phone number is existed")
+        return;
       }
       mutate({
         phoneNumber: data?.phoneNumber,
