@@ -1,30 +1,20 @@
 "use client";
-import { FormProvider, RHFTextField } from "@/common/components/hook-form";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  IconButton,
-  InputAdornment,
-  Stack,
-  Typography,
-} from "@mui/material";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "@/common/redux/store";
-import { setPhoneNumber } from "../slice";
-import { RegisterSchema } from "../schema";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { IFormRegister } from "../interface";
-import { useRouter } from "next/navigation";
-import { PATH_AUTH } from "@/common/constants/path.constants";
-import React, { useEffect } from "react";
-import { useCheckPhoneExisted } from "../hooks/useCheckPhoneExisted";
-// import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
+import { FormProvider, RHFTextField } from "@/common/components/hook-form";
+import useShowSnackbar from "@/common/hooks/useShowSnackbar";
+import { useDispatch, useSelector } from "@/common/redux/store";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { setOpenOtpModal } from "../../login/reducers/auth.slice";
-import { OtpModalType } from "../../login/interface";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { useSendOtp } from "../../common/hooks/useSendOtp";
+import { OtpModalType } from "../../login/interface";
+import { setOpenOtpModal } from "../../login/reducers/auth.slice";
+import { useCheckPhoneExisted } from "../hooks/useCheckPhoneExisted";
+import { IFormRegister } from "../interface";
+import { RegisterSchema } from "../schema";
+import { setPhoneNumber } from "../slice";
 
 const RegisterForm = () => {
   const registerSchema = RegisterSchema();
@@ -39,41 +29,45 @@ const RegisterForm = () => {
     watch,
     formState: { isSubmitting },
   } = methods;
-  const router = useRouter();
-  //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { phoneNumber } = useSelector((state) => state.register);
+  const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
   const isTyped = watch("phoneNumber");
 
-  const { refetch: checkUserExisted } = useCheckPhoneExisted({phoneNumber: isTyped});
-  const {mutate, isLoading} = useSendOtp();
+  const { refetch: checkUserExisted } = useCheckPhoneExisted({
+    phoneNumber: isTyped,
+  });
+  const { mutate, isLoading } = useSendOtp();
   const onSubmit = async (data: IFormRegister) => {
     dispatch(setPhoneNumber(data?.phoneNumber));
     try {
       const result = await checkUserExisted();
-      if(result?.data?.isExisted) {
-        alert("phone number is existed")
+      if (result?.data?.isExisted) {
+        showErrorSnackbar(t('phone_number_existed'))
         return;
       }
-      mutate({
-        phoneNumber: data?.phoneNumber,
-        type: OtpModalType.REGISTER
-      },
+      mutate(
+        {
+          phoneNumber: data?.phoneNumber,
+          type: OtpModalType.REGISTER,
+          deviceId: new Date().toISOString()
+        },
         {
           onSuccess: () => {
-            dispatch(setOpenOtpModal({
-              isOpen: true,
-              type: OtpModalType.REGISTER
-            }))
+            dispatch(
+              setOpenOtpModal({
+                isOpen: true,
+                type: OtpModalType.REGISTER,
+              })
+            );
           },
           onError: (error) => {
-            alert(error)
-          }
+            alert(error);
+          },
         }
-      )
-    } catch(error) {
-      console.log(error)
+      );
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -109,12 +103,11 @@ const RegisterForm = () => {
             )
           }
         >
-          {t('common:continue')}
+          {t("common:continue")}
         </Button>
       </Stack>
     </FormProvider>
   );
-}
+};
 
 export default RegisterForm;
-

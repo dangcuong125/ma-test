@@ -14,6 +14,7 @@ export type ValueNames = 'code1' | 'code2' | 'code3' | 'code4' | 'code5';
 export interface IOtpParamsSend {
   phoneNumber: string;
   type: OtpModalType;
+  deviceId: string;
 }
 
 export interface IOtpParamsVerify {
