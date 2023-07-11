@@ -137,7 +137,7 @@ export default function AddressEdit() {
           id: dataAddressById.ward.id,
           name: dataAddressById.ward.name,
         },
-        address: `${dataAddressById.address1} ${dataAddressById.address2}`,
+        address: dataAddressById.address1,
         isDefault: dataAddressById.isDefault,
       });
     }
