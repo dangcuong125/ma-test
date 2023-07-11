@@ -56,8 +56,8 @@ export type ISelectedLang = {
 };
 
 export enum MessageType {
-  ERROR = 'error',
-  SUCCESS = 'success',
+  ERROR = "error",
+  SUCCESS = "success",
 }
 
 export interface IShowMessage {
