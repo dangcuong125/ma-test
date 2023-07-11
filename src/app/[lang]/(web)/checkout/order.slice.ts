@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICartItem, IOrderState, ISelectedAddressCart } from "./interface";
 
 const initialState: IOrderState = {
-  activeStep: 1,
+  activeStep: 0,
   billing: null,
   cart: [],
   discount: 0,

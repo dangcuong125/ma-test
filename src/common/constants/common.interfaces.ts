@@ -126,3 +126,13 @@ export interface IProductDetail {
   shortDescription: string;
   slug: string;
 }
+
+export interface ICartDataSubmit {
+  productVariantList: ITypeCartItem[];
+  productId: number;
+}
+
+export interface ITypeCartItem {
+  productVariantId: number;
+  quantity: number;
+}
