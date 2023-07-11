@@ -3,6 +3,7 @@ import { IHeaderState } from "./header.interface";
 
 const initialState: IHeaderState = {
   isOpenUserMenu: false,
+  isOpenPopupLogin: false,
 };
 
 const headerSlice = createSlice({
@@ -15,9 +16,13 @@ const headerSlice = createSlice({
     resetHeaderState: (state) => {
       state.isOpenUserMenu = initialState.isOpenUserMenu;
     },
+    setPopupLogin: (state, action: PayloadAction<boolean>) => {
+      state.isOpenPopupLogin = action.payload;
+    },
   },
 });
 
-export const { resetHeaderState, setOpenUserMenu } = headerSlice.actions;
+export const { resetHeaderState, setOpenUserMenu, setPopupLogin } =
+  headerSlice.actions;
 
 export default headerSlice.reducer;
