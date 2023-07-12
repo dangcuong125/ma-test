@@ -28,6 +28,7 @@ import { STATUS } from "../../../category/constants";
 import { ItemDelivery } from "./components/ItemDelivery";
 import { useParams } from "next/navigation";
 import useTranslation from "next-translate/useTranslation";
+import { formatNumberToCurrency } from "@/common/utils/common.utils";
 
 const RootStyle = styled("div")(({ theme }) => ({
   "& .slick-slide": {
@@ -42,18 +43,16 @@ const ArrowStyle = styled(IconButton)(({ theme }) => ({
   "&:hover": { opacity: 1 },
 }));
 
-
 type Props = {
   dataItem: any;
-}
+};
 
 export const VariantProduct = (props: Props) => {
-  const {dataItem} = props;
+  const { dataItem } = props;
   const params = useParams();
 
-
   const theme = useTheme();
-const {t} =useTranslation("common")
+  const { t } = useTranslation("common");
   const isRTL = theme.direction === "rtl";
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -138,85 +137,97 @@ const {t} =useTranslation("common")
             >
               <Slider {...settings1} asNavFor={nav2} ref={slider1}>
                 {/* {dataItem?.thumbnail?.map((img:any) => ( */}
-                  <Image
-                    // key={dataItem?.thumbnail?.id}
-                    alt="large image"
-                    src={dataItem?.thumbnail?.url}
-                    ratio="1/1"
-                    sx={{ cursor: "zoom-in" }}
-                  />
+                <Image
+                  // key={dataItem?.thumbnail?.id}
+                  alt="large image"
+                  src={dataItem?.thumbnail?.url}
+                  ratio="1/1"
+                  sx={{ cursor: "zoom-in" }}
+                />
                 {/* ))} */}
               </Slider>
             </Box>
           </Box>
           <Stack display={"flex"} direction={"row"}>
-          <ArrowStyle sx={{position:"relative",
-left:0,display:{xs:"none",sm:"block"}}} size="small" onClick={handlePrevious}>
+            <ArrowStyle
+              sx={{
+                position: "relative",
+                left: 0,
+                display: { xs: "none", sm: "block" },
+              }}
+              size="small"
+              onClick={handlePrevious}
+            >
               {leftIcon(isRTL)}
             </ArrowStyle>
-          <Box
-            sx={{
-              mx: "auto",
-              "& .slick-current .isActive": { opacity: 1 },
-              ...(images.length === 1 && { maxWidth: THUMB_SIZE * 1 + 16 }),
-              ...(images.length === 2 && { maxWidth: THUMB_SIZE * 2 + 32 }),
-              ...(images.length === 3 && { maxWidth: THUMB_SIZE * 3 + 48 }),
-              ...(images.length === 4 && { maxWidth: THUMB_SIZE * 3 + 48 }),
-              ...(images.length >= 5 && { maxWidth: THUMB_SIZE * 6 }),
-              ...(images.length > 2 && {
+            <Box
+              sx={{
+                mx: "auto",
+                "& .slick-current .isActive": { opacity: 1 },
+                ...(images.length === 1 && { maxWidth: THUMB_SIZE * 1 + 16 }),
+                ...(images.length === 2 && { maxWidth: THUMB_SIZE * 2 + 32 }),
+                ...(images.length === 3 && { maxWidth: THUMB_SIZE * 3 + 48 }),
+                ...(images.length === 4 && { maxWidth: THUMB_SIZE * 3 + 48 }),
+                ...(images.length >= 5 && { maxWidth: THUMB_SIZE * 6 }),
+                ...(images.length > 2 && {
+                  position: "relative",
+                  "&:before, &:after": {
+                    top: 0,
+                    zIndex: 9,
+                    content: "''",
+                    height: "100%",
+                    position: "absolute",
+                    width: (THUMB_SIZE * 2) / 3,
+                    backgroundImage: (theme) =>
+                      `linear-gradient(to left, ${alpha(
+                        theme.palette.background.paper,
+                        0
+                      )} 0%, ${theme.palette.background.paper} 100%)`,
+                  },
+                  "&:after": { right: 0, transform: "scaleX(-1)" },
+                  overflow: "hidden",
+                }),
+              }}
+            >
+              <Slider {...settings2} asNavFor={nav1} ref={slider2}>
+                {images.map((img, index) => (
+                  <Box key={img} sx={{ px: 0.75 }}>
+                    <Image
+                      disabledEffect
+                      alt="thumb image"
+                      src={img}
+                      sx={{
+                        width: THUMB_SIZE,
+                        height: THUMB_SIZE,
+                        borderRadius: 1.5,
+                        cursor: "pointer",
+                        ...(currentIndex === index && {
+                          border: (theme) =>
+                            `solid 3px ${theme.palette.primary.main}`,
+                        }),
+                      }}
+                    />
+                  </Box>
+                ))}
+              </Slider>
+            </Box>
+            <ArrowStyle
+              sx={{
                 position: "relative",
-                "&:before, &:after": {
-                  top: 0,
-                  zIndex: 9,
-                  content: "''",
-                  height: "100%",
-                  position: "absolute",
-                  width: (THUMB_SIZE * 2) / 3,
-                  backgroundImage: (theme) =>
-                    `linear-gradient(to left, ${alpha(
-                      theme.palette.background.paper,
-                      0
-                    )} 0%, ${theme.palette.background.paper} 100%)`,
-                },
-                "&:after": { right: 0, transform: "scaleX(-1)" },
-                overflow: "hidden",
-              }),
-            }}
-          >
-         
-            <Slider {...settings2} asNavFor={nav1} ref={slider2}>
-              {images.map((img, index) => (
-                <Box key={img} sx={{ px: 0.75 }}>
-                  <Image
-                    disabledEffect
-                    alt="thumb image"
-                    src={img}
-                    sx={{
-                      width: THUMB_SIZE,
-                      height: THUMB_SIZE,
-                      borderRadius: 1.5,
-                      cursor: "pointer",
-                      ...(currentIndex === index && {
-                        border: (theme) =>
-                          `solid 3px ${theme.palette.primary.main}`,
-                      }),
-                    }}
-                  />
-                </Box>
-              ))}
-            </Slider>
-          
-          </Box>
-          <ArrowStyle sx={{position:"relative",
-right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
+                right: 0,
+                display: { xs: "none", sm: "block" },
+              }}
+              size="small"
+              onClick={handleNext}
+            >
               {rightIcon(isRTL)}
             </ArrowStyle>
-            </Stack>
+          </Stack>
         </RootStyle>
       </Grid>
       <Grid item xs={12} md={5} lg={6}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3}  mt={2}>
+          <Stack spacing={3} mt={2}>
             <Typography
               sx={{
                 width: "81px",
@@ -231,18 +242,22 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               Khuyến mãi
             </Typography>
             <Stack>
-              <Typography variant="h3">{dataItem?.productDetails[0]?.name}</Typography>
+              <Typography variant="h3">
+                {dataItem?.productDetails[0]?.name}
+              </Typography>
               <Typography variant="h4" sx={{ color: "#98A1B3" }}>
-              {dataItem?.productDetails[0]?.shortDescription} 
+                {dataItem?.productDetails[0]?.shortDescription}
               </Typography>
             </Stack>
             <Stack>
-              <Typography variant="h3">{dataItem?.price?.salePrice}</Typography>
+              <Typography variant="h3">
+                {formatNumberToCurrency(dataItem?.price?.salePrice)}
+              </Typography>
               <Typography
                 variant="h4"
                 sx={{ color: "#98A1B3", textDecoration: "line-through" }}
               >
-                {dataItem?.price?.normalPrice}
+                {formatNumberToCurrency(dataItem?.price?.normalPrice)}
               </Typography>
             </Stack>
             <Divider />
@@ -252,8 +267,7 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               justifyContent={"space-between"}
             >
               <Typography variant="subtitle1" sx={{ color: "#666E80" }}>
-              {t('product.color')}
-
+                {t("product.color")}
               </Typography>
               <Controller
                 name="color"
@@ -279,8 +293,7 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
               justifyContent={"space-between"}
             >
               <Typography variant="subtitle1" sx={{ color: "#666E80" }}>
-              {t('product.weight')}
-
+                {t("product.weight")}
               </Typography>
               <Stack width={"50%"}>
                 <RHFSelect name="country" label="Chọn khối lượng">
@@ -298,8 +311,7 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
                     py: "6px",
                   }}
                 >
-                               {t('product.tableWeight')}
-
+                  {t("product.tableWeight")}
                 </Typography>
               </Stack>
             </Stack>
@@ -330,11 +342,10 @@ right:0,display:{xs:"none",sm:"block"}}} size="small"  onClick={handleNext}>
                   color: "white",
                   width: "60%",
                   borderRadius: "30px",
-                  fontSize: {xs:"12px",sm:"18px"},
+                  fontSize: { xs: "12px", sm: "18px" },
                 }}
               >
-                              {t('product.addToCart')}
-
+                {t("product.addToCart")}
               </Button>
             </Stack>
             <Stack
@@ -368,7 +379,7 @@ const leftIcon = (isRTL?: boolean) => (
     sx={{
       width: 30,
       height: 30,
-      color:"black",
+      color: "black",
 
       transform: " scaleX(-1)",
       ...(isRTL && { transform: " scaleX(1)" }),
@@ -382,7 +393,7 @@ const rightIcon = (isRTL?: boolean) => (
     sx={{
       width: 30,
       height: 30,
-      color:"black",
+      color: "black",
       ...(isRTL && { transform: " scaleX(-1)" }),
     }}
   />
@@ -432,7 +443,7 @@ function Incrementer({
         component="span"
         sx={{
           fontWeight: 700,
-          fontSize: {xs:"20px",sm:"24px"},
+          fontSize: { xs: "20px", sm: "24px" },
           width: 40,
           textAlign: "center",
         }}

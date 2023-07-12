@@ -48,6 +48,7 @@ export default function RHFSelectPagination({
             getOptionLabel={(option) => option[labelProp]}
             value={field.value}
             onChange={(event, values) => {
+              console.log("values", values);
               field.onChange(values?.id);
             }}
             fullWidth

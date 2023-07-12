@@ -13,9 +13,7 @@ export const ProductDetailContainer=() => {
     parseInt(params?.id as string)
   );
 
-  const data_DETAIL = data_ProductDetail?.items?.find(
-    (item: any) => parseInt(params?.id as string) === item?.id
-  );
+  const data_DETAIL = data_ProductDetail;
 
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">

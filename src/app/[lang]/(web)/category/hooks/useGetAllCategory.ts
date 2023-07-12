@@ -1,15 +1,12 @@
 import { QUERY_KEYS } from '@/common/constants/queryKeys.constant';
 import { useQuery } from 'react-query';
 import { getAllCategory, getListCategory } from '../services';
+import { IParamsListProduct } from '../interfaces';
 
-export function useGetListCategory() {
-  const { data: dataListCategory, isLoading, refetch: refetchHomeConfig, isRefetching } = useQuery(
-    [QUERY_KEYS.CATEGORY_LIST],
-   ()=> getAllCategory(),
-    {
-      cacheTime: 60000,
-      staleTime: 10000,
-    }
+export function useGetListCategory(params?: IParamsListProduct) {
+  const { data: dataListCategory, isLoading, refetch, isRefetching } = useQuery(
+    [QUERY_KEYS.CATEGORY_LIST, params],
+   ()=> getAllCategory(params),
   );
-  return { dataListCategory, isLoading, refetchHomeConfig, isRefetching };
+  return { dataListCategory, isLoading, refetch, isRefetching };
 }

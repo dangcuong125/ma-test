@@ -24,12 +24,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "@/common/redux/store";
 import { useDeleteCartItem } from "../../hooks/useDeleteCart";
 import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
+import { CheckoutCartSkeleton } from "./CheckoutCartSkeleton";
 
 type Props = {
   data: ICartItem[];
+  isLoading: boolean;
 };
 
-export default function CheckoutCart({ data }: Props) {
+export default function CheckoutCart({ data, isLoading }: Props) {
   const { cart, subtotal, discount, shipping, total } = useSelector(
     (state) => state.checkout
   );
@@ -110,22 +112,24 @@ export default function CheckoutCart({ data }: Props) {
             }
             sx={{ mb: 3 }}
           />
-          {!isEmptyCart ? (
-            // <Scrollbar>
-            <CheckoutProductList
-              products={cart}
-              onDelete={onDelete}
-              onDecreaseQuantity={onDecreaseQuantity}
-              onIncreaseQuantity={onIncreaseQuantity}
-            />
-          ) : (
-            // </Scrollbar>
-            <EmptyCart
-              title="Không có sản phẩm trong giỏ quà"
-              description=""
-              img="/assets/illustration_empty_cart.svg"
-            />
-          )}
+          {isLoading && <CheckoutCartSkeleton />}
+          {!isLoading &&
+            (!isEmptyCart ? (
+              // <Scrollbar>
+              <CheckoutProductList
+                products={cart}
+                onDelete={onDelete}
+                onDecreaseQuantity={onDecreaseQuantity}
+                onIncreaseQuantity={onIncreaseQuantity}
+              />
+            ) : (
+              // </Scrollbar>
+              <EmptyCart
+                title="Không có sản phẩm trong giỏ quà"
+                description=""
+                img="/assets/illustration_empty_cart.svg"
+              />
+            ))}
         </Card>
         <Button
           color="inherit"

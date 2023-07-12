@@ -3,9 +3,10 @@ import { QUERY_KEYS } from "@/common/constants/queryKeys.constant";
 import { getDetailOrder } from "../common/services";
 
 export function useGetDetailOrder(id: number) {
-  const { data, isLoading } = useQuery([QUERY_KEYS.GET_MY_ORDER, id], () =>
-    getDetailOrder(id)
+  const { data, isLoading, isError } = useQuery(
+    [QUERY_KEYS.GET_MY_ORDER, id],
+    () => getDetailOrder(id)
   );
 
-  return { orderDetail: data, isLoading };
+  return { orderDetail: data, isLoading, isError };
 }

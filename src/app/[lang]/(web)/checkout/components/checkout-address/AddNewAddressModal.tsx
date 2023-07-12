@@ -94,9 +94,9 @@ export default function AddNewAddressModal() {
     const dataSubmit: IDataNewAddress = {
       address1: data.address1,
       address2: data.address1,
-      province: data.province,
-      district: data.district,
-      ward: data.ward,
+      province: parseInt(data.province?.toString() || ""),
+      district: parseInt(data.district?.toString() || ""),
+      ward: parseInt(data.ward?.toString() || ""),
       name: data.name,
       phone: data.phone,
       isDefault: data.isDefault,
@@ -106,6 +106,14 @@ export default function AddNewAddressModal() {
   };
 
   const handleClose = () => {
+    reset({
+      address1: "",
+      district: null,
+      ward: null,
+      province: null,
+      name: "",
+      phone: "",
+    });
     dispatch(setOpenModalAddAddress(false));
   };
 
@@ -178,7 +186,7 @@ export default function AddNewAddressModal() {
                 dispatch(
                   setTypeProvinceParams({
                     type: "DISTRICT",
-                    parentId: watch("province"),
+                    parentId: watch("province") || 0,
                   })
                 );
               }}
@@ -207,7 +215,7 @@ export default function AddNewAddressModal() {
                 dispatch(
                   setTypeProvinceParams({
                     type: "WARD",
-                    parentId: watch("district"),
+                    parentId: watch("district") || 0,
                   })
                 );
               }}

@@ -3,13 +3,14 @@ import { alpha, createTheme } from "@mui/material";
 function createGradient(color1: string, color2: string) {
   return `linear-gradient(to bottom, ${color1}, ${color2})`;
 }
+
 export type ColorSchema =
-  | 'primary'
-  | 'secondary'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'error';
+  | "primary"
+  | "secondary"
+  | "info"
+  | "success"
+  | "warning"
+  | "error";
 
 interface GradientsPaletteOptions {
   primary: string;
@@ -47,6 +48,21 @@ declare module "@mui/material/styles/createPalette" {
     chart: ChartPaletteOptions;
   }
 }
+
+declare module "@mui/material" {
+  interface Color {
+    0: string;
+    500_8: string;
+    500_12: string;
+    500_16: string;
+    500_24: string;
+    500_32: string;
+    500_48: string;
+    500_56: string;
+    500_80: string;
+  }
+}
+
 const PRIMARY = {
   lighter: "#C8FACD",
   light: "#5BE584",
