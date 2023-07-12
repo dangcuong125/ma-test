@@ -61,8 +61,8 @@ const RegisterForm = () => {
               })
             );
           },
-          onError: (error) => {
-            alert(error);
+          onError: (error: any) => {
+            showErrorSnackbar(error?.message);
           },
         }
       );

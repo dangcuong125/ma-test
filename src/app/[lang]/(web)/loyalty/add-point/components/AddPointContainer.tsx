@@ -5,7 +5,6 @@ import { Button, Grid } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/navigation";
 import AddPointForm from "./AddPointForm";
-import QRScanContainer from "./QRScanContainer";
 import { useSelector } from "@/common/redux/store";
 import { QRScanPopup } from "./QRScanPopup";
 const AddPointContainer = () => {
