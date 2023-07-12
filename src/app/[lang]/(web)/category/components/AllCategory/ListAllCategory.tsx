@@ -15,15 +15,15 @@ import { useGetListCategory } from "../../hooks/useGetAllCategory";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { pageCategorySelector, setPageNumber } from "../../category.slice";
+import { useAddToCart } from "@/common/hooks/useAddToCart";
 
 export default function ListAllCategoryProduct() {
   const route = useRouter();
   const dispatch = useDispatch();
   const pageNumber = useSelector(pageCategorySelector);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    dispatch(setPageNumber(value));
-  };
+  
+  const { mutate } = useAddToCart();
 
   const searchParams = {
     page: pageNumber,
@@ -31,8 +31,24 @@ export default function ListAllCategoryProduct() {
   };
 
   const { dataListCategory } = useGetListCategory(searchParams);
-
   const data_CATEGORY = dataListCategory?.items || [];
+
+  const handleAddToCart = (product: any) => {
+    const dataAddToCart = {
+      productVariantList: [
+        {
+          productVariantId: product?.defaultProductVariantId,
+          quantity: 1,
+        },
+      ],
+      productId: product?.id,
+    };
+    mutate(dataAddToCart);
+  };
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    dispatch(setPageNumber(value));
+  };
 
   const breadcrumbs = [
     <Link underline="hover" key="1" color="inherit" href="/">
@@ -68,6 +84,7 @@ export default function ListAllCategoryProduct() {
                 onClick={() =>
                   route.push(PATH_HOME.product.detail(itemProd?.id))
                 }
+                onClickAddToCart={() => handleAddToCart(itemProd)}
               />
             </Grid>
           ))}

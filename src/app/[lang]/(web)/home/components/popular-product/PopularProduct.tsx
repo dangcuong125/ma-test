@@ -14,6 +14,7 @@ import "swiper/css/pagination";
 import { MOCK_DATA_PRODUCT } from "../../constants";
 import { PATH_HOME } from "@/common/constants/path.constants";
 import { useRouter } from "next/navigation";
+import { useAddToCart } from "@/common/hooks/useAddToCart";
 
 type Props = {
   dataMenu: any;
@@ -22,7 +23,21 @@ type Props = {
 export const PopularProduct = (props: Props) => {
   const { dataMenu } = props;
   const router = useRouter();
-console.log(dataMenu)
+
+  const { mutate } = useAddToCart();
+  const handleAddToCart = (product: any) => {
+    const dataAddToCart = {
+      productVariantList: [
+        {
+          productVariantId: product?.defaultProductVariantId,
+          quantity: 1,
+        },
+      ],
+      productId: product?.id,
+    };
+    mutate(dataAddToCart);
+  };
+
   return (
     <Stack
       sx={{
@@ -100,6 +115,7 @@ console.log(dataMenu)
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
                 onClick={() => router.push(PATH_HOME.product.detail(item?.id))}
+                onClickAddToCart={() => handleAddToCart(item)}
               />
             </Grid>
           ))}
@@ -114,7 +130,9 @@ console.log(dataMenu)
             minHeight: "56px",
             textTransform: "none",
           }}
-          onClick={()=>{router.push(`category/${dataMenu?.data?.categoryId}`)}}
+          onClick={() => {
+            router.push(`category/${dataMenu?.data?.categoryId}`);
+          }}
           endIcon={<Iconify icon={"solar:arrow-right-outline"} />}
         >
           Xem tất cả

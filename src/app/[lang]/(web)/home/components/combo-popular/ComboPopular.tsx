@@ -14,6 +14,7 @@ import "swiper/css/pagination";
 import { MOCK_COMBO_DATA_PRODUCT, MOCK_DATA_PRODUCT } from "../../constants";
 import { ComboItemDefault } from "@/common/components/product/ComboItem";
 import { useRouter } from "next/navigation";
+import { useAddToCart } from "@/common/hooks/useAddToCart";
 
 type Props = {
   dataMenu: any;
@@ -22,6 +23,21 @@ type Props = {
 export const ComboPopular = (props: Props) => {
   const {dataMenu} = props;
   const router = useRouter();
+
+  const { mutate } = useAddToCart();
+  const handleAddToCart = (product: any) => {
+    const dataAddToCart = {
+      productVariantList: [
+        {
+          productVariantId: product?.defaultProductVariantId,
+          quantity: 1,
+        },
+      ],
+      productId: product?.id,
+    };
+    mutate(dataAddToCart);
+  };
+
 
   return (
     <Stack
@@ -96,6 +112,7 @@ export const ComboPopular = (props: Props) => {
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
                 flashPrice={item?.price?.salePrice}
+                onClickAddToCart={() => handleAddToCart(item)}
               />
             </Grid>
           ))}
