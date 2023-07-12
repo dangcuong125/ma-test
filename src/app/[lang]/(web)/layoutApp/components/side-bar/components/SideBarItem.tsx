@@ -20,13 +20,18 @@ const SideBarItem = ({
       <Button
         sx={{
           bgcolor: isActiveItem ? "#F7F8FA" : "F5F5F5",
-          borderRadius: "32px",
-          pr: "80px",
-          pl: "5px",
+          borderRadius: { xs: "10px", md: "32px" },
+          pr: { xs: 0, md: "80px" },
+          pl: { xs: 0, md: "5px" },
           width: "100%",
         }}
       >
-        <Stack direction="row" spacing={2} alignItems="center" width="100%">
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
+          alignItems="center"
+          width={{ xs: "20vw", md: "100%" }}
+        >
           <Image src={src} alt={type} sx={{ width: "25px", height: "25px" }} />
           <Typography
             fontSize="16px"
