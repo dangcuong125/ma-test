@@ -1,6 +1,4 @@
 import { useMutation, useQueryClient } from "react-query";
-import { API_CUSTOMER_CART } from "../constants/api.constants";
-import axiosClient from "../utils/axios";
 import { QUERY_KEYS } from "../constants/queryKeys.constant";
 import { addToCart } from "../services";
 import useShowSnackbar from "./useShowSnackbar";

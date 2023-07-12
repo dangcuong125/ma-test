@@ -1,11 +1,13 @@
-'use client'
-import { Stack, Box } from "@mui/material";
+"use client";
+import { Box } from "@mui/material";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const HeaderBar = () => {
+  const router = useRouter();
   return (
     <Box
-      pl={'5vw'}
+      pl={"5vw"}
       boxShadow={3}
       width={"100%"}
       maxHeight={"100px"}
@@ -21,11 +23,12 @@ export const HeaderBar = () => {
           height: "20vw",
           width: "30vw",
           backgroundImage: "url('/assets/Logo.svg')",
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          maxWidth: '160px',
-          maxHeight: '70px'
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          maxWidth: "160px",
+          maxHeight: "70px",
         }}
+        onClick={() => router.push("/")}
       />
     </Box>
   );

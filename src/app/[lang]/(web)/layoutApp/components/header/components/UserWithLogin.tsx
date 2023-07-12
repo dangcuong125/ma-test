@@ -42,8 +42,10 @@ const UserWithLogin = () => {
     dispatch(setOpenUserMenu(false));
   };
 
-  const handleLogout = () => {
-    axiosClient.post(API_USER_LOGOUT);
+  const handleLogout = async () => {
+    try {
+      await axiosClient.post(API_USER_LOGOUT, { deviceTokens: [] });
+    } catch {}
     dispatch(resetToken());
     dispatch(setIsLoggedIn(false));
     dispatch(setCustomerInfo({}));
