@@ -38,7 +38,7 @@ export default function RHFSelectPagination({
   ...other
 }: Props) {
   const { t } = useTranslation("common");
-  const { control, watch } = useFormContext();
+  const { control, setValue: setValueContext } = useFormContext();
   const [value, setValue] = useState<any>(null);
 
   return (
@@ -57,6 +57,12 @@ export default function RHFSelectPagination({
             onChange={(event, values) => {
               field.onChange(values);
               setValue(values);
+              if (name === "province") {
+                setValueContext("district", null);
+              }
+              if (name === "district") {
+                setValueContext("ward", null);
+              }
             }}
             fullWidth
             ListboxComponent={ListBox}

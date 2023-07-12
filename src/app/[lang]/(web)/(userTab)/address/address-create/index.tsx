@@ -42,6 +42,7 @@ export default function AddressCreate() {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { isSubmitting },
   } = methods;
   const { t } = useTranslation("common");
@@ -94,6 +95,7 @@ export default function AddressCreate() {
     onSuccess: () => {
       dispatch(setIsOpenCreateForm(false));
       showSuccessSnackbar(t("address.createSuccess"));
+      reset(DEFAULT_VALUE_FORM_ADDRESS);
     },
     onError: () => {
       showErrorSnackbar(t("address.createError"));
@@ -104,9 +106,9 @@ export default function AddressCreate() {
     const dataCreate: IdataCreateAddress = {
       name: data.name,
       phone: data.phone,
-      provinceId: data.province.id,
-      districtId: data.district.id,
-      wardId: data.ward.id,
+      provinceId: data.province !== null ? data.province.id : 0,
+      districtId: data.district !== null ? data.district.id : 0,
+      wardId: data.ward !== null ? data.ward.id : 0,
       address1: data.address,
       address2: data.address,
       isDefault: data.isDefault,
