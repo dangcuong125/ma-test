@@ -56,7 +56,7 @@ export const HeaderBar = () => {
       <Box
         sx={{
           height: "48px",
-          width: "33%",
+          width: { xs: "33%", sm: "50%", md: "38%" },
           display: { xs: "none", sm: "flex" },
           // backgroundColor: "#F3F9FB",
           // borderRadius: "10px",

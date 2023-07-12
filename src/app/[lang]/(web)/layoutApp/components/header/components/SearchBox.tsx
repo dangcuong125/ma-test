@@ -2,27 +2,16 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import {
-  InputAdornment,
-  IconButton,
-  Box,
-  Avatar,
-  Stack,
-  Typography,
-} from "@mui/material";
-import ATypographyEllipsis from "@/common/components/customComponent/ATyporgraphyEllipsis";
-import { formatNumberToCurrency } from "@/common/utils/common.utils";
-import Image from "@/common/components/Image";
-import { useRouter } from "next/navigation";
-import { PATH_HOME } from "@/common/constants/path.constants";
+import { InputAdornment, IconButton, Box } from "@mui/material";
 import useSearchProd from "../hooks/useSearchProd";
 import useDebounce from "../hooks/useDebounce";
 import { dispatch, useSelector } from "@/common/redux/store";
-import { setSearchText, setValueSearch } from "../../../search.slice";
+import { setSearchText } from "../../../search.slice";
+import SearchItem from "./SearchItem";
 
 export default function SearchBox() {
-  const route = useRouter();
-  const { searchText, valueSearch } = useSelector((state) => state.search);
+  const { searchText } = useSelector((state) => state.search);
+
   const debouncedSearchText = useDebounce<string>(searchText, 500);
   const searchParams: {
     page: number;
@@ -46,13 +35,11 @@ export default function SearchBox() {
       fetchNextPage();
     }
   };
-  React.useEffect(() => {
-    console.log(data?.pages?.map((item) => item?.items).flat());
-  }, [data]);
   const options = data?.pages?.map((item) => item?.items).flat() || [];
+
   return (
     <Autocomplete
-      value={valueSearch}
+      autoFocus
       options={options}
       getOptionLabel={(option) => option?.productDetails?.[0]?.name || ""}
       sx={{
@@ -63,13 +50,6 @@ export default function SearchBox() {
             transform: "none!important",
           }, // Disable the animation
         },
-
-        // '& .MuiAutocomplete-popupIndicator': {
-        //   display: 'none', // Hide the popup icon
-        // },
-      }}
-      onChange={(event, newInputValue) => {
-        dispatch(setValueSearch(newInputValue?.productDetails[0]?.name));
       }}
       inputValue={searchText}
       onInputChange={(event, newInputValue) => {
@@ -130,92 +110,12 @@ export default function SearchBox() {
       )}
       renderOption={(props, options) => {
         return (
-          <li {...props} style={{ width: "100%" }}>
-            <Stack
-              onClick={() => route.push(PATH_HOME.product.detail(options?.id))}
-              width={"100%"}
-              direction="row"
-              spacing={"16px"}
-              alignItems={"center"}
-              // sx={{
-              //   "&:hover": {
-              //     borderRadius: "8px",
-              //     background: "#FFF9DE",
-              //   },
-              // }}
-            >
-              <Avatar
-                src={options?.thumbnail?.url}
-                alt=""
-                sx={{
-                  borderRadius: "12px",
-                }}
-              />
-              <Stack
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                width={"100%"}
-                overflow="hidden"
-                // spacing={2}
-              >
-                <Stack spacing={1} width={{ md: "70%", xs: "100%" }}>
-                  <ATypographyEllipsis
-                    fontWeight={600}
-                    fontSize={"18px"}
-                    lineHeight={"24px"}
-                  >
-                    {options?.productDetails[0]?.name}
-                  </ATypographyEllipsis>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      color: "grey",
-                    }}
-                  >
-                    Màu sắc:{" "}
-                    <ATypographyEllipsis color={"#212B36"}>
-                      {options?.color}
-                    </ATypographyEllipsis>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      color: "grey",
-                    }}
-                  >
-                    Giá trị:{" "}
-                    <ATypographyEllipsis color={"#212B36"}>
-                      {formatNumberToCurrency(options?.price?.normalPrice)}
-                    </ATypographyEllipsis>
-                  </Box>
-                </Stack>
-                <IconButton
-                  sx={{
-                    display: {
-                      xs: "none",
-                      md: "flex",
-                    },
-                    background:
-                      "linear-gradient(90deg, #66BA7A , #00A55D, #1F8A70)",
-                    // ":hover": {
-                    //   background: "black",
-                    // },
-                  }}
-                >
-                  <Image
-                    alt=""
-                    sx={{
-                      width: "24px",
-                      height: "24px",
-                    }}
-                    src={"/assets/icons/core/add-to-cart.svg"}
-                  />
-                </IconButton>
-              </Stack>
-            </Stack>
+          <li
+            {...props}
+            style={{ width: "100%", marginTop: "5px" }}
+            key={`${props} + ${options?.id}`}
+          >
+            <SearchItem product={options} />
           </li>
         );
       }}

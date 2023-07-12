@@ -27,7 +27,7 @@ import { IFormLogin } from "@/app/[lang]/(auth)/login/interface";
 import { setShowPassword } from "@/app/[lang]/(auth)/register/slice";
 import { setPopupLogin } from "../header/header.slice";
 
-export default function PopupLogin({open}: {open: boolean}) {
+export default function PopupLogin({ open }: { open: boolean }) {
   const loginSchema = LoginSchema();
 
   const methods = useForm<IFormLogin>({
@@ -58,104 +58,108 @@ export default function PopupLogin({open}: {open: boolean}) {
       },
     });
   };
+
+  const handleClosePopupLogin = () => {
+    dispatch(setPopupLogin(false));
+  };
+
   const isTyped = watch("phoneNumber") && watch("password");
   return (
-    <Modal open={open}>
-    <Card
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        boxShadow: 24,
-        width: "30vw",
-        p: 3,
-        minWidth: "350px",
-        mx: "auto",
-      }}
-    >
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
-          <Typography variant={"h4"}>{t("login")}</Typography>
-          <RHFTextField
-            name="phoneNumber"
-            label={t("phoneNumber")}
-            placeholder={t("phoneNumber")}
-            sx={{
-              borderRadius: "8px",
-            }}
-          />
-          <RHFTextField
-            name="password"
-            label={t("password")}
-            placeholder={t("password")}
-            type={isShowPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => dispatch(setShowPassword(!isShowPassword))}
-                    edge="end"
-                  >
-                    <Iconify
-                      icon={
-                        isShowPassword
-                          ? "ion:eye-outline"
-                          : "ion:eye-off-outline"
-                      }
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
-              sx: {
+    <Modal open={open} onClose={handleClosePopupLogin}>
+      <Card
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: 24,
+          width: "30vw",
+          p: 3,
+          minWidth: "350px",
+          mx: "auto",
+        }}
+      >
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={3}>
+            <Typography variant={"h4"}>{t("login")}</Typography>
+            <RHFTextField
+              name="phoneNumber"
+              label={t("phoneNumber")}
+              placeholder={t("phoneNumber")}
+              sx={{
                 borderRadius: "8px",
-              },
-            }}
-          />
-          <Stack direction={"column"} alignItems={"flex-end"}>
-            <TLink
-              href={PATH_AUTH.forgot_password}
-              style={{
-                color: "#1F8A70",
-                textAlign: "end",
               }}
+            />
+            <RHFTextField
+              name="password"
+              label={t("password")}
+              placeholder={t("password")}
+              type={isShowPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => dispatch(setShowPassword(!isShowPassword))}
+                      edge="end"
+                    >
+                      <Iconify
+                        icon={
+                          isShowPassword
+                            ? "ion:eye-outline"
+                            : "ion:eye-off-outline"
+                        }
+                      />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+                sx: {
+                  borderRadius: "8px",
+                },
+              }}
+            />
+            <Stack direction={"column"} alignItems={"flex-end"}>
+              <TLink
+                href={PATH_AUTH.forgot_password}
+                style={{
+                  color: "#1F8A70",
+                  textAlign: "end",
+                }}
+              >
+                {t("forgot_password")}
+              </TLink>
+            </Stack>
+            <Button
+              type="submit"
+              disabled={!isTyped}
+              variant="contained"
+              sx={{
+                borderRadius: "24px",
+                paddingY: 1,
+                boxShadow: 0.5,
+                backgroundColor: "#1F8A70",
+              }}
+              endIcon={
+                isLoading || isSubmitting ? (
+                  <CircularProgress color="inherit" size={"24px"} />
+                ) : (
+                  <Iconify
+                    icon={"heroicons:arrow-right-20-solid"}
+                    sx={{ width: "24px" }}
+                  />
+                )
+              }
             >
-              {t("forgot_password")}
-            </TLink>
+              {t("login")}
+            </Button>
           </Stack>
-          <Button
-            type="submit"
-            disabled={!isTyped}
-            variant="contained"
-            sx={{
-              borderRadius: "24px",
-              paddingY: 1,
-              boxShadow: 0.5,
-              backgroundColor: "#1F8A70",
-            }}
-            endIcon={
-              isLoading || isSubmitting ? (
-                <CircularProgress color="inherit" size={"24px"} />
-              ) : (
-                <Iconify
-                  icon={"heroicons:arrow-right-20-solid"}
-                  sx={{ width: "24px" }}
-                />
-              )
-            }
-          >
-            {t("login")}
-          </Button>
-        </Stack>
-      </FormProvider>
-      <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-        {t("dont_have_account")}{" "}
-        <TLink href={PATH_AUTH.register} style={{ color: "#1F8A70" }}>
-          {t("get_started")}
-        </TLink>
-      </Typography>
-    </Card>
+        </FormProvider>
+        <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+          {t("dont_have_account")}{" "}
+          <TLink href={PATH_AUTH.register} style={{ color: "#1F8A70" }}>
+            {t("get_started")}
+          </TLink>
+        </Typography>
+      </Card>
     </Modal>
   );
 }
-

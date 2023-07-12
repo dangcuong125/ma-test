@@ -116,6 +116,22 @@ export interface IProduct {
   productVariants: IProductVariants[];
   variantIdDetail: IArrayIdProductVariantDetail[];
   attributeAndTerm: ITransformListAttribute[];
+  price: {
+    normalPrice: number;
+    salePrice: number;
+    range: {
+      min: number;
+      max: number;
+    };
+  };
+  point: {
+    normalPoint: number;
+    salePoint: number;
+    range: {
+      min: number;
+      max: number;
+    };
+  };
 }
 
 export interface IThumbnailProduct {
