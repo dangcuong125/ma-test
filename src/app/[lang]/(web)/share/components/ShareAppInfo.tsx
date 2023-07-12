@@ -100,15 +100,22 @@ const ShareAppInfo = () => {
           >
             Quét mã QR
           </Typography>
-          <Image
-            src="/assets/icons/qr_code.png"
-            width={{ xs: "110px", md: "168px" }}
-            height={{ xs: "110px", md: "168px" }}
-            style={{
-              objectFit: "cover",
+          <Box
+            sx={{
+              width: { xs: "110px", md: "168px" },
+              height: { xs: "110px", md: "168px" },
             }}
-            alt="qr code"
-          />
+          >
+            <Image
+              src="/assets/icons/qr_code.png"
+              width={'100%'}
+              height={'100%'}
+              style={{
+                objectFit: "cover",
+              }}
+              alt="qr code"
+            />
+          </Box>
         </Stack>
       </Stack>
       <Stack spacing={{ xs: "16px", md: "24px" }}>

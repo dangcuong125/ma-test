@@ -16,9 +16,11 @@ export const SliderBannerItem = (props: Props) => {
         // borderRadius: '24px',
         width: "100%",
         height: "100%",
-        objectFit: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        objectFit: "cover",
+        aspectRatio: '16/9',
+        // backgroundSize: "auto",
+        WebkitBackgroundSize: 'cover',
         backgroundPosition: "center",
         backgroundImage: `url(${srcImg})`,
       }}
