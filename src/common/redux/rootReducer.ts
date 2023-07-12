@@ -6,6 +6,7 @@ import orderHistorySlice from "@/app/[lang]/(web)/(userTab)/order-history/common
 import customerSlice from "@/app/[lang]/(web)/(userTab)/profile/account-common/reducers/customer-profile.slice";
 import checkoutSlice from "@/app/[lang]/(web)/checkout/order.slice";
 import headerSlice from "@/app/[lang]/(web)/layoutApp/components/header/header.slice";
+import addPointSuccessSlice from '@/app/[lang]/(web)/loyalty/common/slice';
 import categoryReducer from "@/app/[lang]/(web)/category/category.slice";
 
 import { combineReducers } from "@reduxjs/toolkit";
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   customerProfile: customerSlice,
   headerSlice: headerSlice,
   orderHistory: orderHistorySlice,
+  addPointSuccess: addPointSuccessSlice,
   categoryRoot: categoryReducer,
 });
 

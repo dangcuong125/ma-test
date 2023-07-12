@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 import React from "react";
 import { useLogin } from "../hooks/useLogin";
-// import useShowSnackbar from '@/common/hooks/useMessage';
+import useShowSnackbar from '@/common/hooks/useShowSnackbar';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import { TLink } from "@/common/components/TLink";
@@ -39,7 +39,7 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = methods;
   const router = useRouter();
-  //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
+    const { showErrorSnackbar } = useShowSnackbar();
   const { isShowPassword } = useSelector((state) => state.login);
   const { t } = useTranslation("auth");
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export default function LoginForm() {
         router.push(PATH_HOME.root);
       },
       onError: (error: any) => {
-        // showErrorSnackbar(error?.message);
+        showErrorSnackbar(error?.message);
       },
     });
   };

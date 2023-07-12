@@ -17,4 +17,5 @@ export const API_SHARE_APP_CONFIG = "/customer/share-app-config";
 export const API_HOME_CONFIG = "/customer/home-config";
 export const API_CUSTOMER_PRODUCT = "/customer/product";
 export const API_RESET_PASSWORD = "/customer/auth/reset-password";
+export const API_ACCUMULATE_POINT = '/customer/point';
 export const API_CUSTOMER_CART = '/customer/cart';
