@@ -1,4 +1,8 @@
-import { API_CUSTOMER_CART } from "../constants/api.constants";
+import { ICustomerProfileResponse } from "../@types/profile";
+import {
+  API_CUSTOMER_CART,
+  API_CUSTOMER_PROFILE,
+} from "../constants/api.constants";
 import {
   ICartDataSubmit,
   ICartProductItem,
@@ -11,4 +15,8 @@ export const getProductCart = () => {
 
 export const addToCart = async (data: ICartDataSubmit) => {
   return axiosClient.post(API_CUSTOMER_CART, data);
+};
+
+export const getCustomerInfo = (): Promise<ICustomerProfileResponse> => {
+  return axiosClient.get(API_CUSTOMER_PROFILE);
 };
