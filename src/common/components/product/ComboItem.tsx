@@ -11,15 +11,16 @@ type Props = {
   price?: number;
   flashPrice?: number;
   onClick?: VoidFunction;
+  onClickAddToCart?: VoidFunction; 
 };
 
 export const ComboItemDefault = (props: Props) => {
-  const { title, property, srcImg, price, flashPrice, onClick} = props;
+  const { title, property, srcImg, price, flashPrice, onClick, onClickAddToCart} = props;
   const router = useRouter();
 
   return (
     <Stack
-    onClick={onClick}
+    
       sx={{
         height: "394px",
         width: "100%",
@@ -48,6 +49,7 @@ export const ComboItemDefault = (props: Props) => {
           justifyContent: "flex-end",
           p: '20px',
         }}
+        onClick={onClick}
       >
         <Chip
           label={ "-" + ((price as number -( flashPrice as number))/(price as number)* 100)?.toFixed(0) + "%"}
@@ -66,7 +68,7 @@ export const ComboItemDefault = (props: Props) => {
         }}
         width={"100%"}
       >
-        <Stack>
+        <Stack onClick={onClick}>
           <Typography
             fontSize={24}
             fontWeight={700}
@@ -136,7 +138,7 @@ export const ComboItemDefault = (props: Props) => {
                 background: "black",
               },
             }}
-            onClick={() => router.push(PATH_HOME.checkout) }
+            onClick={onClickAddToCart}
           >
             <Image
               sx={{ width: "32px", height: "32px" }}

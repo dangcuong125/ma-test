@@ -34,3 +34,7 @@ export const getAddressById = (id: number) => {
 export const editAddress = (data: IDataEditAddress) => {
   return axiosClient.put(API_ADDRESS, data);
 };
+
+export const deleteAddress = (id: number) => {
+  return axiosClient.delete(`${API_ADDRESS}/${id}`);
+};
