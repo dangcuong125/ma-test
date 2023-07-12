@@ -4,7 +4,7 @@ import * as yup from "yup";
 export const LoginSchema = () => {
   const { t } = useTranslation("common");
   return yup.object().shape({
-    username: yup
+    phoneNumber: yup
       .string()
       .required(t("form.field_required"))
       .min(10, t("form.phoneNumber_not_valid"))

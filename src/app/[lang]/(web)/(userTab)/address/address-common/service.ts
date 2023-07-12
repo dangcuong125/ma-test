@@ -28,11 +28,9 @@ export const getProvinceList = (params: IParamsProvinceList) => {
 };
 
 export const getAddressById = (id: number) => {
-  return axiosClient.get<any, IResAddressDetail>(
-    `${API_PROVINCE_CUSTOMER}/${id}`
-  );
+  return axiosClient.get<any, IResAddressDetail>(`${API_ADDRESS}/${id}`);
 };
 
 export const editAddress = (data: IDataEditAddress) => {
-  return axiosClient.put(API_PROVINCE_CUSTOMER, data);
+  return axiosClient.put(API_ADDRESS, data);
 };

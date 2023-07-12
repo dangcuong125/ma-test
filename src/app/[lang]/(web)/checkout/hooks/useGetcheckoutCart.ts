@@ -11,8 +11,9 @@ export function useGetCheckoutCart() {
       // enabled: false,
     }
   );
+
   return {
-    dataCart: data?.data || [],
+    dataCart: data || [],
     refetch,
     isLoading,
   };

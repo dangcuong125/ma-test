@@ -22,9 +22,12 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
         justifyContent="center"
         alignItems="center"
         width={"100%"}
-        px={{ xs: 0, sm: "25px", md: "75px", lg: "100px" }}
-        pb={{ xs: "25px", md: "75px", lg: "100px" }}
+        px={{ xs: 0, md: "75px", lg: "100px" }}
+        pb={{ xs: 0, md: "75px", lg: "100px" }}
         pt={{ xs: 0, md: "50px" }}
+        sx={{
+          ml: { xs: 0, md: "-16px" },
+        }}
       >
         <Grid
           item
@@ -45,8 +48,13 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
           justifyContent={"center"}
           alignItems={"center"}
           display={"flex"}
-          mt={{ xs: "10px", md: "80px" }}
+          mt={{ xs: "0", md: "80px" }}
           alignSelf={"flex-start"}
+          sx={{
+            padding: "0 !important",
+            pl: { md: "16px !important" },
+            pt: { md: "16px !important" },
+          }}
         >
           {children}
         </Grid>

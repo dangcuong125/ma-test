@@ -11,6 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { useGetNotiList } from "./hooks/useGetNotiList";
 import { LoadingButton } from "@mui/lab";
 import useTranslation from "next-translate/useTranslation";
+import { NotiSkeleton } from "./components/NotiSkeleton";
 
 // type Props = {
 //   listNoti: INotiItem[];
@@ -27,70 +28,45 @@ const NotiList = () => {
     isFetchingNextPageNotiList,
     isLoadingNotiList,
     hasNextPageNotiList,
-  } = useGetNotiList({ page: 1, limit: isXs ? 5 : 7 });
+  } = useGetNotiList({ page: 1, limit: 5 });
 
   const listNoti = dataNotiList?.pages?.map((item) => item?.items).flat() || [];
 
-  useEffect(() => {
-    if (inView && !isXs) {
-      fetchNextPageNotiList();
-    }
-  }, [inView]);
-  const isNotFound = !listNoti.length;
+  const isNotFound = !isLoadingNotiList && !listNoti.length;
+
   return (
     <Paper
       sx={{
         bgcolor: "#FFF",
         py: "36px",
         width: "100%",
-        borderRadius: "24px",
-        maxHeight: { xs: "auto", md: "934px" },
+        borderRadius: { xs: 0, md: "24px" },
       }}
     >
       <NotiHeader />
-      {isXs ? (
-        <>
-          {listNoti.map((item) => (
-            <NotiItem key={item.id} notiItem={item} />
-          ))}
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <LoadingButton
-              variant="text"
-              sx={{
-                textDecoration: "underline",
-                color: "rgba(31, 138, 112, 1)",
-                display: !hasNextPageNotiList ? "none" : "block",
-              }}
-              ref={ref}
-              loading={isFetchingNextPageNotiList}
-              onClick={() => fetchNextPageNotiList()}
-              disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
-            >
-              {t("notify.loadingMore")}
-            </LoadingButton>
-          </Box>
-          <NoDataNoti isOpen={isNotFound} />
-        </>
-      ) : (
-        <Box
-          sx={{
-            overflowY: "auto",
-            maxHeight: "814px",
-          }}
-        >
-          {listNoti.map((item) => (
-            <NotiItem key={item.id} notiItem={item} />
-          ))}
-          <Box sx={{ height: 0 }}>
-            <Button
-              ref={ref}
-              onClick={() => fetchNextPageNotiList()}
-              disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
-            />
-          </Box>
-          <NoDataNoti isOpen={isNotFound} />
+      {isLoadingNotiList && <NotiSkeleton />}
+      <Box>
+        {listNoti.map((item) => (
+          <NotiItem key={item.id} notiItem={item} />
+        ))}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <LoadingButton
+            variant="text"
+            sx={{
+              textDecoration: "underline",
+              color: "rgba(31, 138, 112, 1)",
+              display: !hasNextPageNotiList ? "none" : "block",
+            }}
+            ref={ref}
+            loading={isFetchingNextPageNotiList}
+            onClick={() => fetchNextPageNotiList()}
+            disabled={!hasNextPageNotiList || isFetchingNextPageNotiList}
+          >
+            {t("notify.loadingMore")}
+          </LoadingButton>
         </Box>
-      )}
+        <NoDataNoti isOpen={isNotFound} />
+      </Box>
     </Paper>
   );
 };

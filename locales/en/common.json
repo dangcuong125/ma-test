@@ -14,30 +14,6 @@
   "birthday": "Birthday",
   "loading": "Loading...",
   "noOptions": "No options",
-  "auth": {
-    "username": "Username",
-    "password": "Password",
-    "login": "Login",
-    "or": "OR",
-    "dont_have_account": "Don't have account?",
-    "register": "Register",
-    "get_started": "Get started",
-    "terms_of_service": "Terms of Service",
-    "privacy_policy": "Privacy policy",
-    "register_term": "By clicking sign up, I agree to ShopGrocery",
-    "end_register_term": ".",
-    "phoneNumber": "Phone number",
-    "forgot_password": "Forgot password?",
-    "already_have_account": "Already have an account?",
-    "resend_otp": "Resend OTP",
-    "full_name": "Full Name",
-    "confirm_password": "Confirm Password",
-    "referral_code": "Referral Code",
-    "create_account": "Create Account",
-    "rule_password": "Password must be at least",
-    "1_number_character": "1 number character",
-    "10_letter_characters": "10 letter characters"
-  },
   "category": {
     "filter": "Filter",
     "categorySub": "Category",
@@ -56,10 +32,10 @@
     "tableWeight": "Weight",
     "addToCart": "Add to cart",
     "productRecommend": "Similar Product",
-    "review":"Review",
-    "questionReview":"How do you feel about product ?",
-    "cancel":"Cancel",
-    "sendReview":"Send"
+    "review": "Review",
+    "questionReview": "How do you feel about product ?",
+    "cancel": "Cancel",
+    "sendReview": "Send"
   },
   "form": {
     "field_required": "This field is required",
@@ -79,6 +55,8 @@
     "default": "Default",
     "createSuccess": "Create address successfully",
     "createError": "Create address failed",
+    "updateSuccess": "Update address successfully",
+    "updateError": "Update address failed",
     "form": {
       "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
@@ -112,7 +90,6 @@
   "myorder": {
     "titleHeading": "My Order"
   },
-
   "home": {
     "showAll": "Show all",
     "join": "Join now"
@@ -122,6 +99,9 @@
   "help": "Help",
   "contact": "Contact",
   "shoppingCart": "Shopping cart",
-  "store": "Store"
-  
+  "store": "Store",
+  "edit_profile": "Edit profile",
+  "information_account": "Information account",
+  "my_order": "My order",
+  "logout": "Logout"
 }

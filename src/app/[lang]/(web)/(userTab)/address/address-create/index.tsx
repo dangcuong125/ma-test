@@ -30,6 +30,7 @@ import { LoadingButton } from "@mui/lab";
 import RHFSelectPagination from "../address-common/components/RHFSelectPagination";
 import { useCreateAddress } from "./hooks/useCreateAddress";
 import { useGetProvinceList } from "../address-common/hooks/useGetProvinceList";
+import useMessage from "@/common/hooks/useMessage";
 
 export default function AddressCreate() {
   const methods = useForm<ISubmitData>({
@@ -47,6 +48,7 @@ export default function AddressCreate() {
   const dispatch = useDispatch();
   const isOpen = useSelector(isOpenCreateForm);
   const provinceParams = useSelector(provinceParamsForm);
+  const { showSuccessSnackbar, showErrorSnackbar } = useMessage();
 
   const searchParamsProvince: IParamsProvinceList = {
     type: provinceParams.type,
@@ -91,10 +93,10 @@ export default function AddressCreate() {
   const { mutateNewAddress } = useCreateAddress({
     onSuccess: () => {
       dispatch(setIsOpenCreateForm(false));
-      // enqueueSnackbar(t('address.createSuccess'));
+      showSuccessSnackbar(t("address.createSuccess"));
     },
     onError: () => {
-      // enqueueSnackbar(t('address.createError'));
+      showErrorSnackbar(t("address.createError"));
     },
   });
 

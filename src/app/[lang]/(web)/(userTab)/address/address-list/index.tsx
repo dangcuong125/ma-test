@@ -11,6 +11,7 @@ import { useGetAddressList } from "./hooks/useGetAddressList";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
+import { AddressSkeleton } from "./components/AddressSkeleton";
 
 export default function AddressList() {
   const isXs = useMediaQuery("(max-width:600px)");
@@ -30,13 +31,7 @@ export default function AddressList() {
 
   const listAddress =
     dataAddressList?.pages?.map((item) => item?.items).flat() || [];
-  const isNotFound = !listAddress.length;
-
-  useEffect(() => {
-    if (inView && !isXs) {
-      fetchNextPageAddressList();
-    }
-  }, [inView]);
+  const isNotFound = !isLoadingAddressList && !listAddress.length;
 
   return (
     <Paper
@@ -44,63 +39,33 @@ export default function AddressList() {
         bgcolor: "#FFF",
         py: "36px",
         width: "100%",
-        borderRadius: "24px",
-        overflowY: "auto",
-        maxHeight: { xs: "auto", md: "934px" },
+        borderRadius: { xs: 0, md: "24px" },
       }}
     >
       <AddressHeader />
-      {isXs ? (
-        <>
-          <Stack spacing={4} px={"16px"}>
-            {listAddress.map((item) => (
-              <AddressItem key={item.id} addressItem={item} />
-            ))}
-          </Stack>
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <LoadingButton
-              variant="text"
-              sx={{
-                textDecoration: "underline",
-                color: "rgba(31, 138, 112, 1)",
-                display: !hasNextPageAddressList ? "none" : "block",
-              }}
-              ref={ref}
-              loading={isFetchingNextPageAddressList}
-              onClick={() => fetchNextPageAddressList()}
-              disabled={
-                !hasNextPageAddressList || isFetchingNextPageAddressList
-              }
-            >
-              {t("address.loadingMore")}
-            </LoadingButton>
-          </Box>
-          <NoDataAddress isOpen={isNotFound} />
-        </>
-      ) : (
-        <Box
+      {isLoadingAddressList && <AddressSkeleton />}
+      <Stack spacing={4} px={{ xs: "16px", md: "32px" }}>
+        {listAddress.map((item) => (
+          <AddressItem key={item.id} addressItem={item} />
+        ))}
+      </Stack>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <LoadingButton
+          variant="text"
           sx={{
-            overflowY: "auto",
-            maxHeight: "814px",
+            textDecoration: "underline",
+            color: "rgba(31, 138, 112, 1)",
+            display: !hasNextPageAddressList ? "none" : "block",
           }}
+          ref={ref}
+          loading={isFetchingNextPageAddressList}
+          onClick={() => fetchNextPageAddressList()}
+          disabled={!hasNextPageAddressList || isFetchingNextPageAddressList}
         >
-          <Stack spacing={4} px={"32px"}>
-            {listAddress.map((item) => (
-              <AddressItem key={item.id} addressItem={item} />
-            ))}
-          </Stack>
-          <Box sx={{ height: 0 }}>
-            <Button
-              ref={ref}
-              onClick={() => fetchNextPageAddressList()}
-              disabled={
-                !hasNextPageAddressList || isFetchingNextPageAddressList
-              }
-            />
-          </Box>
-          <NoDataAddress isOpen={isNotFound} />
-        </Box>
-      )}
+          {t("address.loadingMore")}
+        </LoadingButton>
+      </Box>
+      <NoDataAddress isOpen={isNotFound} />
 
       <AddressCreate />
       <AddressEdit />

@@ -99,7 +99,7 @@ console.log(dataMenu)
                 srcImg={item?.thumbnail?.url}
                 property={item?.productDetails[0]?.shortDescription}
                 price={item?.price?.normalPrice}
-                onClick={() => router.push('/productDetail')}
+                onClick={() => router.push(PATH_HOME.product.detail(item?.id))}
               />
             </Grid>
           ))}

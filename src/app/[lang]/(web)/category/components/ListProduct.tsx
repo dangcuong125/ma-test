@@ -14,6 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import { getProjects } from "../services";
 import { useGetProductList } from "../hooks/useGetProductList";
 import BreadCrumbs from "@/common/components/customComponent/BreadCrumbs";
+import { PATH_HOME } from "@/common/constants/path.constants";
 type Props = {
   categoryId: number
 };
@@ -46,7 +47,7 @@ function ListProduct(props: Props) {
                 srcImg={itemProd?.thumbnail?.url}
                 property={itemProd?.productDetails[0]?.shortDescription}
                 price={itemProd?.price?.normalPrice}
-                onClick={() => route.push('/productDetail')}
+                onClick={() => route.push(PATH_HOME.product.detail(itemProd?.id))}
               />
             </Grid>
           ))}

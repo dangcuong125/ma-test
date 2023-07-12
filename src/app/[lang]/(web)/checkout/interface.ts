@@ -116,9 +116,7 @@ export type IResCheckoutCart = {
 };
 
 export type IOrderShippingResponse = {
-  data: {
-    items: IOrderShippingItem[];
-  };
+  items: IOrderShippingItem[];
 };
 
 export type IOrderShippingItem = {
@@ -151,9 +149,9 @@ export type IFormProvince = {
   name: string;
   phone: string;
   address1: string;
-  province: number;
-  district: number;
-  ward: number;
+  province: number | null;
+  district: number | null;
+  ward: number | null;
   isDefault: boolean;
   isSaveAddress: boolean;
 };
@@ -187,9 +185,9 @@ export interface IProvinceItem {
 export interface IDataNewAddress {
   address1: string;
   address2: string;
-  province: number;
-  ward: number;
-  district: number;
+  province: number | null;
+  ward: number | null;
+  district: number | null;
   phone: string;
   name: string;
   isDefault: boolean;

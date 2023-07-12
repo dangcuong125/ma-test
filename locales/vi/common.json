@@ -14,30 +14,6 @@
   "birthday": "Ngày sinh",
   "loading": "Đang tải...",
   "noOptions": "Không có lựa chọn nào",
-  "auth": {
-    "username": "Tên đăng nhập",
-    "password": "Mật khẩu",
-    "login": "Đăng nhập",
-    "or": "Hoặc",
-    "dont_have_account": "Bạn chưa có tài khoản?",
-    "register": "Đăng ký",
-    "get_started": "Đăng ký ngay",
-    "terms_of_service": "Chính sách",
-    "privacy_policy": "Điều khoản",
-    "register_term": "Khi đăng kí, tôi đồng ý với ",
-    "end_register_term": "của ShopGrocery.",
-    "phoneNumber": "Số điện thoại",
-    "forgot_password": "Quên mật khẩu?",
-    "already_have_account": "Bạn đã có tài khoản?",
-    "resend_otp": "Gửi lại OTP",
-    "full_name": "Họ và tên",
-    "confirm_password": "Nhập lại mật khẩu",
-    "referral_code": "Mã giới thiệu",
-    "create_account": "Tạo tài khoản",
-    "rule_password": "Mật khẩu phải có ít nhất",
-    "1_number_character": "1 ký tự số",
-    "10_letter_characters": "10 ký tự chữ"
-  },
   "category": {
     "filter": "Bộ lọc tìm kiếm",
     "categorySub": "Theo danh mục",
@@ -56,13 +32,11 @@
     "tableWeight": "Bảng khối lượng",
     "addToCart": "Thêm vào giỏ hàng",
     "productRecommend": "Sản phẩm tương tự",
-    "review":"Viết đánh giá",
-    "questionReview":"Bạn thấy sản phẩm thế nào ?",
-    "cancel":"Hủy",
-    "sendReview":"Gửi đánh giá"
-
+    "review": "Viết đánh giá",
+    "questionReview": "Bạn thấy sản phẩm thế nào ?",
+    "cancel": "Hủy",
+    "sendReview": "Gửi đánh giá"
   },
-
   "form": {
     "field_required": "Trường này không được để trống",
     "phoneNumber_not_valid": "Số điện thoại không hợp lệ",
@@ -81,6 +55,8 @@
     "default": "Mặc định",
     "createSuccess": "Thêm địa chỉ mới thành công",
     "createError": "Thêm địa chỉ mới thất bại",
+    "updateSuccess": "Cập nhật địa chỉ thành công",
+    "updateError": "Cập nhật địa chỉ thất bại",
     "form": {
       "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",
@@ -103,7 +79,7 @@
     "profile": "Tài khoản của tôi",
     "notifications": "Thông báo",
     "address": "Sổ địa chỉ",
-    "eVoucher": "Đơn quà của tối",
+    "eVoucher": "Đơn quà của tôi",
     "orderHistory": "Lịch sử giao dịch",
     "policy": "Chính sách",
     "term": "Điều khoản",
@@ -114,7 +90,6 @@
   "myorder": {
     "titleHeading": "Đơn hàng của tôi"
   },
-
   "home": {
     "showAll": "Xem tất cả",
     "join": "Tham gia ngay"
@@ -124,7 +99,9 @@
   "help": "Hỗ trợ",
   "contact": "Liên hệ",
   "shoppingCart": "Giỏ hàng",
-  "store": "Cửa hàng"
-  
-  
+  "store": "Cửa hàng",
+  "edit_profile": "sửa hồ sơ",
+  "information_account": "Thông tin tài khoản",
+  "my_order": "Đơn hàng của tôi",
+  "logout": "Đăng xuất"
 }

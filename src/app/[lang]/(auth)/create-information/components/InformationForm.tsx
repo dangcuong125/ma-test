@@ -20,13 +20,14 @@ import { RegisterSchema } from "../schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IFormCreateInfo } from "../../register/interface";
 import { useRouter } from "next/navigation";
-import { PATH_AUTH } from "@/common/constants/path.constants";
+import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
 import React from "react";
-// import { useLogin } from '../hooks/useLogin';
 // import useShowSnackbar from '@/common/hooks/useMessage';
 import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
+import { useRegisterInformation } from "../hooks/useRegisterInformation";
+import { IRegisterInformationRequest } from "../interface";
 
 const InformationForm = () => {
   const registerSchema = RegisterSchema();
@@ -50,35 +51,47 @@ const InformationForm = () => {
   } = methods;
   const router = useRouter();
   //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.register);
-  const { t } = useTranslation("common");
+  const { isShowPassword, otpValue, phoneNumber } = useSelector(
+    (state) => state.register
+  );
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
-  //   const { mutate, isLoading } = useLogin();
+  const { mutate, isLoading } = useRegisterInformation();
 
   const onSubmit = (data: IFormCreateInfo) => {
-    // mutate(data, {
-    //   onError: (error: any) => {
-    //     // showErrorSnackbar(error?.message);
-    //   },
-    // });
+    const dataSubmit: IRegisterInformationRequest = {
+      name: data?.fullName,
+      otp: otpValue,
+      password: data?.password,
+      referralCode: data?.referralCode,
+      phoneNumber,
+    };
+    mutate(dataSubmit, {
+      onSuccess: () => {
+        router.push(PATH_HOME.root);
+      },
+      onError: (error: any) => {
+        // showErrorSnackbar(error?.message);
+      },
+    });
   };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <Typography variant={"h4"}>{t("auth.create_account")}</Typography>
+        <Typography variant={"h4"}>{t("create_account")}</Typography>
         <RHFTextField
           name="fullName"
-          label={t("auth.full_name")}
-          placeholder={t("auth.full_name")}
+          label={t("full_name")}
+          placeholder={t("full_name")}
           sx={{
             borderRadius: "8px",
           }}
         />
         <RHFTextField
           name="password"
-          label={t("auth.password")}
-          placeholder={t("auth.password")}
+          label={t("password")}
+          placeholder={t("password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -102,8 +115,8 @@ const InformationForm = () => {
         />
         <RHFTextField
           name="confirmPassword"
-          label={t("auth.confirm_password")}
-          placeholder={t("auth.confirm_password")}
+          label={t("confirm_password")}
+          placeholder={t("confirm_password")}
           type={isShowPassword ? "text" : "password"}
           InputProps={{
             endAdornment: (
@@ -127,8 +140,8 @@ const InformationForm = () => {
         />
         <RHFTextField
           name="referralCode"
-          label={t("auth.referral_code")}
-          placeholder={t("auth.referral_code")}
+          label={t("referral_code")}
+          placeholder={t("referral_code")}
           sx={{
             borderRadius: "8px",
           }}
@@ -155,15 +168,15 @@ const InformationForm = () => {
             boxShadow: 0.5,
             backgroundColor: "#1F8A70",
           }}
-          //   endIcon={
-          //     isLoading || isSubmitting ? (
-          //       <CircularProgress color="inherit" size={'24px'} />
-          //     ) : (
-          //       <></>
-          //     )
-          //   }
+          endIcon={
+            isLoading || isSubmitting ? (
+              <CircularProgress color="inherit" size={"24px"} />
+            ) : (
+              <></>
+            )
+          }
         >
-          {t("continue")}
+          {t("common:continue")}
         </Button>
       </Stack>
     </FormProvider>
@@ -171,4 +184,3 @@ const InformationForm = () => {
 };
 
 export default InformationForm;
-

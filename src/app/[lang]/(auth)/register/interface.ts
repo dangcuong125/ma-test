@@ -9,3 +9,10 @@ export interface IFormCreateInfo {
     referralCode: string;
     agreedTerms: boolean;
 }
+
+export interface IPhoneExisted {
+    phoneNumber: string;
+}
+export interface IResPhoneExisted {
+    isExisted: boolean;
+}

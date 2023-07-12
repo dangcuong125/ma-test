@@ -10,17 +10,17 @@ export function useGetHomeConfig() {
     {
       select: (data) => {
         return {
-          bannerData: data?.sections?.filter((itemSections) => 
+          bannerData: data?.sections?.filter((itemSections: any) => 
             itemSections.type === ITypeSections.BANNER
           ),
           normalServiceData: data?.sections?.filter(
-            (itemSections) => itemSections?.type === ITypeSections.NORMAL_SERVICE
+            (itemSections : any) => itemSections?.type === ITypeSections.NORMAL_SERVICE
           ),
           horizontalProductData1: data?.sections?.filter(
-            (itemSections) =>
+            (itemSections : any) =>
               itemSections?.type === ITypeSections.HORIZONTAL_PRODUCT_LIST_1
           ),
-          bannerPromotionData: data?.sections?.filter((itemSections) => 
+          bannerPromotionData: data?.sections?.filter((itemSections : any) => 
             itemSections.type === ITypeSections.PROMOTION_BANNER
           ),
         };

@@ -18,6 +18,7 @@ import { useGetListUserAddress } from "../../hooks/useGetListUserAddress";
 import AddNewAddressModal from "./AddNewAddressModal";
 import EmptyCart from "../EmptyCart";
 import { useEffect } from "react";
+import { CheckoutAddressSkeleton } from "./CheckoutAddressSkeleton";
 
 export default function CheckoutAddress() {
   const { subtotal, total, discount, cart, selectedAddress } = useSelector(
@@ -28,8 +29,10 @@ export default function CheckoutAddress() {
     data: dataAddress,
     isLoading: isLoadingDataAddress,
     refetch: refetchAddress,
+    isError,
   } = useGetListUserAddress();
-  const userAddress = dataAddress?.data?.items || [];
+
+  const userAddress = dataAddress?.items || [];
 
   const dispatch = useDispatch();
 
@@ -63,23 +66,21 @@ export default function CheckoutAddress() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
-          <RadioGroup
-            name="addressCurrentId"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              console.log(e.target.value);
-            }}
-          >
-            {userAddress.map((address, index) => (
-              <AddressItem key={index} address={address} />
-            ))}
+          <RadioGroup name="addressCurrentId">
+            {(isLoadingDataAddress || isError) && <CheckoutAddressSkeleton />}
+            {!isLoadingDataAddress &&
+              userAddress.map((address, index) => (
+                <AddressItem key={index} address={address} />
+              ))}
 
-            {userAddress?.length === 0 && (
-              <EmptyCart
-                title="Bạn chưa có địa chỉ nào!"
-                description=""
-                img="/assets/empty-address.svg"
-              />
-            )}
+            {!(isLoadingDataAddress || isError) &&
+              userAddress?.length === 0 && (
+                <EmptyCart
+                  title="Bạn chưa có địa chỉ nào!"
+                  description=""
+                  img="/assets/empty-address.svg"
+                />
+              )}
           </RadioGroup>
 
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -101,11 +102,7 @@ export default function CheckoutAddress() {
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          <CheckoutSummary
-            subtotal={subtotal}
-            total={total}
-            discount={discount}
-          />
+          <CheckoutSummary subtotal={total} total={total} discount={discount} />
           <Button
             fullWidth
             size="large"

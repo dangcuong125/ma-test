@@ -8,7 +8,6 @@ import {
   IParamsSearchProvince,
   IParamsUpdateCartItem,
   IProvinceResponses,
-  IResCheckoutCart,
 } from "./interface";
 import axiosClient from "@/common/utils/axios";
 import {
@@ -19,7 +18,7 @@ import {
 } from "@/common/constants/api.constants";
 
 export const getProductCart = () => {
-  return axiosClient.get<any, IResCheckoutCart>(API_CHECKOUT_CART);
+  return axiosClient.get<any, ICartItem[]>(API_CHECKOUT_CART);
 };
 
 export const deleteCartItem = async (params: {

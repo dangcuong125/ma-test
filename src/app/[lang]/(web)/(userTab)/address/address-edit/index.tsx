@@ -33,6 +33,7 @@ import { useGetAddressById } from "./hooks/useGetAddressById";
 import { reset } from "numeral";
 import { useGetProvinceList } from "../address-common/hooks/useGetProvinceList";
 import { useEditAddress } from "./hooks/useEditAddress";
+import useMessage from "@/common/hooks/useMessage";
 
 export default function AddressEdit() {
   const methods = useForm<ISubmitData>({
@@ -52,6 +53,7 @@ export default function AddressEdit() {
   const isOpen = useSelector(isOpenEditForm);
   const idEdit = useSelector(idEditForm);
   const provinceParams = useSelector(provinceParamsForm);
+  const { showSuccessSnackbar, showErrorSnackbar } = useMessage();
 
   const searchParamsProvince: IParamsProvinceList = {
     type: provinceParams.type,
@@ -94,10 +96,10 @@ export default function AddressEdit() {
   const { mutateEditAddress } = useEditAddress({
     onSuccess: () => {
       dispatch(setIsOpenEditForm(false));
-      // enqueueSnackbar(t('address.createSuccess'));
+      showSuccessSnackbar(t("address.updateSuccess"));
     },
     onError: () => {
-      // enqueueSnackbar(t('address.createError'));
+      showErrorSnackbar(t("address.updateError"));
     },
   });
 
@@ -113,7 +115,6 @@ export default function AddressEdit() {
       address2: data.address,
       isDefault: data.isDefault,
     };
-    console.log(data);
     mutateEditAddress(dataEdit);
   };
 
@@ -138,7 +139,7 @@ export default function AddressEdit() {
           id: dataAddressById.ward.id,
           name: dataAddressById.ward.name,
         },
-        address: `${dataAddressById.address1} ${dataAddressById.address2}`,
+        address: dataAddressById.address1,
         isDefault: dataAddressById.isDefault,
       });
     }

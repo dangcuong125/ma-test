@@ -25,6 +25,8 @@ import Iconify from "@/common/components/Iconify";
 import useTranslation from "next-translate/useTranslation";
 import { setOpenOtpModal } from "../../login/reducers/auth.slice";
 import { OtpModalType } from "../../login/interface";
+import { useSendOtp } from "../../common/hooks/useSendOtp";
+import useShowSnackbar from "@/common/hooks/useShowSnackbar";
 
 const ForgotPasswordForm = () => {
   const registerSchema = RegisterSchema();
@@ -40,26 +42,49 @@ const ForgotPasswordForm = () => {
     formState: { isSubmitting },
   } = methods;
   const router = useRouter();
-  //   const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
-  const { isShowPassword } = useSelector((state) => state.login);
-  const { t } = useTranslation("common");
+  const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
+  const { t } = useTranslation("auth");
   const dispatch = useDispatch();
-  const { mutate, isLoading } = useCheckPhoneExisted();
+  const isTyped = watch("phoneNumber");
 
-  const onSubmit = (data: IFormRegister) => {
-    dispatch(setPhoneNumber(data?.phoneNumber))
-    dispatch(setOpenOtpModal({
-      isOpen: true,
-      type: OtpModalType.FORGOT_PASSWORD
-    }));
-    // mutate(data, {
-    //   onError: (error: any) => {
-    //     // showErrorSnackbar(error?.message);
-    //   },
-    // });
+  const { refetch: checkUserExisted } = useCheckPhoneExisted({
+    phoneNumber: isTyped,
+  });
+  const { mutate, isLoading } = useSendOtp();
+
+  const onSubmit = async (data: IFormRegister) => {
+    dispatch(setPhoneNumber(data?.phoneNumber));
+    try {
+      const result = await checkUserExisted();
+      if (!result?.data?.isExisted) {
+        showErrorSnackbar(t("phone_number_not_existed"));
+        return;
+      }
+      mutate(
+        {
+          phoneNumber: data?.phoneNumber,
+          type: OtpModalType.RESET_PASSWORD,
+          deviceId: new Date().toISOString(),
+        },
+        {
+          onSuccess: () => {
+            dispatch(
+              setOpenOtpModal({
+                isOpen: true,
+                type: OtpModalType.RESET_PASSWORD,
+              })
+            );
+          },
+          onError: (error) => {
+            showErrorSnackbar("Send otp failed");
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const isTyped = watch("phoneNumber");
   return (
     <Card
       sx={{
@@ -69,45 +94,46 @@ const ForgotPasswordForm = () => {
         mx: "auto",
       }}
     >
-    <Typography variant={"h4"} mb={2}>{t("auth.forgot_password")}</Typography>
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
-        <RHFTextField
-          name="phoneNumber"
-          label={t("auth.phoneNumber")}
-          placeholder={t("auth.phoneNumber")}
-          sx={{
-            borderRadius: "8px",
-          }}
-        />
-        <Button
-          type="submit"
-          disabled={!isTyped}
-          variant="contained"
-          sx={{
-            borderRadius: "24px",
-            paddingY: 1,
-            boxShadow: 0.5,
-            backgroundColor: "#1F8A70",
-          }}
-          endIcon={
-            isLoading || isSubmitting ? (
-              <CircularProgress color="inherit" size={"24px"} />
-            ) : (
-              <Iconify
-                icon={"heroicons:arrow-right-20-solid"}
-                sx={{ width: "24px" }}
-              />
-            )
-          }
-        >
-          {t('continue')}
-        </Button>
-      </Stack>
-    </FormProvider>
+      <Typography variant={"h4"} mb={2}>
+        {t("forgot_password")}
+      </Typography>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={3}>
+          <RHFTextField
+            name="phoneNumber"
+            label={t("phoneNumber")}
+            placeholder={t("phoneNumber")}
+            sx={{
+              borderRadius: "8px",
+            }}
+          />
+          <Button
+            type="submit"
+            disabled={!isTyped}
+            variant="contained"
+            sx={{
+              borderRadius: "24px",
+              paddingY: 1,
+              boxShadow: 0.5,
+              backgroundColor: "#1F8A70",
+            }}
+            endIcon={
+              isLoading || isSubmitting ? (
+                <CircularProgress color="inherit" size={"24px"} />
+              ) : (
+                <Iconify
+                  icon={"heroicons:arrow-right-20-solid"}
+                  sx={{ width: "24px" }}
+                />
+              )
+            }
+          >
+            {t("common:continue")}
+          </Button>
+        </Stack>
+      </FormProvider>
     </Card>
   );
-}
+};
 
 export default ForgotPasswordForm;
-

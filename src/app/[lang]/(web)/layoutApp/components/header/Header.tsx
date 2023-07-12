@@ -9,13 +9,18 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import SearchBox from "./components/SearchBox";
-import { PATH_HOME } from "@/common/constants/path.constants";
+import { PATH_AUTH, PATH_HOME } from "@/common/constants/path.constants";
+import { useSelector } from "@/common/redux/store";
+import UserWithLogin from "./components/UserWithLogin";
+import { useGetCart } from "@/common/hooks/useGetCart";
 
 export const HeaderBar = () => {
+  const { accessToken } = useSelector((state) => state.authLogin);
   const route = useRouter();
+
+  const { data, isLoading } = useGetCart();
 
   return (
     <Stack
@@ -60,38 +65,60 @@ export const HeaderBar = () => {
         <SearchBox />
       </Box>
       <Stack direction={"row"} spacing={"20px"}>
-        <Button
-          sx={{
-            color: "#666666",
-          }}
-          startIcon={
-            <Box
-              sx={{
-                backgroundImage: "url(/assets/icons/core/user.svg)",
-                width: "24px",
-                height: "24px",
-              }}
-            />
-          }
-          onClick={() => route.push("/login")}
-        >
-          <Typography display={{ xs: "none", md: "flex" }}>
-            Đăng ký/Đăng nhập
-          </Typography>
-        </Button>
+        {accessToken === "" ? (
+          <Button
+            sx={{
+              color: "#666666",
+            }}
+            startIcon={
+              <Box
+                sx={{
+                  backgroundImage: "url(/assets/icons/core/user.svg)",
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+            }
+            onClick={() => route.push(PATH_AUTH.login)}
+          >
+            <Typography display={{ xs: "none", md: "flex" }}>
+              Đăng ký/Đăng nhập
+            </Typography>
+          </Button>
+        ) : (
+          <UserWithLogin />
+        )}
         <Divider orientation="vertical" flexItem />
         <Button
           sx={{
             color: "#666666",
           }}
           startIcon={
-            <Box
-              sx={{
-                backgroundImage: "url(/assets/icons/core/shopping-cart.svg)",
-                width: "24px",
-                height: "24px",
-              }}
-            />
+            <Box sx={{ position: "relative" }}>
+              <Box
+                sx={{
+                  backgroundImage: "url(/assets/icons/core/shopping-cart.svg)",
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
+              <Stack
+                sx={{
+                  background: "red",
+                  position: "absolute",
+                  borderRadius: "50%",
+                  width: "22px",
+                  textAlign: "center",
+                  color: "#FFFFFF",
+                  padding: "1px",
+                  fontSize: "12px",
+                  top: -8,
+                  right: -10,
+                }}
+              >
+                <span>{data?.length || 0}</span>
+              </Stack>
+            </Box>
           }
           onClick={() => route.push(PATH_HOME.checkout)}
         >

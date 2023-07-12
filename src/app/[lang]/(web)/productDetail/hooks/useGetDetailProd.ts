@@ -4,10 +4,10 @@ import { getListCategory } from '../../category/services';
 import { getProductDetail } from '../services';
 
 export function useGetDetailProd(id:number) {
-  const { data, isLoading, refetch, isRefetching } = useQuery(
-    [QUERY_KEYS.CATE_DETAIL],
+  const { data: data_ProductDetail, isLoading, refetch, isRefetching } = useQuery(
+    [QUERY_KEYS.CATE_DETAIL, id],
    () => getProductDetail(id)
   );
-  const dataTest = getProductDetail(id)
-  return { dataTest, isLoading, refetch, isRefetching };
+
+  return { data_ProductDetail, isLoading, refetch, isRefetching };
 }
