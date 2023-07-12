@@ -16,6 +16,7 @@ const initialState: IAddPointSuccess = {
   },
   isOpenGamePopup: false,
   gameData: [],
+  isOpenScanPopup: false,
 };
 
 const addPointSuccessSlice = createSlice({
@@ -38,6 +39,9 @@ const addPointSuccessSlice = createSlice({
     setGamePopupData: (state, action: PayloadAction<IGamePlayTime[]>) => {
       state.gameData = action.payload;
     },
+    setOpenScanPopup: (state, action: PayloadAction<boolean>) => {
+        state.isOpenScanPopup = action.payload;
+    }
   },
 });
 export const {
@@ -45,6 +49,7 @@ export const {
   setOpenGamePopup,
   closeCurrentPopup,
   setGamePopupData,
+  setOpenScanPopup
 } = addPointSuccessSlice.actions;
 
 export default addPointSuccessSlice.reducer;

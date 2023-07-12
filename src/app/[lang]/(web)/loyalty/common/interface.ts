@@ -30,4 +30,5 @@ export interface IAddPointSuccess {
     data: IResAddPoint;
     isOpenGamePopup: boolean;
     gameData: IGamePlayTime[];
+    isOpenScanPopup: boolean;
   }

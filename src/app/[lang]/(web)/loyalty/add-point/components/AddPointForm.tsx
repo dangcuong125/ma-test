@@ -23,6 +23,7 @@ import useTranslation from "next-translate/useTranslation";
 import { PATH_HOME } from "@/common/constants/path.constants";
 import useShowSnackbar from "@/common/hooks/useShowSnackbar";
 import { useAddPoint } from "../../common/hooks/useAddPoint";
+import { setOpenScanPopup } from "../../common/slice";
 
 const RegisterForm = () => {
   const addPointSchema = AddPointSchema();
@@ -115,6 +116,9 @@ const RegisterForm = () => {
           paddingY: 1,
           boxShadow: 0.5,
           backgroundColor: "#1F8A70",
+        }}
+        onClick={() => {
+          dispatch(setOpenScanPopup(true));
         }}
       >
         {t("scan_qr_code")}
