@@ -17,7 +17,7 @@ export const Banner = (props: Props) => {
   return (
     <Box
       sx={{
-        height: "550px",
+        height: { lg: '750px', md: '550px', xs: '200px', sm: '350px' },
         width: "100%",
       }}
     >
