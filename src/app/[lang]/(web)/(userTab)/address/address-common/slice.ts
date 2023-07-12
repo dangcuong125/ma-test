@@ -11,6 +11,8 @@ const initialState: InitialState = {
     searchText: "",
     type: "PROVINCE",
   },
+  idDelete: 0,
+  isOpenModalConfirm: false,
 };
 
 const addressSlice = createSlice({
@@ -36,6 +38,12 @@ const addressSlice = createSlice({
       state.provinceParams.type = action.payload.type;
       state.provinceParams.parentId = action.payload.parentId;
     },
+    setIdDelete: (state, action: PayloadAction<number>) => {
+      state.idDelete = action.payload;
+    },
+    setIsOpenModalConfirm: (state, action: PayloadAction<boolean>) => {
+      state.isOpenModalConfirm = action.payload;
+    },
   },
 });
 
@@ -45,6 +53,8 @@ export const {
   setIsOpenCreateForm,
   setSearchTextProvinceParams,
   setTypeProvinceParams,
+  setIdDelete,
+  setIsOpenModalConfirm,
 } = addressSlice.actions;
 
 export const isOpenEditForm = (state: RootState) =>
@@ -54,5 +64,8 @@ export const isOpenCreateForm = (state: RootState) =>
 export const provinceParamsForm = (state: RootState) =>
   state.address.provinceParams;
 export const idEditForm = (state: RootState) => state.address.idEdit;
+export const idDelete = (state: RootState) => state.address.idDelete;
+export const isOpenModalConfirm = (state: RootState) =>
+  state.address.isOpenModalConfirm;
 
 export default addressSlice.reducer;
