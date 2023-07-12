@@ -46,7 +46,7 @@ export default function AddressList() {
       <AddressHeader />
 
       {isLoadingAddressList && <AddressSkeleton />}
-      <Stack spacing={4} px={{ xs: "16px", md: "32px" }}>
+      <Stack spacing={4} px={{ xs: "16px", sm: "32px" }}>
         {listAddress.map((item) => (
           <AddressItem key={item.id} addressItem={item} />
         ))}

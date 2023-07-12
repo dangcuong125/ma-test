@@ -67,7 +67,7 @@ export default function ModalConfirmDelete() {
             {t("address.contentModal")}
           </DialogContentText>
         </DialogContent>
-        <DialogActions sx={{ width: 400, p: "16px" }}>
+        <DialogActions sx={{ width: { xs: "auto", sm: "400px" }, p: "16px" }}>
           <Stack spacing={2} direction="row">
             <Button variant="contained" color="error" onClick={handleDelete}>
               {t("address.deleteBtn")}

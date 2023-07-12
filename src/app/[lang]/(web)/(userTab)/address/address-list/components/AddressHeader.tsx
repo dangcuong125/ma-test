@@ -32,7 +32,7 @@ export default function AddressHeader() {
       </Typography>
       <Button
         variant="text"
-        sx={{ px: { xs: 0, sm: "12px" }, justifyContent: { xs: "flex-end" } }}
+        sx={{ px: "12px", justifyContent: { xs: "flex-end" } }}
         onClick={handleOpenCreateForm}
       >
         <Box

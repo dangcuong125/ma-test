@@ -13,7 +13,7 @@ export const AddressSkeleton = () => {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   return (
-    <Stack spacing={4} px={"16px"}>
+    <Stack spacing={4} px={{ xs: "16px", sm: "32px" }}>
       {Array(3)
         .fill(0)
         .map((_, index) => (
@@ -57,10 +57,11 @@ export const AddressSkeleton = () => {
                 />
               </Stack>
               <Skeleton
-                variant="rounded"
+                variant="circular"
                 sx={{
-                  height: "30px",
-                  width: "40px",
+                  height: "20px",
+                  width: "20px",
+                  alignSelf: "flex-start",
                 }}
               />
             </Stack>
