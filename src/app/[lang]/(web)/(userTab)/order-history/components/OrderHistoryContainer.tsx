@@ -64,7 +64,7 @@ export default function OrderHistoryContainer() {
         sx={{
           width: "100%",
           background: "white",
-          borderRadius: "24px",
+          borderRadius: { xs: 0, md: "24px" },
           padding: 3,
         }}
       >

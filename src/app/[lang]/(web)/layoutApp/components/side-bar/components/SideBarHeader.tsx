@@ -7,23 +7,38 @@ import { useGetCustomerInfo } from "@/common/hooks/useGetCustomerInfo";
 import { useRouter } from "next/navigation";
 import { PATH_HOME } from "@/common/constants/path.constants";
 import useTranslation from "next-translate/useTranslation";
+import { useDispatch } from "@/common/redux/store";
+import {
+  setShowUserTabMobile,
+  showUserTabMobile,
+} from "@/app/[lang]/(web)/(userTab)/slice";
+import { useSelector } from "react-redux";
 
 const SideBarHeader = () => {
   const { data } = useGetCustomerInfo();
   const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
+  const showUserTabXs = useSelector(showUserTabMobile);
   return (
-    <Stack direction={"row"} mt={"50px"} spacing={2} alignItems={"center"}>
+    <Stack
+      direction={"row"}
+      mt={{ xs: "0", md: "50px" }}
+      spacing={2}
+      alignItems={"center"}
+      alignSelf={{ xs: "center", md: "unset" }}
+    >
       <Avatar
         src={data?.avatar?.url ?? DEFAULT_AVATAR}
         sx={{
           bgcolor: "#1F8A70",
-          width: "60px",
-          height: "60px",
+          width: { xs: "30px", md: "60px" },
+          height: { xs: "30px", md: "60px" },
         }}
         alt="avatar"
+        onClick={() => dispatch(setShowUserTabMobile(!showUserTabXs))}
       />
-      <Stack spacing={"5px"}>
+      <Stack spacing={"5px"} display={{ xs: "none", md: "flex" }}>
         <Typography color={"#1A1A1A"} fontSize={"16px"} fontWeight={600}>
           {data?.name ?? ""}
         </Typography>

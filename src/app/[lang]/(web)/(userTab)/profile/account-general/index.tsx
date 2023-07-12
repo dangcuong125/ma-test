@@ -16,7 +16,7 @@ const AccountGeneral = () => {
       sx={{
         bgcolor: "#FFF",
         width: "100%",
-        borderRadius: "24px",
+        borderRadius: { xs: 0, md: "24px" },
         maxHeight: { xs: "auto", md: "934px" },
         padding: "36px",
       }}

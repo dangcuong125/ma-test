@@ -33,11 +33,18 @@ const LayoutAppWithUserTab = ({ children }: { children: React.ReactNode }) => {
           item
           xs={0}
           md={3}
-          minHeight={"492px"}
+          minHeight={{ xs: "auto", md: "492px" }}
           justifyContent={"flex-start"}
-          alignItems={"center"}
+          alignItems={{ xs: "flex-start", md: "center" }}
           alignSelf={"flex-start"}
-          display={{ xs: "none", md: "flex" }}
+          display="flex"
+          sx={{
+            width: { xs: "100%", md: "auto" },
+            backgroundColor: { xs: "#FFFFFF", md: "inherit" },
+            padding: "0 !important",
+            pl: { md: "16px !important" },
+            pt: { md: "16px !important" },
+          }}
         >
           <SideBarUser />
         </Grid>

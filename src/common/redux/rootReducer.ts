@@ -7,6 +7,7 @@ import customerSlice from "@/app/[lang]/(web)/(userTab)/profile/account-common/r
 import checkoutSlice from "@/app/[lang]/(web)/checkout/order.slice";
 import headerSlice from "@/app/[lang]/(web)/layoutApp/components/header/header.slice";
 import categoryReducer from "@/app/[lang]/(web)/category/category.slice";
+import userTabReducer from "@/app/[lang]/(web)/(userTab)/slice";
 
 import { combineReducers } from "@reduxjs/toolkit";
 
@@ -20,7 +21,7 @@ const rootReducer = combineReducers({
   headerSlice: headerSlice,
   orderHistory: orderHistorySlice,
   categoryRoot: categoryReducer,
+  userTab: userTabReducer,
 });
 
 export { rootReducer };
-
