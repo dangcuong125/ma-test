@@ -102,8 +102,8 @@ const ShareAppInfo = () => {
           </Typography>
           <Image
             src="/assets/icons/qr_code.png"
-            width={{ xs: "110px", md: "168px" }}
-            height={{ xs: "110px", md: "168px" }}
+            // width={{ xs: "110px", md: "168px" }}
+            // height={{ xs: "110px", md: "168px" }}
             style={{
               objectFit: "cover",
             }}
