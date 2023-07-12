@@ -23,7 +23,7 @@ export const NotiSkeleton = () => {
             alignItems={"center"}
             position={"relative"}
             py={"16px"}
-            px={{ xs: "16px", md: "32px" }}
+            px={{ xs: "16px", sm: "32px" }}
             gap={"16px"}
             justifyContent={"space-between"}
           >

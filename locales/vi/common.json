@@ -57,6 +57,13 @@
     "createError": "Thêm địa chỉ mới thất bại",
     "updateSuccess": "Cập nhật địa chỉ thành công",
     "updateError": "Cập nhật địa chỉ thất bại",
+    "updateBtn": "Cập nhật",
+    "deleteBtn": "Xóa",
+    "titleModal": "Xóa địa chỉ",
+    "contentModal": "Bạn có chắc muốn xóa địa chỉ này?",
+    "cancelBtn": "Hủy",
+    "deleteSuccess": "Xóa địa chỉ thành công",
+    "deleteError": "Xóa địa chỉ thất bại",
     "form": {
       "createHeading": "Thêm địa chỉ mới",
       "updateHeading": "Cập nhật địa chỉ",

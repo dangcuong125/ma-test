@@ -8,14 +8,16 @@ export interface InitialState {
   idEdit: number;
   isOpenCreateForm: boolean;
   provinceParams: IProvinceParams;
+  idDelete: number;
+  isOpenModalConfirm: boolean;
 }
 
 export interface ISubmitData {
   name: string;
   phone: string;
-  province: { id: number; name: string };
-  district: { id: number; name: string };
-  ward: { id: number; name: string };
+  province: { id: number; name: string } | null;
+  district: { id: number; name: string } | null;
+  ward: { id: number; name: string } | null;
   address: string;
   isDefault: boolean;
 }

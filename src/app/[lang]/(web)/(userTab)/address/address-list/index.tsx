@@ -12,6 +12,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { AddressSkeleton } from "./components/AddressSkeleton";
+import ModalConfirmDelete from "./components/ModalConfirmDelete";
 
 export default function AddressList() {
   const isXs = useMediaQuery("(max-width:600px)");
@@ -43,12 +44,14 @@ export default function AddressList() {
       }}
     >
       <AddressHeader />
+
       {isLoadingAddressList && <AddressSkeleton />}
-      <Stack spacing={4} px={{ xs: "16px", md: "32px" }}>
+      <Stack spacing={4} px={{ xs: "16px", sm: "32px" }}>
         {listAddress.map((item) => (
           <AddressItem key={item.id} addressItem={item} />
         ))}
       </Stack>
+
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <LoadingButton
           variant="text"
@@ -65,10 +68,12 @@ export default function AddressList() {
           {t("address.loadingMore")}
         </LoadingButton>
       </Box>
+
       <NoDataAddress isOpen={isNotFound} />
 
       <AddressCreate />
       <AddressEdit />
+      <ModalConfirmDelete />
     </Paper>
   );
 }

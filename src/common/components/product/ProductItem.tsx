@@ -1,8 +1,10 @@
 import { Stack, Box, Typography, IconButton } from "@mui/material";
 import Image from "../Image";
 import { formatNumberToCurrency } from "@/common/utils/common.utils";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { PATH_HOME } from "@/common/constants/path.constants";
+import { useAddToCart } from "@/common/hooks/useAddToCart";
+import useShowSnackbar from "@/common/hooks/useMessage";
 
 type Props = {
   title?: string;
@@ -10,29 +12,31 @@ type Props = {
   srcImg?: string;
   price?: number;
   onClick?: VoidFunction;
+  onClickAddToCart?: VoidFunction;
 };
 
 export const ProductItemDefault = (props: Props) => {
-  const { title, property, srcImg, price, onClick } = props;
-  const router = useRouter()
+  const { title, property, srcImg, price, onClick, onClickAddToCart } = props;
+  const router = useRouter();
+
+
   return (
     <Stack
-      onClick={onClick}
       sx={{
-        overflow:"hidden",
-        height: {xs:"300px",sm:"450px"},
+        overflow: "hidden",
+        height: { xs: "300px", sm: "450px" },
         width: "100%",
         justifyContent: "space-between",
         borderRadius: "24px",
         border: "1px solid #E1E2E6",
         boxShadow: "0px 14px 21px rgba(218, 218, 218, 0.15)",
-        
-        zIndex:9999,
-        
-        ':hover':{
-         cursor:"pointer",
-         opacity:0.7
-        }
+
+        zIndex: 9999,
+
+        ":hover": {
+          cursor: "pointer",
+          opacity: 0.7,
+        },
       }}
     >
       <Box
@@ -47,20 +51,20 @@ export const ProductItemDefault = (props: Props) => {
           backgroundPosition: "center",
           backgroundImage: `url(${srcImg})`,
           backgroundColor: "white",
-        
         }}
+        onClick={onClick}
       />
       <Stack
         sx={{
-          paddingBottom: {xs:"20px",sm:"27px"},
-          pt:"2px",
-          px: {xs:"16px",sm:"24px"},
+          paddingBottom: { xs: "20px", sm: "27px" },
+          pt: "2px",
+          px: { xs: "16px", sm: "24px" },
         }}
         // width={"100%"}
       >
-        <Stack py={"10px"}>
+        <Stack py={"10px"} onClick={onClick}>
           <Typography
-            fontSize={{xs:20,sm:24}}
+            fontSize={{ xs: 20, sm: 24 }}
             fontWeight={700}
             // lineHeight={"24px"}
             sx={{
@@ -91,7 +95,7 @@ export const ProductItemDefault = (props: Props) => {
           justifyContent={"space-between"}
         >
           <Typography
-            fontSize={{xs:14,sm:24}}
+            fontSize={{ xs: 14, sm: 24 }}
             color={"#1F8A70"}
             fontWeight={700}
             sx={{
@@ -110,11 +114,14 @@ export const ProductItemDefault = (props: Props) => {
                 background: "black",
               },
             }}
-            onClick={() => router.push(PATH_HOME.checkout) }
+            onClick={onClickAddToCart}
           >
             <Image
               alt=""
-              sx={{ width: {xs:"24px",sm:"32px"}, height: {xs:"24px",sm:"32px"} }}
+              sx={{
+                width: { xs: "24px", sm: "32px" },
+                height: { xs: "24px", sm: "32px" },
+              }}
               src={"/assets/icons/core/add-to-cart.svg"}
             />
           </IconButton>

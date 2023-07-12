@@ -2,9 +2,18 @@
 
 import { useDispatch } from "@/common/redux/store";
 import { Paper, Stack, Box, Button } from "@mui/material";
-import { setIdEdit, setIsOpenEditForm } from "../../address-common/slice";
+import {
+  setIdDelete,
+  setIdEdit,
+  setIsOpenEditForm,
+  setIsOpenModalConfirm,
+} from "../../address-common/slice";
 import { IAddressItem } from "../../address-common/interface";
 import useTranslation from "next-translate/useTranslation";
+import ItemOptions from "./ItemOptions";
+import { MenuItem } from "@mui/material";
+import Iconify from "@/common/components/Iconify";
+import { useState } from "react";
 
 type Props = {
   addressItem: IAddressItem;
@@ -24,10 +33,24 @@ export default function AddressItem({ addressItem }: Props) {
   } = addressItem;
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const [openMenu, setOpenMenuActions] = useState<HTMLElement | null>(null);
 
-  const handleOpenEditForm = (id: number) => {
+  const handleOpenMenuActions = (category: React.MouseEvent<HTMLElement>) => {
+    setOpenMenuActions(category.currentTarget);
+  };
+
+  const handleCloseMenuActions = () => {
+    setOpenMenuActions(null);
+  };
+
+  const handleOpenEditForm = () => {
     dispatch(setIsOpenEditForm(true));
     dispatch(setIdEdit(id));
+  };
+
+  const handleDeleteItem = () => {
+    dispatch(setIdDelete(id));
+    dispatch(setIsOpenModalConfirm(true));
   };
 
   return (
@@ -100,21 +123,50 @@ export default function AddressItem({ addressItem }: Props) {
             {`${address1}, ${ward.name}, ${district.name}, ${province.name}`}
           </Box>
         </Stack>
-        <Button
-          variant="text"
-          onClick={() => handleOpenEditForm(id)}
-          sx={{ maxHeight: "30px" }}
+        <Box
+          sx={{
+            alignSelf: "flex-start",
+          }}
         >
-          <Box
-            sx={{
-              backgroundImage: "url(/assets/icons/core/edit-btn.svg)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              width: "24px",
-              height: "24px",
-            }}
+          <ItemOptions
+            open={openMenu}
+            onClose={handleCloseMenuActions}
+            onOpen={handleOpenMenuActions}
+            actions={
+              <>
+                <MenuItem
+                  onClick={() => {
+                    handleDeleteItem();
+                    handleCloseMenuActions();
+                  }}
+                  sx={{ color: "error.main" }}
+                >
+                  <Iconify icon={"eva:trash-2-outline"} />
+                  {t("address.deleteBtn")}
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    handleOpenEditForm();
+                    handleCloseMenuActions();
+                  }}
+                  sx={{ color: "#1F8A70" }}
+                >
+                  <Box
+                    sx={{
+                      backgroundImage: "url(/assets/icons/core/edit-btn.svg)",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                      width: "20px",
+                      height: "20px",
+                      mr: "16px",
+                    }}
+                  />
+                  {t("address.updateBtn")}
+                </MenuItem>
+              </>
+            }
           />
-        </Button>
+        </Box>
       </Stack>
     </Paper>
   );

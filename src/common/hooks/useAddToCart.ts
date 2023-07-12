@@ -1,19 +1,27 @@
 import { useMutation, useQueryClient } from "react-query";
 import { QUERY_KEYS } from "../constants/queryKeys.constant";
 import { addToCart } from "../services";
-import useShowSnackbar from "./useMessage";
+import useShowSnackbar from "./useShowSnackbar";
 
-export const useAddToCart = () => {
+type ICallBack = {
+  onSuccess?: VoidFunction;
+  onError?: VoidFunction;
+};
+
+export const useAddToCart = (callback?: ICallBack) => {
+  const { showSuccessSnackbar, showErrorSnackbar } = useShowSnackbar();
   const queryClient = useQueryClient();
-  const { showErrorSnackbar, showSuccessSnackbar } = useShowSnackbar();
 
   const variables = useMutation(addToCart, {
-    onSuccess() {
+    onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEYS.CHECKOUT_CART]);
-      showSuccessSnackbar("Thêm vào giỏ quà thành công");
+      console.log("Thêm vào giỏ quà thành công.");
+
+      showSuccessSnackbar("Thêm vào giỏ hàng thành công !");
     },
-    onError(error: Error) {
-      showErrorSnackbar(error?.message || "Thêm vào giỏ quà thất bại");
+    onError: (error: Error) => {
+      console.log(error?.message);
+      showErrorSnackbar("Thêm vào giỏ hàng thất bại!");
     },
   });
 

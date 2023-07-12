@@ -8,6 +8,7 @@ import customerSlice from "@/app/[lang]/(web)/(userTab)/profile/account-common/r
 import searchSlice from "@/app/[lang]/(web)/layoutApp/search.slice";
 import checkoutSlice from "@/app/[lang]/(web)/checkout/order.slice";
 import headerSlice from "@/app/[lang]/(web)/layoutApp/components/header/header.slice";
+import addPointSuccessSlice from '@/app/[lang]/(web)/loyalty/common/slice';
 import categoryReducer from "@/app/[lang]/(web)/category/category.slice";
 
 import { combineReducers } from "@reduxjs/toolkit";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   search: searchSlice,
   headerSlice: headerSlice,
   orderHistory: orderHistorySlice,
+  addPointSuccess: addPointSuccessSlice,
   categoryRoot: categoryReducer,
 });
 
