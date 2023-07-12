@@ -8,6 +8,8 @@ export interface InitialState {
   idEdit: number;
   isOpenCreateForm: boolean;
   provinceParams: IProvinceParams;
+  idDelete: number;
+  isOpenModalConfirm: boolean;
 }
 
 export interface ISubmitData {

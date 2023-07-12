@@ -57,6 +57,13 @@
     "createError": "Create address failed",
     "updateSuccess": "Update address successfully",
     "updateError": "Update address failed",
+    "updateBtn": "Update",
+    "deleteBtn": "Delete",
+    "titleModal": "Delete address",
+    "contentModal": "Are you sure you want to delete this address?",
+    "cancelBtn": "Hủy",
+    "deleteSuccess": "Delete address successfully",
+    "deleteError": "Delete address failed",
     "form": {
       "createHeading": "Create a new address",
       "updateHeading": "Updateting address",
