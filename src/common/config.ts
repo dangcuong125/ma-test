@@ -39,5 +39,5 @@ export const allLangs = [
 
 export const defaultLang = allLangs[1]; // English
 
-export const MERCHANT_ID = 13;
+export const MERCHANT_ID = 2;
 

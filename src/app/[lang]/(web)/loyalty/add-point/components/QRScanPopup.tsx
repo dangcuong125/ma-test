@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { QrReader } from "react-qr-reader";
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Stack, IconButton } from "@mui/material";
+import Iconify from "@/common/components/Iconify";
 import QRScanContainer from "./QRScanContainer";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -17,6 +19,7 @@ const style = {
   height: {
     xs: "100%",
     sm: "30vw",
+    md: "auto",
   },
   borderRadius: { xs: 0, md: "24px" },
   backgroundColor: "black",
@@ -34,6 +37,41 @@ export const QRScanPopup = ({ open }: { open: boolean }) => {
       {/* {isAccessCamera && ( */}
       <Modal open={open}>
         <Box sx={style}>
+          <>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+              sx={{
+                zIndex: 2,
+                position: "absolute",
+                top: 10,
+              }}
+            >
+              <IconButton onClick={() => setFrontCamera(!isFrontCamera)}>
+                <Iconify
+                  icon={"majesticons:close"}
+                  sx={{ width: "24px", height: "24px" }}
+                />
+              </IconButton>
+            </Stack>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                minWidth: "225px",
+                width: "20vw",
+                height: "20vw",
+                minHeight: "225px",
+                zIndex: 2,
+                border: "10px solid",
+                borderColor: "#1F8A70",
+                borderRadius: '24px'
+              }}
+            ></Box>
+          </>
           <QrReader
             scanDelay={300}
             constraints={{
@@ -60,6 +98,8 @@ export const QRScanPopup = ({ open }: { open: boolean }) => {
             }}
             videoContainerStyle={{
               overflow: 'none',
+              height: "100%",
+              width: '100%',
             }}
           />
         </Box>

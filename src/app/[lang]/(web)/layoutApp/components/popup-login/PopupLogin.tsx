@@ -62,6 +62,11 @@ export default function PopupLogin({
       },
     });
   };
+
+  const handleClosePopupLogin = () => {
+    dispatch(setPopupLogin(false));
+  };
+
   const isTyped = watch("phoneNumber") && watch("password");
   return (
     <Modal open={open}>

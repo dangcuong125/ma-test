@@ -35,10 +35,11 @@ const NotiList = () => {
   const isNotFound = !isLoadingNotiList && !listNoti.length;
 
   return (
-    <Paper
+    <Box
       sx={{
         bgcolor: "#FFF",
-        py: "36px",
+        pt: { xs: "16px", md: "36px" },
+        pb: "32px",
         width: "100%",
         borderRadius: { xs: 0, md: "24px" },
       }}
@@ -67,7 +68,7 @@ const NotiList = () => {
         </Box>
         <NoDataNoti isOpen={isNotFound} />
       </Box>
-    </Paper>
+    </Box>
   );
 };
 

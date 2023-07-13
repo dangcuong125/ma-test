@@ -15,7 +15,7 @@ export default function ListHistoryPoint() {
         sx={{
           width: "100%",
           background: "white",
-          borderRadius: "24px",
+          borderRadius: { xs: 0, md: "24px" },
           padding: 3,
         }}
       >
