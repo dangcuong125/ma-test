@@ -22,7 +22,9 @@ export default function RootLayout({
           <AppThemeProvider>
             <ReduxProviders>
               <Providers>
-                <NotistackProvider>{children}</NotistackProvider>
+                <NotistackProvider>
+                  <main>{children}</main>
+                  </NotistackProvider>
               </Providers>
             </ReduxProviders>
           </AppThemeProvider>

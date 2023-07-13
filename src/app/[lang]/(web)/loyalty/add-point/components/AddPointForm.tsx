@@ -105,7 +105,7 @@ const RegisterForm = () => {
           my: 3,
         }}
       >
-        {t("common:auth.or")}
+        {t("auth:or")}
       </Divider>
 
       <Button

@@ -16,13 +16,13 @@ const style = {
   minWidth: "350px",
   height: {
     xs: "100%",
+    sm: "30vw",
   },
-  borderRadius: "24px",
-  overflow: "hidden",
+  borderRadius: { xs: 0, md: "24px" },
+  backgroundColor: "black",
 };
 export const QRScanPopup = ({ open }: { open: boolean }) => {
   const [isFrontCamera, setFrontCamera] = useState(false);
-  const [isAccessCamera, setAccessCamera] = useState(false);
   const [code, setCode] = useState<string>("");
   console.log(code);
   const setCamera = () => {
@@ -35,25 +35,36 @@ export const QRScanPopup = ({ open }: { open: boolean }) => {
       <Modal open={open}>
         <Box sx={style}>
           <QrReader
-              scanDelay={300}
-              constraints={{
-                facingMode: isFrontCamera ? "user" : "enviroment",
-              }}
-              ViewFinder={() => QRScanContainer(setCamera)}
-              onResult={(result, error) => {
-                if (result) {
-                  setCode(result?.getText());
-                }
-              }}
-              videoStyle={{
-                height: "100%",
-                backgroundSize: "cover",
-              }}
-            />
+            scanDelay={300}
+            constraints={{
+              facingMode: isFrontCamera ? "user" : "enviroment",
+            }}
+            ViewFinder={() => QRScanContainer({setFrontCamera: setCamera})}
+            onResult={(result, error) => {
+              if (result) {
+                setCode(result?.getText());
+              }
+            }}
+            videoStyle={{
+              width: "100%",
+              height: "350px",
+              position: "absolute",
+              top: "50%",
+              left: 0,
+            }}
+            containerStyle={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: "black",
+              margin: 'auto',
+            }}
+            videoContainerStyle={{
+              overflow: 'none',
+            }}
+          />
         </Box>
       </Modal>
       {/* )} */}
     </>
   );
 };
-

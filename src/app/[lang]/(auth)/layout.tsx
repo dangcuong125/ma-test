@@ -21,6 +21,7 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
   };
 
   return (
+    <main>
     <Stack
       sx={{
         minHeight: "100vh",
@@ -52,5 +53,6 @@ export default function LayoutAuth({ children }: { children: ReactNode }) {
       <FooterBar />
       {openOtpModal?.isOpen && <OtpModal onClose={handleCloseModal} />}
     </Stack>
+    </main>
   );
 }
